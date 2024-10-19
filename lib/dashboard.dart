@@ -200,7 +200,7 @@ class GreetingSection extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-              "Ranjith Kumar",
+              "Dhanvina",
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
