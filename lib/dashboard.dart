@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/quiz_screen.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -44,6 +45,12 @@ class MobileDashboard extends StatelessWidget {
             title: "Practice 1 - 10 Questions",
             subtitle: "5 Minutes · Level · Easy",
             buttonText: "TRY",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QuizScreen()),
+              );
+            },
           ),
           QuizCard(
             title: "Practice 2 - 20 Questions",
@@ -91,6 +98,12 @@ class TabletDashboard extends StatelessWidget {
                   title: "Practice 1 - 10 Questions",
                   subtitle: "5 Minutes · Level · Easy",
                   buttonText: "TRY",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QuizScreen()),
+                    );
+                  },
                 ),
                 QuizCard(
                   title: "Practice 2 - 20 Questions",
@@ -141,6 +154,12 @@ class WebDashboard extends StatelessWidget {
                   title: "Practice 1 - 10 Questions",
                   subtitle: "5 Minutes · Level · Easy",
                   buttonText: "TRY",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QuizScreen()),
+                    );
+                  },
                 ),
                 QuizCard(
                   title: "Practice 2 - 20 Questions",
@@ -223,11 +242,13 @@ class QuizCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String buttonText;
+  final VoidCallback? onPressed; // Add this parameter for the button's action
 
   const QuizCard({
     required this.title,
     required this.subtitle,
     required this.buttonText,
+    this.onPressed, // Accept onPressed in the constructor
   });
 
   @override
@@ -263,7 +284,7 @@ class QuizCard extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: onPressed, // Use the passed onPressed callback
               child: Text(buttonText),
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(

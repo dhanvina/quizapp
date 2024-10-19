@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizapp/dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -96,7 +97,7 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-          
+
               // Welcome Text
               RichText(
                 text: TextSpan(
@@ -120,38 +121,43 @@ class LoginForm extends StatelessWidget {
                   ],
                 ),
               ),
-          
+
               Text(
                 "Please enter your sign in details.",
                 style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,  // Medium
-                  fontSize: 18,                 // Font size
-                  color: const Color(0xFF979797), // Text color (hex for #F4F4F7)
+                  fontWeight: FontWeight.w500, // Medium
+                  fontSize: 18, // Font size
+                  color:
+                      const Color(0xFF979797), // Text color (hex for #F4F4F7)
                 ),
               ),
               const SizedBox(height: 20),
-          
+
               // Input Fields
               buildTextField("Full Name", fullNameController),
               buildTextField("Roll Number", rollNumberController),
               buildTextField("School Code", schoolCodeController),
               buildTextField("Password", passwordController, isPassword: true),
-          
+
               const SizedBox(height: 20),
-          
+
               // Sign In Button
               ElevatedButton(
                 onPressed: () {
-                  // Add your authentication logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DashboardPage()),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 150),
                   child: Text(
                     "Sign In",
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,  // Semibold
-                      fontSize: 17,                 // Font size
-                      color: const Color(0xFFF4F4F7), // Text color (hex for #F4F4F7)
+                      fontWeight: FontWeight.w600, // Semibold
+                      fontSize: 17, // Font size
+                      color: const Color(
+                          0xFFF4F4F7), // Text color (hex for #F4F4F7)
                     ),
                   ),
                 ),
@@ -160,17 +166,16 @@ class LoginForm extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
               ),
-          
-          
+
               const SizedBox(height: 20),
-          
+
               // Footer Text
               Text(
                 "Get ready to test your skills!",
                 style: GoogleFonts.poppins(
-                  fontStyle: FontStyle.italic,    // Italic style
-                  fontWeight: FontWeight.bold,    // Bold style
-                  fontSize: 30,                   // Font size 30
+                  fontStyle: FontStyle.italic, // Italic style
+                  fontWeight: FontWeight.bold, // Bold style
+                  fontSize: 30, // Font size 30
                 ),
               ),
             ],
