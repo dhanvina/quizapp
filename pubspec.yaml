@@ -64,6 +64,7 @@ flutter:
    assets:
      - assets/login_upper_image.png
      - assets/success_background.png
+     - assets/relaxing_person.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
