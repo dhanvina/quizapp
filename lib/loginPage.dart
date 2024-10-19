@@ -91,7 +91,7 @@ class LoginForm extends StatelessWidget {
                 height: 150,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/login_upper_image.png'),
+                    image: AssetImage('assets/login.png'),
                     fit: BoxFit.cover, // Adjust image fit
                   ),
                 ),
