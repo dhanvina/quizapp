@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/test_prepartion.dart';
+import 'package:quizapp/quiz_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TestPreparationScreen(),
+      home: QuizScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
