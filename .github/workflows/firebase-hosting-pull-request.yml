@@ -3,7 +3,8 @@
 
 name: Deploy to Firebase Hosting on PR
 
-on:
+on: 
+      master
   pull_request
 
 permissions:
