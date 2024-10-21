@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/quiz_screen.dart';
+import 'package:quizapp/screen3.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -48,7 +48,7 @@ class MobileDashboard extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => QuizScreen()),
+                MaterialPageRoute(builder: (context) => ThirdScreen()),
               );
             },
           ),
@@ -101,7 +101,7 @@ class TabletDashboard extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => QuizScreen()),
+                      MaterialPageRoute(builder: (context) => ThirdScreen()),
                     );
                   },
                 ),
@@ -157,7 +157,7 @@ class WebDashboard extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => QuizScreen()),
+                      MaterialPageRoute(builder: (context) => ThirdScreen()),
                     );
                   },
                 ),
