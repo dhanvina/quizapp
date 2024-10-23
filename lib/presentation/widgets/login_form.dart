@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../state_management/login_notifier.dart';
@@ -16,63 +17,113 @@ class LoginForm extends StatelessWidget {
     final TextEditingController schoolCodeController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
-      height: MediaQuery.of(context).size.height * 0.95,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: const Offset(0, 5),
+    return Scaffold(
+      backgroundColor: const Color(0xFF00A651),
+      body: Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.30,
+          height: MediaQuery.of(context).size.height * 0.96,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            width: 500,
+            height: 840,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 50,
+                  offset: const Offset(0, 5),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Input Fields
-              buildTextField("Full Name", fullNameController),
-              buildTextField("Roll Number", rollNumberController),
-              buildTextField("School Code", schoolCodeController),
-              buildTextField("Password", passwordController, isPassword: true),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 195,
+                    width: 344,
+                    child: Image.asset(
+                      'assets/login.png', // Replace with your logo
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Welcome ",
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600,
+                            color:
+                                const Color(0xFF1E1E1E), // Color for "Welcome"
+                          ),
+                        ),
+                        TextSpan(
+                          text: "Student",
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600,
+                            color:
+                                const Color(0xFF00A455), // Color for "Student"
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-              const SizedBox(height: 20),
+                  Text(
+                    "Please enter your sign in details.",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w500, // Medium
+                      fontSize: 18, // Font size
+                      color: const Color(
+                          0xFF979797), // Text color (hex for #F4F4F7)
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  buildTextField("Full Name", fullNameController),
+                  buildTextField("Roll Number", rollNumberController),
+                  buildTextField("School Code", schoolCodeController),
+                  buildTextField("Password", passwordController,
+                      isPassword: true),
 
-              // Sign In Button
-              ElevatedButton(
-                onPressed: () {
-                  loginNotifier.login(
-                    fullNameController.text,
-                    rollNumberController.text,
-                    schoolCodeController.text,
-                    passwordController.text,
-                  );
-                },
-                child: const Text("Sign In"),
+                  const SizedBox(height: 20),
+
+                  // Sign In Button
+                  ElevatedButton(
+                    onPressed: () {
+                      loginNotifier.login(
+                        fullNameController.text,
+                        rollNumberController.text,
+                        schoolCodeController.text,
+                        passwordController.text,
+                      );
+                    },
+                    child: const Text("Sign In"),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // Loading Indicator or Error Message
+                  if (loginNotifier.state is LoginLoading)
+                    const CircularProgressIndicator(),
+                  if (loginNotifier.state is LoginFailure)
+                    Text(
+                      (loginNotifier.state as LoginFailure).error,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  if (loginNotifier.state is LoginSuccess)
+                    Text(
+                      (loginNotifier.state as LoginSuccess).message,
+                      style: const TextStyle(color: Colors.green),
+                    ),
+                ],
               ),
-
-              const SizedBox(height: 20),
-
-              // Loading Indicator or Error Message
-              if (loginNotifier.state is LoginLoading)
-                const CircularProgressIndicator(),
-              if (loginNotifier.state is LoginFailure)
-                Text(
-                  (loginNotifier.state as LoginFailure).error,
-                  style: const TextStyle(color: Colors.red),
-                ),
-              if (loginNotifier.state is LoginSuccess)
-                Text(
-                  (loginNotifier.state as LoginSuccess).message,
-                  style: const TextStyle(color: Colors.green),
-                ),
-            ],
+            ),
           ),
         ),
       ),
@@ -83,15 +134,18 @@ class LoginForm extends StatelessWidget {
       {bool isPassword = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: TextFormField(
-        controller: controller,
-        obscureText: isPassword,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+      child: SizedBox(
+        width: 303,
+        child: TextFormField(
+          controller: controller,
+          obscureText: isPassword,
+          decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            suffixIcon: isPassword ? const Icon(Icons.visibility_off) : null,
           ),
-          suffixIcon: isPassword ? const Icon(Icons.visibility_off) : null,
         ),
       ),
     );
