@@ -23,7 +23,12 @@ class FirestoreStudentLoginDataSource {
         return null;
       }
     } catch (e) {
-      print("Error logging in student: $e");
+      if (e is FirebaseException) {
+        // Handle specific Firebase exceptions
+        print("Firebase Error: ${e.message}");
+      } else {
+        print("General Error: $e");
+      }
       return null;
     }
   }
