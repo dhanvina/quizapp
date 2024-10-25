@@ -14,7 +14,7 @@ class LoginNotifier extends ChangeNotifier {
   LoginState get state => _state;
 
   Future<void> login(String fullName, String rollNumber, String schoolCode,
-      String password) async {
+      String password, BuildContext context) async {
     _state = LoginLoading();
     notifyListeners();
 
@@ -29,6 +29,11 @@ class LoginNotifier extends ChangeNotifier {
         if (studentLogin != null) {
           _state = LoginSuccess(studentLogin,
               'Login Successful for ${studentLogin.fullName}'); // Ensure this is the correct StudentLogin type
+          Navigator.pushReplacementNamed(
+            context,
+            '/dashboard',
+            arguments: studentLogin.fullName,
+          );
         } else {
           _state = LoginFailure('Invalid login credentials');
         }
