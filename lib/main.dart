@@ -1,33 +1,33 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:quizapp/presentation/pages/login_page.dart';
+import 'package:provider/provider.dart';
+import 'package:quizapp/presentation/pages/paper_selection_page.dart';
+import 'package:quizapp/presentation/state_management/question_provider.dart'; // The QuestionProvider created for handling questions
+import 'package:quizapp/utils/app_router.dart';
 
 import 'firebase_options.dart';
-import 'utils/app_router.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     final AppRouter appRouter = AppRouter();
 
-    return MaterialApp(
-      title: 'Quiz App',
-      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-      home: LoginPage(),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: appRouter.onGenerateRoute,
-      initialRoute: AppRouter.loginRoute, // Set the initial route
+    return ChangeNotifierProvider(
+      create: (context) => QuestionProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Quiz App',
+        theme: ThemeData(primarySwatch: Colors.green),
+        home: PaperSelectionPage(),
+      ),
     );
   }
 }
