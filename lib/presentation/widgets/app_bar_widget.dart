@@ -9,6 +9,7 @@ class AppBarWidget extends StatelessWidget {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,
+      automaticallyImplyLeading: false,
     );
   }
 }

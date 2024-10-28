@@ -12,6 +12,11 @@ import '../widgets/submit_button.dart';
 import '../widgets/timer_widget.dart';
 
 class QuestionPage extends StatefulWidget {
+  final int quizTimeInMinutes;
+
+  const QuestionPage({Key? key, required this.quizTimeInMinutes})
+      : super(key: key);
+
   @override
   _QuestionPageState createState() => _QuestionPageState();
 }
@@ -36,7 +41,10 @@ class _QuestionPageState extends State<QuestionPage> {
               AppBarWidget(),
               QuestionIndicator(
                   currentIndex: questionProvider.currentQuestionIndex),
-              TimerWidget(),
+              TimerWidget(
+                quizTimeInMinutes: widget.quizTimeInMinutes,
+                onTimerEnd: _onTimerEnd, // Pass in the timer end callback
+              ),
               QuestionText(question: question.question),
               OptionButtons(
                 questionProvider: questionProvider,
@@ -50,14 +58,15 @@ class _QuestionPageState extends State<QuestionPage> {
                 },
               ),
               if (_isLastQuestionAnswered)
-                SubmitButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => QuizCompletedPage(),
-                    ),
-                  );
-                }),
+                // SubmitButton(onPressed: () {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => QuizCompletedPage(),
+                //     ),
+                //   );
+                // }),
+                SubmitButton(onPressed: _onSubmitQuiz),
             ],
           );
         },
@@ -76,5 +85,19 @@ class _QuestionPageState extends State<QuestionPage> {
         selectedOption = null; // Reset selectedOption for the next question
       });
     }
+  }
+
+  void _onSubmitQuiz() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => QuizCompletedPage(),
+      ),
+    );
+  }
+
+  void _onTimerEnd() {
+    // Automatically navigate to QuizCompletedPage when time runs out
+    _onSubmitQuiz();
   }
 }

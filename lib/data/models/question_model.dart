@@ -1,4 +1,6 @@
 // models/question_model.dart
+import '../../domain/entities/question.dart';
+
 class QuestionModel {
   final String question;
   final List<int> options;
@@ -12,6 +14,14 @@ class QuestionModel {
       question: json['question'] as String,
       options: List<int>.from(json['options'] as List),
       answer: json['answer'] as int,
+    );
+  }
+
+  Question toEntity() {
+    return Question(
+      question: question,
+      options: options,
+      answer: answer,
     );
   }
 }
@@ -31,6 +41,14 @@ class QuestionPaperModel {
       questions: (json['questions'] as List)
           .map((q) => QuestionModel.fromJson(q))
           .toList(),
+    );
+  }
+
+  QuestionPaper toEntity() {
+    return QuestionPaper(
+      title: title,
+      time: time,
+      questions: questions.map((q) => q.toEntity()).toList(),
     );
   }
 }
