@@ -1,4 +1,4 @@
-// question_indicator.dart
+// Changes have to make dynamic wrt number of questions in the json file
 import 'package:flutter/material.dart';
 
 class QuestionIndicator extends StatelessWidget {

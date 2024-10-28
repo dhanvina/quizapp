@@ -32,13 +32,16 @@ class PaperSelectionPage extends StatelessWidget {
           return ListView.builder(
             itemCount: provider.papers.length,
             itemBuilder: (context, index) {
+              final paper = provider.papers[index];
               return ListTile(
-                title: Text(provider.papers[index].title),
+                title: Text(paper.title),
                 onTap: () {
                   provider.selectPaper(index);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => QuestionPage()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            QuestionPage(quizTimeInMinutes: paper.time)),
                   );
                 },
               );
