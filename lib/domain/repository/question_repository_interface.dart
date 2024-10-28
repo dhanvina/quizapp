@@ -1,6 +1,6 @@
-import '../../data/models/question_model.dart';
+// question_repository_interface.dart
+import 'package:quizapp/data/models/question_model.dart';
 
 abstract class QuestionRepositoryInterface {
-  Future<List<QuestionModel>> getQuestions();
-  // Future<List<QuestionModel>> fetchQuestionPapers();
+  Future<List<QuestionPaperModel>> getQuestionPapers();
 }
