@@ -11,21 +11,26 @@ class QuestionProvider extends ChangeNotifier {
   int currentQuestionIndex = 0;
   int selectedPaperIndex = 0;
   int score = 0;
+  String paperTitle = "";
+  int paperTime = 0;
 
   QuestionProvider({required this.repository});
 
   List<QuestionPaper> get papers => _papers;
 
   Future<void> loadPapers(BuildContext context) async {
-    final fetchedQuestions = await repository.getQuestions();
-    _papers = _convertToQuestionPapers(fetchedQuestions);
-    final jsonString = await DefaultAssetBundle.of(context)
-        .loadString('assets/questions.json');
+    // Assuming repository.getQuestionPapers() returns List<QuestionPaperModel>
+    final fetchedPapers = await repository.getQuestionPapers();
+    _papers = _convertToQuestionPapers(fetchedPapers);
+
+    if (_papers.isNotEmpty) {
+      paperTitle = _papers[0].title;
+      paperTime = _papers[0].time;
+    }
     notifyListeners();
   }
 
   Question get currentQuestion {
-    // Access the corresponding Question from papers and convert it to QuestionModel
     return papers[selectedPaperIndex].questions[currentQuestionIndex];
   }
 
@@ -55,20 +60,15 @@ class QuestionProvider extends ChangeNotifier {
       currentQuestionIndex == papers[selectedPaperIndex].questions.length - 1;
 
   List<QuestionPaper> _convertToQuestionPapers(
-      List<QuestionModel> questionModels) {
-    String paperTitle =
-        "Sample Title"; // Replace with your logic to get the title
-    int paperTime = 60;
-    // Assuming you have a method to group them into QuestionPapers
-    // Modify this as per your specific logic
-    return [
-      QuestionPaper(
-        title: paperTitle, // Provide the title
-        time: paperTime, // Provide the time
-        questions: questionModels
+      List<QuestionPaperModel> questionPaperModels) {
+    return questionPaperModels.map((qpm) {
+      return QuestionPaper(
+        title: qpm.title, // Get title from QuestionPaperModel
+        time: qpm.time, // Get time from QuestionPaperModel
+        questions: qpm.questions
             .map((qm) => qm.toEntity())
             .toList(), // Convert QuestionModel to Question
-      ),
-    ]; // Adjust the logic if you have multiple papers
+      );
+    }).toList();
   }
 }
