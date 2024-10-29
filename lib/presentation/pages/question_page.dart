@@ -1,4 +1,3 @@
-// question_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
@@ -28,7 +27,7 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent[100],
+      backgroundColor: Color(0xFFA2D12C),
       body: Consumer<QuestionProvider>(
         builder: (context, questionProvider, _) {
           if (questionProvider.papers.isEmpty) {
@@ -40,7 +39,9 @@ class _QuestionPageState extends State<QuestionPage> {
             children: [
               AppBarWidget(),
               QuestionIndicator(
-                  currentIndex: questionProvider.currentQuestionIndex),
+                currentIndex: questionProvider.currentQuestionIndex,
+                totalQuestions: questionProvider.totalQuestions,
+              ),
               TimerWidget(
                 quizTimeInMinutes: widget.quizTimeInMinutes,
                 onTimerEnd: _onTimerEnd, // Pass in the timer end callback

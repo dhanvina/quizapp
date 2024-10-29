@@ -49,6 +49,12 @@ class QuestionProvider extends ChangeNotifier {
     }
   }
 
+  int get totalQuestions {
+    return papers.isNotEmpty
+        ? papers[selectedPaperIndex].questions.length
+        : 0; // Return 0 if there are no papers loaded
+  }
+
   void selectPaper(int index) {
     selectedPaperIndex = index;
     currentQuestionIndex = 0;

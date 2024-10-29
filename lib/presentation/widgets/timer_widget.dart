@@ -1,11 +1,10 @@
-// timer_widget.dart
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 class TimerWidget extends StatefulWidget {
   final int quizTimeInMinutes;
-  final VoidCallback onTimerEnd; // Callback when the timer ends
+  final VoidCallback onTimerEnd;
 
   TimerWidget({required this.quizTimeInMinutes, required this.onTimerEnd});
 
@@ -32,7 +31,7 @@ class _TimerWidgetState extends State<TimerWidget> {
         });
       } else {
         _timer?.cancel();
-        widget.onTimerEnd(); // Call when time runs out
+        widget.onTimerEnd();
       }
     });
   }
@@ -54,15 +53,27 @@ class _TimerWidgetState extends State<TimerWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        alignment: Alignment.centerRight,
+        alignment: Alignment.center,
+        width: 120,
+        height: 45,
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(8),
-        ),
+            color: Color(0xFF9DCC29),
+            borderRadius: BorderRadius.circular(71),
+            border: Border.all(
+              color: Color(0xFF9D0707),
+              width: 3,
+            )),
         child: Text(
           _formatTime(_remainingSeconds),
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color(0xFFCE2E2E),
+            fontSize: 20.0,
+            fontWeight: FontWeight.w600,
+            height: 45.8 / 35.65,
+            fontFamily: 'Poppins',
+          ),
         ),
       ),
     );
