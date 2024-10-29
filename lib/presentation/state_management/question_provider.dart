@@ -13,6 +13,7 @@ class QuestionProvider extends ChangeNotifier {
   int score = 0;
   String paperTitle = "";
   int paperTime = 0;
+  int? selectedOption;
 
   QuestionProvider({required this.repository});
 
@@ -39,12 +40,26 @@ class QuestionProvider extends ChangeNotifier {
       score++; // Increment score if the answer is correct
     }
     nextQuestion();
+    notifyListeners();
+  }
+
+  int get totalScore => score;
+
+  void selectOption(int option) {
+    selectedOption = option;
+    notifyListeners();
+  }
+
+  void resetSelectedOption() {
+    selectedOption = null;
+    notifyListeners();
   }
 
   void nextQuestion() {
-    if (currentQuestionIndex <
-        papers[selectedPaperIndex].questions.length - 1) {
+    if (currentQuestionIndex < totalQuestions - 1) {
       currentQuestionIndex++;
+      notifyListeners();
+    } else {
       notifyListeners();
     }
   }
