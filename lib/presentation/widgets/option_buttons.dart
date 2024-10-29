@@ -1,21 +1,34 @@
-// option_buttons.dart
 import 'package:flutter/material.dart';
+import 'package:quizapp/presentation/state_management/question_provider.dart';
 import 'package:quizapp/presentation/widgets/custom_button.dart';
 
-import '../state_management/question_provider.dart';
-
-class OptionButtons extends StatelessWidget {
+class OptionButtons extends StatefulWidget {
   final QuestionProvider questionProvider;
   final question;
-  final int? selectedOption;
   final Function(int) onOptionSelected;
 
   const OptionButtons({
     required this.questionProvider,
     required this.question,
-    required this.selectedOption,
     required this.onOptionSelected,
   });
+
+  @override
+  _OptionButtonsState createState() => _OptionButtonsState();
+}
+
+class _OptionButtonsState extends State<OptionButtons> {
+  int? selectedOption;
+
+  @override
+  void didUpdateWidget(covariant OptionButtons oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.question != widget.question) {
+      setState(() {
+        selectedOption = null; // Reset when question changes
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +40,28 @@ class OptionButtons extends StatelessWidget {
           Column(
             children: [
               CustomButton(
-                label: question.options[0].toString(),
-                color: selectedOption == question.options[0]
+                label: widget.question.options[0].toString(),
+                color: selectedOption == widget.question.options[0]
                     ? Colors.blueAccent
-                    : Colors.black, // Highlight selected option
+                    : Colors.black,
                 onPressed: () {
-                  onOptionSelected(question.options[0]);
+                  setState(() {
+                    selectedOption = widget.question.options[0];
+                  });
+                  widget.onOptionSelected(widget.question.options[0]);
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
-                label: question.options[1].toString(),
-                color: selectedOption == question.options[1]
+                label: widget.question.options[1].toString(),
+                color: selectedOption == widget.question.options[1]
                     ? Colors.blueAccent
                     : Colors.black,
                 onPressed: () {
-                  onOptionSelected(question.options[1]);
+                  setState(() {
+                    selectedOption = widget.question.options[1];
+                  });
+                  widget.onOptionSelected(widget.question.options[1]);
                 },
               ),
             ],
@@ -51,22 +70,28 @@ class OptionButtons extends StatelessWidget {
           Column(
             children: [
               CustomButton(
-                label: question.options[2].toString(),
-                color: selectedOption == question.options[2]
+                label: widget.question.options[2].toString(),
+                color: selectedOption == widget.question.options[2]
                     ? Colors.blueAccent
                     : Colors.black,
                 onPressed: () {
-                  onOptionSelected(question.options[2]);
+                  setState(() {
+                    selectedOption = widget.question.options[2];
+                  });
+                  widget.onOptionSelected(widget.question.options[2]);
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
-                label: question.options[3].toString(),
-                color: selectedOption == question.options[3]
+                label: widget.question.options[3].toString(),
+                color: selectedOption == widget.question.options[3]
                     ? Colors.blueAccent
                     : Colors.black,
                 onPressed: () {
-                  onOptionSelected(question.options[3]);
+                  setState(() {
+                    selectedOption = widget.question.options[3];
+                  });
+                  widget.onOptionSelected(widget.question.options[3]);
                 },
               ),
             ],

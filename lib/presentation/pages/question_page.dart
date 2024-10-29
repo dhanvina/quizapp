@@ -50,11 +50,11 @@ class _QuestionPageState extends State<QuestionPage> {
               OptionButtons(
                 questionProvider: questionProvider,
                 question: question,
-                selectedOption: selectedOption,
                 onOptionSelected: (option) {
                   setState(() {
                     selectedOption = option;
                   });
+                  questionProvider.checkAnswer(option);
                   _handleAnswer(questionProvider);
                 },
               ),
@@ -80,11 +80,18 @@ class _QuestionPageState extends State<QuestionPage> {
       setState(() {
         _isLastQuestionAnswered = true;
       });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => QuizCompletedPage(),
+        ),
+      );
     } else {
-      questionProvider.nextQuestion();
+      // questionProvider.nextQuestion();
       setState(() {
         selectedOption = null; // Reset selectedOption for the next question
       });
+      questionProvider.resetSelectedOption();
     }
   }
 
