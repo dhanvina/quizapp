@@ -1,6 +1,6 @@
-// presentation/pages/paper_selection_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizapp/presentation/widgets/paper_title_widget.dart';
 
 import '../state_management/question_provider.dart';
 import 'question_page.dart';
@@ -34,7 +34,7 @@ class PaperSelectionPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final paper = provider.papers[index];
               return ListTile(
-                title: Text(paper.title),
+                title: PaperTitleWidget(title: paper.title),
                 onTap: () {
                   provider.selectPaper(index);
                   Navigator.push(
