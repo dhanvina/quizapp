@@ -73,7 +73,7 @@ flutter:
      - assets/motivation_screen1.png
      - assets/motivation_screen2.png
      - assets/quiz_app_abacus.png
-     - assets/quiz_app_background.png
+     - assets/farm_background.png
      - assets/quiz_preview.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
