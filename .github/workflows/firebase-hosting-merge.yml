@@ -27,11 +27,15 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Step 4: Build the Flutter web app
+      # Step 4: Clean flutter project
+      - name: Clean Flutter Project
+        run: flutter clean
+
+      # Step 5: Build the Flutter web app
       - name: Build Flutter Web
         run: flutter build web --release  # Build the web app in release mode
 
-      # Step 5: Deploy to Firebase Hosting
+      # Step 6: Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
