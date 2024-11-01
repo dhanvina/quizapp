@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
@@ -28,12 +30,44 @@ class _QuestionPageState extends State<QuestionPage> {
   late int timePerQuestion;
   late QuestionProvider questionProvider;
 
+  // Add variables for the total quiz timer
+  late int totalQuizTimeInSeconds;
+  late Timer totalTimer;
+
   @override
   void initState() {
     super.initState();
     questionProvider = Provider.of<QuestionProvider>(context, listen: false);
     timePerQuestion =
         (widget.quizTimeInMinutes * 60) ~/ questionProvider.totalQuestions;
+    // Initialize total quiz timer
+    totalQuizTimeInSeconds = widget.quizTimeInMinutes * 60;
+    startTotalTimer();
+  }
+
+  @override
+  void dispose() {
+    totalTimer.cancel();
+    super.dispose();
+  }
+
+  void startTotalTimer() {
+    totalTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (totalQuizTimeInSeconds > 0) {
+          totalQuizTimeInSeconds--;
+        } else {
+          totalTimer.cancel();
+          _onSubmitQuiz(); // End quiz when time runs out
+        }
+      });
+    });
+  }
+
+  String get formattedTotalQuizTime {
+    final minutes = (totalQuizTimeInSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (totalQuizTimeInSeconds % 60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
   }
 
   @override
@@ -72,6 +106,15 @@ class _QuestionPageState extends State<QuestionPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text(
+                        'Total Time Left: $formattedTotalQuizTime',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.redAccent,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
                       TimerWidget(
                         key: ValueKey(questionProvider.currentQuestionIndex),
                         quizTimeInSeconds: timePerQuestion,
