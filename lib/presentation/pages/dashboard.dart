@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
 
 import '../state_management/question_provider.dart';
-import 'question_page.dart';
 
 class PaperSelectionPage extends StatelessWidget {
   @override
@@ -102,8 +102,13 @@ class PaperSelectionPage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => QuestionPage(
-                                      quizTimeInMinutes: paper.time,
+                                    // builder: (context) => QuestionPage(
+                                    //   quizTimeInMinutes: paper.time,
+                                    // ),
+                                    builder: (context) => QuizPreview(
+                                      title: paper.title, // Send paper title
+                                      time: paper.time, // Send time
+                                      numberOfQuestions: paper.questions.length,
                                     ),
                                   ),
                                 );
