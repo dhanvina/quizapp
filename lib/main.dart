@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/data/data_sources/json_data_source.dart';
-import 'package:quizapp/presentation/pages/paper_selection_page.dart';
+import 'package:quizapp/presentation/pages/dashboard.dart';
 import 'package:quizapp/presentation/state_management/question_provider.dart';
 import 'package:quizapp/utils/app_router.dart';
 
