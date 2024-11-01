@@ -3,37 +3,57 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class TimerWidget extends StatefulWidget {
-  final int quizTimeInMinutes;
+  final int quizTimeInSeconds;
   final VoidCallback onTimerEnd;
 
-  TimerWidget({required this.quizTimeInMinutes, required this.onTimerEnd});
+  const TimerWidget({
+    Key? key,
+    required this.quizTimeInSeconds,
+    required this.onTimerEnd,
+  }) : super(key: key);
 
   @override
   _TimerWidgetState createState() => _TimerWidgetState();
 }
 
 class _TimerWidgetState extends State<TimerWidget> {
-  late int _remainingSeconds;
+  late int timeRemaining;
   Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _remainingSeconds = widget.quizTimeInMinutes * 60;
+    timeRemaining = widget.quizTimeInSeconds;
     _startTimer();
   }
 
+  @override
+  void didUpdateWidget(TimerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.quizTimeInSeconds != oldWidget.quizTimeInSeconds) {
+      _resetTimer();
+    }
+  }
+
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_remainingSeconds > 0) {
-        setState(() {
-          _remainingSeconds--;
-        });
-      } else {
-        _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timeRemaining == 0) {
         widget.onTimerEnd();
+        timer.cancel();
+      } else {
+        setState(() {
+          timeRemaining--;
+        });
       }
     });
+  }
+
+  void _resetTimer() {
+    _timer?.cancel();
+    setState(() {
+      timeRemaining = widget.quizTimeInSeconds;
+    });
+    _startTimer();
   }
 
   @override
@@ -42,40 +62,11 @@ class _TimerWidgetState extends State<TimerWidget> {
     super.dispose();
   }
 
-  String _formatTime(int seconds) {
-    int minutes = seconds ~/ 60;
-    int secs = seconds % 60;
-    return '${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Container(
-        alignment: Alignment.center,
-        width: 120,
-        height: 45,
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            color: Color(0xFF9DCC29),
-            borderRadius: BorderRadius.circular(71),
-            border: Border.all(
-              color: Color(0xFF9D0707),
-              width: 3,
-            )),
-        child: Text(
-          _formatTime(_remainingSeconds),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xFFCE2E2E),
-            fontSize: 20.0,
-            fontWeight: FontWeight.w600,
-            height: 45.8 / 35.65,
-            fontFamily: 'Poppins',
-          ),
-        ),
-      ),
+    return Text(
+      '$timeRemaining seconds left',
+      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 }

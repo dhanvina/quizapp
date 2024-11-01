@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp/presentation/state_management/question_provider.dart';
 import 'package:quizapp/presentation/widgets/custom_button.dart';
+import 'package:quizapp/utils/constants.dart';
 
 class OptionButtons extends StatefulWidget {
   final QuestionProvider questionProvider;
@@ -42,26 +43,20 @@ class _OptionButtonsState extends State<OptionButtons> {
               CustomButton(
                 label: widget.question.options[0].toString(),
                 color: selectedOption == widget.question.options[0]
-                    ? Colors.blueAccent
-                    : Colors.black,
+                    ? Constants.green
+                    : Constants.black,
                 onPressed: () {
-                  setState(() {
-                    selectedOption = widget.question.options[0];
-                  });
-                  widget.onOptionSelected(widget.question.options[0]);
+                  _handleOptionSelection(widget.question.options[0]);
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
                 label: widget.question.options[1].toString(),
                 color: selectedOption == widget.question.options[1]
-                    ? Colors.blueAccent
-                    : Colors.black,
+                    ? Constants.green
+                    : Constants.black,
                 onPressed: () {
-                  setState(() {
-                    selectedOption = widget.question.options[1];
-                  });
-                  widget.onOptionSelected(widget.question.options[1]);
+                  _handleOptionSelection(widget.question.options[1]);
                 },
               ),
             ],
@@ -72,26 +67,20 @@ class _OptionButtonsState extends State<OptionButtons> {
               CustomButton(
                 label: widget.question.options[2].toString(),
                 color: selectedOption == widget.question.options[2]
-                    ? Colors.blueAccent
-                    : Colors.black,
+                    ? Constants.green
+                    : Constants.black,
                 onPressed: () {
-                  setState(() {
-                    selectedOption = widget.question.options[2];
-                  });
-                  widget.onOptionSelected(widget.question.options[2]);
+                  _handleOptionSelection(widget.question.options[2]);
                 },
               ),
               SizedBox(height: 8),
               CustomButton(
                 label: widget.question.options[3].toString(),
                 color: selectedOption == widget.question.options[3]
-                    ? Colors.blueAccent
-                    : Colors.black,
+                    ? Constants.green
+                    : Constants.black,
                 onPressed: () {
-                  setState(() {
-                    selectedOption = widget.question.options[3];
-                  });
-                  widget.onOptionSelected(widget.question.options[3]);
+                  _handleOptionSelection(widget.question.options[3]);
                 },
               ),
             ],
@@ -99,5 +88,12 @@ class _OptionButtonsState extends State<OptionButtons> {
         ],
       ),
     );
+  }
+
+  void _handleOptionSelection(int option) {
+    setState(() {
+      selectedOption = option; // Update selected option
+    });
+    widget.onOptionSelected(option); // Notify parent widget of selection
   }
 }

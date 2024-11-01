@@ -25,6 +25,16 @@ class QuestionPage extends StatefulWidget {
 class _QuestionPageState extends State<QuestionPage> {
   bool _isLastQuestionAnswered = false;
   int? selectedOption;
+  late int timePerQuestion;
+  late QuestionProvider questionProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    questionProvider = Provider.of<QuestionProvider>(context, listen: false);
+    timePerQuestion =
+        (widget.quizTimeInMinutes * 60) ~/ questionProvider.totalQuestions;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +73,9 @@ class _QuestionPageState extends State<QuestionPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TimerWidget(
-                        quizTimeInMinutes: widget.quizTimeInMinutes,
-                        onTimerEnd: _onTimerEnd,
+                        key: ValueKey(questionProvider.currentQuestionIndex),
+                        quizTimeInSeconds: timePerQuestion,
+                        onTimerEnd: _moveToNextQuestion,
                       ),
                       QuestionIndicator(
                         currentIndex: questionProvider.currentQuestionIndex,
@@ -133,5 +144,16 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void _onTimerEnd() {
     _onSubmitQuiz();
+  }
+
+  void _moveToNextQuestion() {
+    if (!questionProvider.isLastQuestion) {
+      questionProvider.nextQuestion();
+      setState(() {
+        selectedOption = null;
+      });
+    } else {
+      _onSubmitQuiz();
+    }
   }
 }
