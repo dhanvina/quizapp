@@ -34,12 +34,11 @@ class _OptionButtonsState extends State<OptionButtons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 5),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final buttonWidth =
-              constraints.maxWidth * 0.4; // Adjust button width as needed
-          final spacing = 16.0; // Adjust spacing between buttons
+          final buttonWidth = constraints.maxWidth * 0.4;
+          final spacing = 14.0;
 
           return Wrap(
             alignment: WrapAlignment.center,
