@@ -35,57 +35,34 @@ class _OptionButtonsState extends State<OptionButtons> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final buttonWidth =
+              constraints.maxWidth * 0.4; // Adjust button width as needed
+          final spacing = 16.0; // Adjust spacing between buttons
+
+          return Wrap(
+            alignment: WrapAlignment.center,
+            spacing: spacing,
+            runSpacing: 8.0,
             children: [
-              CustomButton(
-                label: widget.question.options[0].toString(),
-                color: selectedOption == widget.question.options[0]
-                    ? Constants.green
-                    : Constants.black,
-                onPressed: () {
-                  _handleOptionSelection(widget.question.options[0]);
-                },
-              ),
-              SizedBox(height: 8),
-              CustomButton(
-                label: widget.question.options[1].toString(),
-                color: selectedOption == widget.question.options[1]
-                    ? Constants.green
-                    : Constants.black,
-                onPressed: () {
-                  _handleOptionSelection(widget.question.options[1]);
-                },
-              ),
+              // Generate buttons dynamically based on the options provided
+              for (int i = 0; i < widget.question.options.length; i++)
+                SizedBox(
+                  width: buttonWidth,
+                  child: CustomButton(
+                    label: widget.question.options[i].toString(),
+                    color: selectedOption == widget.question.options[i]
+                        ? Constants.green
+                        : Constants.black,
+                    onPressed: () {
+                      _handleOptionSelection(widget.question.options[i]);
+                    },
+                  ),
+                ),
             ],
-          ),
-          SizedBox(width: 20),
-          Column(
-            children: [
-              CustomButton(
-                label: widget.question.options[2].toString(),
-                color: selectedOption == widget.question.options[2]
-                    ? Constants.green
-                    : Constants.black,
-                onPressed: () {
-                  _handleOptionSelection(widget.question.options[2]);
-                },
-              ),
-              SizedBox(height: 8),
-              CustomButton(
-                label: widget.question.options[3].toString(),
-                color: selectedOption == widget.question.options[3]
-                    ? Constants.green
-                    : Constants.black,
-                onPressed: () {
-                  _handleOptionSelection(widget.question.options[3]);
-                },
-              ),
-            ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }
