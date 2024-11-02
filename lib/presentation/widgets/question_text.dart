@@ -12,7 +12,7 @@ class QuestionText extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Text(
         question,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
     );

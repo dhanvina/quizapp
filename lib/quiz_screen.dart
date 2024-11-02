@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class QuizScreen extends StatelessWidget {
+  const QuizScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size =
@@ -186,7 +188,7 @@ class QuizScreen extends StatelessWidget {
 class QuizOptionButton extends StatelessWidget {
   final String label;
 
-  const QuizOptionButton({required this.label});
+  const QuizOptionButton({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {

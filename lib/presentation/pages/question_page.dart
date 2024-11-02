@@ -77,122 +77,141 @@ class _QuestionPageState extends State<QuestionPage> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          FarmBackgroundWidget(),
-          Stack(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Stack(
             children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: AppBarWidget(),
-                ),
-              ),
-              // Timer widget on the top right
-              Positioned(
-                top: 0,
-                right: 16.0, // Add some padding from the right edge
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 4.0), // Add padding inside the container
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Set background color to white
-                    borderRadius: BorderRadius.circular(
-                        8.0), // Optional: add rounded corners
-                  ),
-                  child: Text(
-                    'Total Duration-$formattedTotalQuizTime',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Poppins',
+              FarmBackgroundWidget(),
+              Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: AppBarWidget(),
                     ),
                   ),
-                ),
-              ),
-
-              Consumer<QuestionProvider>(
-                builder: (context, questionProvider, _) {
-                  if (questionProvider.papers.isEmpty) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  final question = questionProvider.currentQuestion;
-
-                  return Center(
+                  Positioned(
+                    top: 0,
+                    right: 16.0,
                     child: Container(
-                      // Set width and height relative to screen size for responsiveness
-                      width: screenWidth * 0.6,
-                      constraints: BoxConstraints(
-                        maxHeight: screenHeight *
-                            0.8, // Use a max height for flexibility
-                      ),
-                      padding: EdgeInsets.all(screenWidth * 0.02),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4.0), // Add padding inside the container
                       decoration: BoxDecoration(
-                        color: Constants.limeGreen.withOpacity(1),
-                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.white, // Set background color to white
+                        borderRadius: BorderRadius.circular(
+                            8.0), // Optional: add rounded corners
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Text(
+                        'Total Duration-$formattedTotalQuizTime',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Consumer<QuestionProvider>(
+                    builder: (context, questionProvider, _) {
+                      if (questionProvider.papers.isEmpty) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      final question = questionProvider.currentQuestion;
+
+                      return Center(
+                        child: Container(
+                          width: screenWidth * 0.35,
+                          constraints: BoxConstraints(
+                            maxHeight: screenHeight * 0.90,
+                          ),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Constants.limeGreen.withOpacity(1),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                'Question Number',
-                                style: TextStyle(
-                                  fontSize:
-                                      24, // Adjust the font size as needed
-                                  fontWeight: FontWeight.bold, // Make it bold
-                                  fontFamily: 'Poppins', // Use Poppins font
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Question Number',
+                                    style: TextStyle(
+                                      fontSize:
+                                          16, // Adjust the font size as needed
+                                      fontWeight:
+                                          FontWeight.bold, // Make it bold
+                                      fontFamily: 'Poppins', // Use Poppins font
+                                    ),
+                                  ),
+                                  TimerWidgetSec(
+                                    key: ValueKey(
+                                        questionProvider.currentQuestionIndex),
+                                    quizTimeInSeconds: timePerQuestion,
+                                    onTimerEnd: _moveToNextQuestion,
+                                  ),
+                                ],
+                              ),
+                              QuestionIndicator(
+                                currentIndex:
+                                    questionProvider.currentQuestionIndex,
+                                totalQuestions: questionProvider.totalQuestions,
+                              ),
+                              SizedBox(height: 10.0),
+                              Container(
+                                  width: screenWidth * 0.3,
+                                  height: screenHeight * 0.2,
+                                  padding: const EdgeInsets.all(2.0),
+                                  decoration: BoxDecoration(
+                                    color: Constants.offWhite.withOpacity(1),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: QuestionText(
+                                      question: question.question)),
+                              SizedBox(height: 10.0),
+                              OptionButtons(
+                                questionProvider: questionProvider,
+                                question: question,
+                                onOptionSelected: (option) {
+                                  setState(() {
+                                    selectedOption = option;
+                                  });
+                                  questionProvider.checkAnswer(option);
+                                  _handleAnswer(questionProvider);
+                                },
+                              ),
+                              Container(
+                                width: 150,
+                                height: 150,
+                                child: Image.asset(
+                                  'assets/quiz_app_abacus.png',
+                                  fit: BoxFit.contain,
                                 ),
                               ),
-                              TimerWidgetSec(
-                                key: ValueKey(
-                                    questionProvider.currentQuestionIndex),
-                                quizTimeInSeconds: timePerQuestion,
-                                onTimerEnd: _moveToNextQuestion,
-                              ),
+                              if (_isLastQuestionAnswered)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 2.0),
+                                  child: SubmitButton(onPressed: _onSubmitQuiz),
+                                ),
                             ],
                           ),
-                          QuestionIndicator(
-                            currentIndex: questionProvider.currentQuestionIndex,
-                            totalQuestions: questionProvider.totalQuestions,
-                          ),
-                          Container(
-                              width: screenWidth * 0.3,
-                              height: screenHeight * 0.3,
-                              padding: const EdgeInsets.all(2.0),
-                              decoration: BoxDecoration(
-                                color: Constants.offWhite.withOpacity(1),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: QuestionText(question: question.question)),
-                          OptionButtons(
-                            questionProvider: questionProvider,
-                            question: question,
-                            onOptionSelected: (option) {
-                              setState(() {
-                                selectedOption = option;
-                              });
-                              questionProvider.checkAnswer(option);
-                              _handleAnswer(questionProvider);
-                            },
-                          ),
-                          if (_isLastQuestionAnswered)
-                            SubmitButton(onPressed: _onSubmitQuiz),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -202,12 +221,6 @@ class _QuestionPageState extends State<QuestionPage> {
       setState(() {
         _isLastQuestionAnswered = true;
       });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizCompletedPage(),
-        ),
-      );
     } else {
       setState(() {
         selectedOption = null;
