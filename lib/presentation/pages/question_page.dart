@@ -29,8 +29,6 @@ class _QuestionPageState extends State<QuestionPage> {
   int? selectedOption;
   late int timePerQuestion;
   late QuestionProvider questionProvider;
-
-  // Add variables for the total quiz timer
   late int totalQuizTimeInSeconds;
   late Timer totalTimer;
 
@@ -40,7 +38,6 @@ class _QuestionPageState extends State<QuestionPage> {
     questionProvider = Provider.of<QuestionProvider>(context, listen: false);
     timePerQuestion =
         (widget.quizTimeInMinutes * 60) ~/ questionProvider.totalQuestions;
-    // Initialize total quiz timer
     totalQuizTimeInSeconds = widget.quizTimeInMinutes * 60;
     startTotalTimer();
   }
@@ -58,7 +55,7 @@ class _QuestionPageState extends State<QuestionPage> {
           totalQuizTimeInSeconds--;
         } else {
           totalTimer.cancel();
-          _onSubmitQuiz(); // End quiz when time runs out
+          _onSubmitQuiz();
         }
       });
     });
@@ -72,7 +69,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Use MediaQuery to get screen dimensions for responsiveness
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -97,15 +93,13 @@ class _QuestionPageState extends State<QuestionPage> {
                     right: 16.0,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0), // Add padding inside the container
+                          horizontal: 8.0, vertical: 4.0),
                       decoration: BoxDecoration(
-                        color: Colors.white, // Set background color to white
-                        borderRadius: BorderRadius.circular(
-                            8.0), // Optional: add rounded corners
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Text(
-                        'Total Duration-$formattedTotalQuizTime',
+                        'Total Duration - $formattedTotalQuizTime',
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.black,
@@ -125,9 +119,8 @@ class _QuestionPageState extends State<QuestionPage> {
                       return Center(
                         child: Container(
                           width: screenWidth * 0.35,
-                          constraints: BoxConstraints(
-                            maxHeight: screenHeight * 0.90,
-                          ),
+                          constraints:
+                              BoxConstraints(maxHeight: screenHeight * 0.90),
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Constants.limeGreen.withOpacity(1),
@@ -144,11 +137,9 @@ class _QuestionPageState extends State<QuestionPage> {
                                   Text(
                                     'Question Number',
                                     style: TextStyle(
-                                      fontSize:
-                                          16, // Adjust the font size as needed
-                                      fontWeight:
-                                          FontWeight.bold, // Make it bold
-                                      fontFamily: 'Poppins', // Use Poppins font
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins',
                                     ),
                                   ),
                                   TimerWidgetSec(
@@ -165,7 +156,18 @@ class _QuestionPageState extends State<QuestionPage> {
                                 totalQuestions: questionProvider.totalQuestions,
                               ),
                               SizedBox(height: 10.0),
-                              Container(
+
+                              // AnimatedSwitcher for question text
+                              AnimatedSwitcher(
+                                duration: Duration(milliseconds: 900),
+                                transitionBuilder: (Widget child,
+                                    Animation<double> animation) {
+                                  return FadeTransition(
+                                      opacity: animation, child: child);
+                                },
+                                child: Container(
+                                  key: ValueKey(
+                                      questionProvider.currentQuestionIndex),
                                   width: screenWidth * 0.3,
                                   height: screenHeight * 0.2,
                                   padding: const EdgeInsets.all(2.0),
@@ -173,8 +175,11 @@ class _QuestionPageState extends State<QuestionPage> {
                                     color: Constants.offWhite.withOpacity(1),
                                     borderRadius: BorderRadius.circular(16),
                                   ),
-                                  child: QuestionText(
-                                      question: question.question)),
+                                  child:
+                                      QuestionText(question: question.question),
+                                ),
+                              ),
+
                               SizedBox(height: 10.0),
                               OptionButtons(
                                 questionProvider: questionProvider,
@@ -229,6 +234,10 @@ class _QuestionPageState extends State<QuestionPage> {
     }
   }
 
+  void _onTimerEnd() {
+    _onSubmitQuiz();
+  }
+
   void _onSubmitQuiz() {
     Navigator.push(
       context,
@@ -236,10 +245,6 @@ class _QuestionPageState extends State<QuestionPage> {
         builder: (context) => QuizCompletedPage(),
       ),
     );
-  }
-
-  void _onTimerEnd() {
-    _onSubmitQuiz();
   }
 
   void _moveToNextQuestion() {
