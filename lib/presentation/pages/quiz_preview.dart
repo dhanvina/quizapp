@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:quizapp/presentation/pages/countdown_page.dart';
 import 'package:quizapp/presentation/pages/motivation_screen1.dart';
 import 'package:quizapp/presentation/pages/motivation_screen2.dart';
 
-class QuizPreview extends StatelessWidget {
+class QuizPreview extends StatefulWidget {
   final String title;
   final int time;
   final int numberOfQuestions;
@@ -13,6 +15,11 @@ class QuizPreview extends StatelessWidget {
       required this.time,
       required this.numberOfQuestions});
 
+  @override
+  _QuizPreviewState createState() => _QuizPreviewState();
+}
+
+class _QuizPreviewState extends State<QuizPreview> {
   String formatTime(int totalMinutes) {
     final int minutes = totalMinutes % 60;
     final int seconds = 0;
@@ -64,7 +71,7 @@ class QuizPreview extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -73,7 +80,7 @@ class QuizPreview extends StatelessWidget {
                   ),
                   SizedBox(height: 15.0),
                   Text(
-                    "There are a total of $numberOfQuestions questions",
+                    "There are a total of ${widget.numberOfQuestions} questions",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -82,7 +89,7 @@ class QuizPreview extends StatelessWidget {
                   ),
                   SizedBox(height: 15.0),
                   Text(
-                    "Time - ${formatTime(time)}",
+                    "Time - ${formatTime(widget.time)}",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -101,9 +108,11 @@ class QuizPreview extends StatelessWidget {
                       );
 
                       // Wait for 5 seconds
-                      await Future.delayed(Duration(seconds: 5));
+                      await Future.delayed(Duration(seconds: 10));
 
                       // Navigate to the next screen (replace with your actual screen)
+                      if (!mounted)
+                        return; // Check if the widget is still mounted
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -112,13 +121,15 @@ class QuizPreview extends StatelessWidget {
                         ),
                       );
 
-                      await Future.delayed(Duration(seconds: 5));
+                      await Future.delayed(Duration(seconds: 12));
 
+                      if (!mounted)
+                        return; // Check if the widget is still mounted
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => CountdownPage(
-                            quizTimeInMinutes: time,
+                            quizTimeInMinutes: widget.time,
                           ),
                         ),
                       );
