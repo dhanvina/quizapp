@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/presentation/pages/countdown_page.dart';
 import 'package:quizapp/presentation/pages/motivation_screen1.dart';
 import 'package:quizapp/presentation/pages/motivation_screen2.dart';
-import 'package:quizapp/presentation/pages/question_page.dart';
 
 class QuizPreview extends StatelessWidget {
   final String title;
@@ -117,7 +117,7 @@ class QuizPreview extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuestionPage(
+                          builder: (context) => CountdownPage(
                             quizTimeInMinutes: time,
                           ),
                         ),
