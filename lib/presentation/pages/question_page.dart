@@ -13,7 +13,6 @@ import '../state_management/question_provider.dart';
 import '../widgets/option_buttons.dart';
 import '../widgets/question_indicator.dart';
 import '../widgets/question_text.dart';
-import '../widgets/submit_button.dart';
 
 class QuestionPage extends StatefulWidget {
   final int quizTimeInMinutes;
@@ -174,7 +173,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                   key: ValueKey(
                                       questionProvider.currentQuestionIndex),
                                   width: screenWidth * 0.3,
-                                  height: screenHeight * 0.2,
+                                  height: screenHeight * 0.3,
                                   padding: const EdgeInsets.all(2.0),
                                   decoration: BoxDecoration(
                                     color: Constants.offWhite.withOpacity(1),
@@ -198,18 +197,14 @@ class _QuestionPageState extends State<QuestionPage> {
                               ),
                               Container(
                                 width: 150,
-                                height: 150,
+                                height: 120,
                                 child: Image.asset(
                                   'assets/quiz_app_abacus.png',
                                   fit: BoxFit.contain,
                                 ),
                               ),
                               if (_isLastQuestionAnswered)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 2.0),
-                                  child: SubmitButton(onPressed: _onSubmitQuiz),
-                                ),
+                                SizedBox.shrink(), // Empty space for now
                             ],
                           ),
                         ),
@@ -230,6 +225,7 @@ class _QuestionPageState extends State<QuestionPage> {
       setState(() {
         _isLastQuestionAnswered = true;
       });
+      _showSubmitDialog(); // Show the submit confirmation dialog
     } else if (!_isMovingToNextQuestion) {
       // Prevent multiple next question calls
       setState(() {
@@ -264,6 +260,33 @@ class _QuestionPageState extends State<QuestionPage> {
     setState(() {
       _isMovingToNextQuestion = false;
     });
+  }
+
+  void _showSubmitDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Submit Quiz'),
+          content: Text('Are you sure you want to submit your quiz?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+                _onSubmitQuiz(); // Submit the quiz
+              },
+              child: Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
