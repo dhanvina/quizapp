@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
 import 'package:quizapp/presentation/widgets/app_bar_widget.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
+import 'package:quizapp/presentation/widgets/falling_overlay.dart';
 import 'package:quizapp/presentation/widgets/timer_widget_sec.dart';
 import 'package:quizapp/utils/constants.dart';
 
@@ -31,6 +32,8 @@ class _QuestionPageState extends State<QuestionPage> {
   late QuestionProvider questionProvider;
   late int totalQuizTimeInSeconds;
   late Timer totalTimer;
+  bool _isMovingToNextQuestion =
+      false; // Flag to prevent multiple next question calls
 
   @override
   void initState() {
@@ -146,7 +149,11 @@ class _QuestionPageState extends State<QuestionPage> {
                                     key: ValueKey(
                                         questionProvider.currentQuestionIndex),
                                     quizTimeInSeconds: timePerQuestion,
-                                    onTimerEnd: _moveToNextQuestion,
+                                    onTimerEnd: () {
+                                      showOverlayTransitionMessage(context,
+                                          "Time's up! Moving to Next Question");
+                                      _moveToNextQuestion();
+                                    },
                                   ),
                                 ],
                               ),
@@ -156,8 +163,6 @@ class _QuestionPageState extends State<QuestionPage> {
                                 totalQuestions: questionProvider.totalQuestions,
                               ),
                               SizedBox(height: 10.0),
-
-                              // AnimatedSwitcher for question text
                               AnimatedSwitcher(
                                 duration: Duration(milliseconds: 900),
                                 transitionBuilder: (Widget child,
@@ -179,7 +184,6 @@ class _QuestionPageState extends State<QuestionPage> {
                                       QuestionText(question: question.question),
                                 ),
                               ),
-
                               SizedBox(height: 10.0),
                               OptionButtons(
                                 questionProvider: questionProvider,
@@ -226,16 +230,18 @@ class _QuestionPageState extends State<QuestionPage> {
       setState(() {
         _isLastQuestionAnswered = true;
       });
-    } else {
+    } else if (!_isMovingToNextQuestion) {
+      // Prevent multiple next question calls
       setState(() {
-        selectedOption = null;
+        _isMovingToNextQuestion = true;
+      });
+      setState(() {
+        selectedOption = null; // Reset selected option for the new question
       });
       questionProvider.resetSelectedOption();
+      showOverlayTransitionMessage(context, "Moving to Next Question");
+      _moveToNextQuestion();
     }
-  }
-
-  void _onTimerEnd() {
-    _onSubmitQuiz();
   }
 
   void _onSubmitQuiz() {
@@ -248,13 +254,29 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   void _moveToNextQuestion() {
-    if (!questionProvider.isLastQuestion) {
-      questionProvider.nextQuestion();
-      setState(() {
-        selectedOption = null;
-      });
+    if (questionProvider.isLastQuestion) {
+      _onSubmitQuiz(); // Submit quiz if it's the last question
     } else {
-      _onSubmitQuiz();
+      questionProvider.nextQuestion(); // Move to the next question in the list
     }
+
+    // Reset flag after question moves
+    setState(() {
+      _isMovingToNextQuestion = false;
+    });
   }
+}
+
+void showOverlayTransitionMessage(BuildContext context, String message) {
+  final overlay = OverlayEntry(
+    builder: (context) {
+      return FallingOverlay(message: message);
+    },
+  );
+
+  Overlay.of(context)?.insert(overlay);
+
+  Future.delayed(Duration(seconds: 2), () {
+    overlay.remove();
+  });
 }

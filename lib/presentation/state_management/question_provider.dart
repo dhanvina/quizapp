@@ -39,7 +39,6 @@ class QuestionProvider extends ChangeNotifier {
     if (selectedAnswer == currentQuestion.answer) {
       score++; // Increment score if the answer is correct
     }
-    nextQuestion();
     notifyListeners();
   }
 
@@ -51,6 +50,8 @@ class QuestionProvider extends ChangeNotifier {
   }
 
   void resetSelectedOption() {
+    print('Current Question Index resetSelectedOption');
+
     selectedOption = null;
     notifyListeners();
   }
