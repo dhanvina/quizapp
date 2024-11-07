@@ -65,7 +65,7 @@ class _TimerWidgetState extends State<TimerWidgetSec> {
             ),
             borderRadius: BorderRadius.circular(20),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -75,7 +75,7 @@ class _TimerWidgetState extends State<TimerWidgetSec> {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFFCE2E2E),
-                  fontSize: 14,
+                  fontSize: 20,
                 ),
               ),
             ],

@@ -54,8 +54,8 @@ class _QuizPreviewState extends State<QuizPreview> {
             const SizedBox(height: 2.0),
             // Test information box
             Container(
-              width: 120,
-              height: 160,
+              width: 180,
+              height: 200,
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -70,6 +70,7 @@ class _QuizPreviewState extends State<QuizPreview> {
               ),
               child: Column(
                 children: [
+                  SizedBox(height: 15.0),
                   Text(
                     widget.title,
                     style: TextStyle(
@@ -96,7 +97,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10.0),
+                  SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () async {
                       // Navigate to TestPreparationScreen
@@ -143,13 +144,20 @@ class _QuizPreviewState extends State<QuizPreview> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: const Color(0xFF00A455), // Custom color #00A455
-                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(
+                            8), // Adjust the radius for rounded corners, or remove for a rectangle
                         border: Border.all(color: Colors.transparent),
                       ),
-                      padding: const EdgeInsets.all(7),
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10), // Adjust padding as needed
+                      child: const Text(
+                        'NEXT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16, // Adjust font size as needed
+                        ),
                       ),
                     ),
                   ),

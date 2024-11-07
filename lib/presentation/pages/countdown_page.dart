@@ -6,8 +6,7 @@ import 'package:quizapp/presentation/pages/question_page.dart'; // Import the Qu
 class CountdownPage extends StatefulWidget {
   final int quizTimeInMinutes; // dynamic quiz time in seconds
 
-  const CountdownPage({Key? key, required this.quizTimeInMinutes})
-      : super(key: key);
+  const CountdownPage({super.key, required this.quizTimeInMinutes});
 
   @override
   _CountdownPageState createState() => _CountdownPageState();
@@ -53,9 +52,6 @@ class _CountdownPageState extends State<CountdownPage> {
 
   @override
   Widget build(BuildContext context) {
-    int minutes = _currentTime ~/ 60;
-    int seconds = _currentTime % 60;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/presentation/widgets/app_bar_widget.dart';
 
 class MotivationScreen1 extends StatelessWidget {
   @override
@@ -12,7 +11,6 @@ class MotivationScreen1 extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppBarWidget(),
                 SizedBox(height: 10.0),
                 Container(
                   padding: EdgeInsets.all(20),
@@ -28,14 +26,18 @@ class MotivationScreen1 extends StatelessWidget {
                       Container(
                         height: 300,
                         width: 400,
-                        child: Image.asset(
-                          'assets/motivation_screen1.png',
-                          fit: BoxFit.contain,
+                        child: Transform.translate(
+                          offset: Offset(
+                              -20, 0), // Adjust the X-axis offset to move left
+                          child: Image.asset(
+                            'assets/Ears.gif',
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
