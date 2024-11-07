@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
-import 'package:quizapp/presentation/widgets/app_bar_widget.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
 import 'package:quizapp/presentation/widgets/falling_overlay.dart';
 import 'package:quizapp/presentation/widgets/timer_widget_sec.dart';
@@ -82,14 +81,6 @@ class _QuestionPageState extends State<QuestionPage> {
               FarmBackgroundWidget(),
               Stack(
                 children: [
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: AppBarWidget(),
-                    ),
-                  ),
                   Positioned(
                     top: 0,
                     right: 16.0,
