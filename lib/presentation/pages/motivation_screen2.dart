@@ -13,8 +13,8 @@ class MotivationScreen2 extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.all(5),
-                  width: 400,
-                  height: 500,
+                  width: 450,
+                  height: 550,
                   decoration: BoxDecoration(
                     color: const Color(0xFFA2D12C),
                     borderRadius: BorderRadius.circular(20),
@@ -23,16 +23,15 @@ class MotivationScreen2 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 300,
-                        width: 400,
+                        height: 320,
+                        width: 420,
                         child: Image.asset(
                           'assets/breathing.gif',
                           fit: BoxFit.contain,
                         ),
                       ),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -44,7 +43,7 @@ class MotivationScreen2 extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 14.0,
+                                fontSize: 18.0, // Increased font size
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF000000),
                               ),
@@ -55,7 +54,7 @@ class MotivationScreen2 extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 14.0,
+                                fontSize: 18.0, // Increased font size
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF00A455),
                               ),

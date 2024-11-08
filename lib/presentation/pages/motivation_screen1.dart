@@ -14,8 +14,8 @@ class MotivationScreen1 extends StatelessWidget {
                 SizedBox(height: 10.0),
                 Container(
                   padding: EdgeInsets.all(20),
-                  width: 400,
-                  height: 500,
+                  width: 450,
+                  height: 550,
                   decoration: BoxDecoration(
                     color: const Color(0xFFA2D12C),
                     borderRadius: BorderRadius.circular(20),
@@ -24,11 +24,11 @@ class MotivationScreen1 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 300,
-                        width: 400,
+                        height: 320,
+                        width: 420,
                         child: Transform.translate(
                           offset: Offset(
-                              -20, 0), // Adjust the X-axis offset to move left
+                              -20, 0),
                           child: Image.asset(
                             'assets/Ears.gif',
                             fit: BoxFit.contain,
@@ -37,7 +37,7 @@ class MotivationScreen1 extends StatelessWidget {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -49,7 +49,7 @@ class MotivationScreen1 extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 14.0,
+                                fontSize: 18.0, // Increased font size
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF000000),
                               ),
@@ -60,7 +60,7 @@ class MotivationScreen1 extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 14.0,
+                                fontSize: 18.0, // Increased font size
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF00A455),
                               ),
