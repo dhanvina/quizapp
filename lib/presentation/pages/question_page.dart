@@ -258,23 +258,34 @@ class _QuestionPageState extends State<QuestionPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Submit Quiz'),
-          content: Text('Are you sure you want to submit your quiz?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close the dialog
-              },
-              child: Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Close the dialog
-                _onSubmitQuiz(); // Submit the quiz
-              },
-              child: Text('Submit'),
-            ),
-          ],
+          backgroundColor: Colors.green, // Set background color to green
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            // Adjust the column size to fit its content
+            children: [
+              Text(
+                'Submit Quiz',
+                style: TextStyle(
+                  color: Colors.white,
+                  // Optional: Change text color for contrast
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24),
+              // Add spacing between the content text and button
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the dialog
+                    _onSubmitQuiz(); // Submit the quiz
+                  },
+                  child: Text('Submit'),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
