@@ -54,8 +54,8 @@ class _QuizPreviewState extends State<QuizPreview> {
             const SizedBox(height: 2.0),
             // Test information box
             Container(
-              width: 180,
-              height: 200,
+              width: 350,
+              height: 210,
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.white,

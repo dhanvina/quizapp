@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
@@ -30,8 +31,9 @@ class _QuestionPageState extends State<QuestionPage> {
   late QuestionProvider questionProvider;
   late int totalQuizTimeInSeconds;
   late Timer totalTimer;
-  bool _isMovingToNextQuestion =
-      false; // Flag to prevent multiple next question calls
+  bool _isMovingToNextQuestion = false;
+  TextEditingController _answerController = TextEditingController();
+  double? userAnswer;
 
   @override
   void initState() {
@@ -46,6 +48,7 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   void dispose() {
     totalTimer.cancel();
+    _answerController.dispose();
     super.dispose();
   }
 
@@ -103,78 +106,78 @@ class _QuestionPageState extends State<QuestionPage> {
                     ),
                   ),
                   Consumer<QuestionProvider>(
-                    builder: (context, questionProvider, _) {
-                      if (questionProvider.papers.isEmpty) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      final question = questionProvider.currentQuestion;
+                      builder: (context, questionProvider, _) {
+                    if (questionProvider.papers.isEmpty) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    final question = questionProvider.currentQuestion;
 
-                      return Center(
-                        child: Container(
-                          width: screenWidth * 0.35,
-                          constraints:
-                              BoxConstraints(maxHeight: screenHeight * 0.90),
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Constants.limeGreen.withOpacity(1),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Question Number',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Poppins',
-                                    ),
+                    return Center(
+                      child: Container(
+                        width: screenWidth * 0.35,
+                        constraints:
+                            BoxConstraints(maxHeight: screenHeight * 0.90),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Constants.limeGreen.withOpacity(1),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Question Number',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins',
                                   ),
-                                  TimerWidgetSec(
-                                    key: ValueKey(
-                                        questionProvider.currentQuestionIndex),
-                                    quizTimeInSeconds: timePerQuestion,
-                                    onTimerEnd: () {
-                                      showOverlayTransitionMessage(context,
-                                          "Time's up! Moving to Next Question");
-                                      _moveToNextQuestion();
-                                    },
-                                  ),
-                                ],
-                              ),
-                              QuestionIndicator(
-                                currentIndex:
-                                    questionProvider.currentQuestionIndex,
-                                totalQuestions: questionProvider.totalQuestions,
-                              ),
-                              SizedBox(height: 10.0),
-                              AnimatedSwitcher(
-                                duration: Duration(milliseconds: 900),
-                                transitionBuilder: (Widget child,
-                                    Animation<double> animation) {
-                                  return FadeTransition(
-                                      opacity: animation, child: child);
-                                },
-                                child: Container(
+                                ),
+                                TimerWidgetSec(
                                   key: ValueKey(
                                       questionProvider.currentQuestionIndex),
-                                  width: screenWidth * 0.3,
-                                  height: screenHeight * 0.3,
-                                  padding: const EdgeInsets.all(2.0),
-                                  decoration: BoxDecoration(
-                                    color: Constants.offWhite.withOpacity(1),
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child:
-                                      QuestionText(question: question.question),
+                                  quizTimeInSeconds: timePerQuestion,
+                                  onTimerEnd: () {
+                                    showOverlayTransitionMessage(context,
+                                        "Time's up! Moving to Next Question");
+                                    _moveToNextQuestion();
+                                  },
                                 ),
+                              ],
+                            ),
+                            QuestionIndicator(
+                              currentIndex:
+                                  questionProvider.currentQuestionIndex,
+                              totalQuestions: questionProvider.totalQuestions,
+                            ),
+                            SizedBox(height: 10.0),
+                            AnimatedSwitcher(
+                              duration: Duration(milliseconds: 900),
+                              transitionBuilder:
+                                  (Widget child, Animation<double> animation) {
+                                return FadeTransition(
+                                    opacity: animation, child: child);
+                              },
+                              child: Container(
+                                key: ValueKey(
+                                    questionProvider.currentQuestionIndex),
+                                width: screenWidth * 0.3,
+                                height: screenHeight * 0.3,
+                                padding: const EdgeInsets.all(2.0),
+                                decoration: BoxDecoration(
+                                  color: Constants.offWhite.withOpacity(1),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child:
+                                    QuestionText(question: question.question),
                               ),
-                              SizedBox(height: 10.0),
+                            ),
+                            SizedBox(height: 10.0),
+                            if (question.type == "multiple_choice")
                               OptionButtons(
                                 questionProvider: questionProvider,
                                 question: question,
@@ -182,26 +185,81 @@ class _QuestionPageState extends State<QuestionPage> {
                                   setState(() {
                                     selectedOption = option;
                                   });
-                                  questionProvider.checkAnswer(option);
+                                  questionProvider.checkAnswer(
+                                      double.parse(option.toString()));
+
                                   _handleAnswer(questionProvider);
                                 },
-                              ),
-                              Container(
-                                width: 150,
-                                height: 120,
-                                child: Image.asset(
-                                  'assets/quiz_app_abacus.png',
-                                  fit: BoxFit.contain,
+                              )
+                            else if (question.type == "fill")
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Column(
+                                  children: [
+                                    TextField(
+                                      controller: _answerController,
+                                      keyboardType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true, signed: false),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(r'^\d*\.?\d*$')),
+                                        LengthLimitingTextInputFormatter(10),
+                                      ],
+                                      decoration: InputDecoration(
+                                        hintText: "Enter your answer",
+                                        border: OutlineInputBorder(),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        String cleanedInput =
+                                            _answerController.text.trim();
+                                        double userAnswer = double.parse(
+                                            cleanedInput); // Try to parse as double
+                                        print(
+                                            'Cleaned input: ${userAnswer.runtimeType}');
+
+                                        if (_answerController.text.isNotEmpty) {
+                                          final userAnswer = double.parse(
+                                              _answerController.text.trim());
+                                          if (userAnswer != null) {
+                                            questionProvider
+                                                .checkAnswer(userAnswer);
+                                            _handleAnswer(questionProvider);
+                                          } else {
+                                            showOverlayTransitionMessage(
+                                                context,
+                                                "Please enter a valid numeric answer.");
+                                          }
+                                        } else {
+                                          showOverlayTransitionMessage(context,
+                                              "Please enter an answer.");
+                                        }
+                                        _answerController.clear();
+                                      },
+                                      child: Text("Next"),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              if (_isLastQuestionAnswered)
-                                SizedBox.shrink(), // Empty space for now
-                            ],
-                          ),
+                            Container(
+                              width: 150,
+                              height: 120,
+                              child: Image.asset(
+                                'assets/quiz_app_abacus.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            if (_isLastQuestionAnswered)
+                              SizedBox.shrink(), // Empty space for now
+                          ],
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  }),
                 ],
               ),
             ],
@@ -216,14 +274,13 @@ class _QuestionPageState extends State<QuestionPage> {
       setState(() {
         _isLastQuestionAnswered = true;
       });
-      _showSubmitDialog(); // Show the submit confirmation dialog
+      _showSubmitDialog();
     } else if (!_isMovingToNextQuestion) {
-      // Prevent multiple next question calls
       setState(() {
         _isMovingToNextQuestion = true;
       });
       setState(() {
-        selectedOption = null; // Reset selected option for the new question
+        selectedOption = null;
       });
       questionProvider.resetSelectedOption();
       showOverlayTransitionMessage(context, "Moving to Next Question");
@@ -242,12 +299,11 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void _moveToNextQuestion() {
     if (questionProvider.isLastQuestion) {
-      _onSubmitQuiz(); // Submit quiz if it's the last question
+      _onSubmitQuiz();
     } else {
-      questionProvider.nextQuestion(); // Move to the next question in the list
+      questionProvider.nextQuestion();
     }
 
-    // Reset flag after question moves
     setState(() {
       _isMovingToNextQuestion = false;
     });
@@ -258,31 +314,53 @@ class _QuestionPageState extends State<QuestionPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.green, // Set background color to green
+          backgroundColor: Colors.green,
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            // Adjust the column size to fit its content
             children: [
               Text(
                 'Submit Quiz',
                 style: TextStyle(
                   color: Colors.white,
-                  // Optional: Change text color for contrast
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 24),
-              // Add spacing between the content text and button
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context); // Close the dialog
-                    _onSubmitQuiz(); // Submit the quiz
-                  },
-                  child: Text('Submit'),
-                ),
+              Text(
+                'You have completed the quiz. Would you like to submit your results?',
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _onSubmitQuiz();
+                    },
+                    child: Text(
+                      'Yes',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'No',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -290,18 +368,17 @@ class _QuestionPageState extends State<QuestionPage> {
       },
     );
   }
-}
 
-void showOverlayTransitionMessage(BuildContext context, String message) {
-  final overlay = OverlayEntry(
-    builder: (context) {
-      return FallingOverlay(message: message);
-    },
-  );
+  void showOverlayTransitionMessage(BuildContext context, String message) {
+    final overlay = Overlay.of(context);
+    final overlayEntry = OverlayEntry(
+      builder: (context) => FallingOverlay(message: message),
+    );
 
-  Overlay.of(context)?.insert(overlay);
+    overlay.insert(overlayEntry);
 
-  Future.delayed(Duration(seconds: 2), () {
-    overlay.remove();
-  });
+    Future.delayed(const Duration(seconds: 3), () {
+      overlayEntry.remove();
+    });
+  }
 }

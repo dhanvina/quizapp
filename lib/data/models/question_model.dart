@@ -2,23 +2,32 @@
 import '../../domain/entities/question.dart';
 
 class QuestionModel {
+  final String type;
   final String question;
-  final List<int> options;
-  final int answer;
+  final List<dynamic>? options;
+  final double answer;
 
   QuestionModel(
-      {required this.question, required this.options, required this.answer});
+      {required this.type,
+      required this.question,
+      this.options,
+      required this.answer});
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
+      type: json['type'] as String,
       question: json['question'] as String,
-      options: List<int>.from(json['options'] as List),
-      answer: json['answer'] as int,
+      // options: List<int>.from(json['options'] as List),
+      options: json['type'] == 'multiple_choice'
+          ? List<dynamic>.from(json['options'])
+          : null,
+      answer: json['answer'] as double,
     );
   }
 
   Question toEntity() {
     return Question(
+      type: type,
       question: question,
       options: options,
       answer: answer,

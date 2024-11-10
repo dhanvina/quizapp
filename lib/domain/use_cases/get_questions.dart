@@ -1,4 +1,4 @@
-// get_questions.dart
+// domain/usecases/get_questions.dart
 import '../entities/question.dart';
 import '../repository/question_repository_interface.dart';
 
@@ -13,7 +13,15 @@ class GetQuestions {
       return QuestionPaper(
         title: paperModel.title,
         time: paperModel.time,
-        questions: paperModel.questions.map((q) => q.toEntity()).toList(),
+        questions: paperModel.questions.map((q) {
+          // Include the type when mapping to the Question entity
+          return Question(
+            type: q.type, // Pass the type field from the data model
+            question: q.question,
+            options: q.type == 'multiple_choice' ? q.options : null,
+            answer: q.answer,
+          );
+        }).toList(),
       );
     }).toList();
   }
