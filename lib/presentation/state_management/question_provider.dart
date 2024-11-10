@@ -35,11 +35,21 @@ class QuestionProvider extends ChangeNotifier {
     return papers[selectedPaperIndex].questions[currentQuestionIndex];
   }
 
-  void checkAnswer(int selectedAnswer) {
-    if (selectedAnswer == currentQuestion.answer) {
-      score++; // Increment score if the answer is correct
+  void checkAnswer(double selectedAnswer) {
+    try {
+      double correctAnswer = currentQuestion.answer;
+      if (selectedAnswer == correctAnswer) {
+        score++; // Increment score if the answer is correct
+      }
+    } catch (e) {
+      // Handle the error if parsing fails
+      print("Error parsing answer: $e");
     }
     notifyListeners();
+  }
+
+  String get questionType {
+    return currentQuestion.type;
   }
 
   int get totalScore => score;

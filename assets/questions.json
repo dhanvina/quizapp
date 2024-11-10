@@ -1,81 +1,316 @@
 {
   "question_papers": [
     {
+      "title": "Vedic Math Practice Paper 1",
+      "time": 15,
+      "questions": [
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n612",
+          "answer": 388
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n179",
+          "answer": 821
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n173",
+          "answer": 827
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n484",
+          "answer": 516
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n104",
+          "answer": 896
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n687 x 5",
+          "answer": 3435
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n756 x 5",
+          "answer": 3780
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n6804 x 5",
+          "answer": 34020
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n2347 x 5",
+          "answer": 11735
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n7256 x 5",
+          "answer": 36280
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n6382 x 25",
+          "answer": 159550
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n6882 x 25",
+          "answer": 172050
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n5793 x 25",
+          "answer": 144825
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n8944 x 25",
+          "answer": 223600
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n486342 x 25",
+          "answer": 12158550
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n7654 x 125",
+          "answer": 956750
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n3271 x 125",
+          "answer": 408875
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n7282 x 125",
+          "answer": 910250
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n8657 x 125",
+          "answer": 1082125
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n1073 x 125",
+          "answer": 134125
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n68 x 62",
+          "answer": 4216
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n76 x 74",
+          "answer": 5624
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n95 x 95",
+          "answer": 9025
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n19 x 11",
+          "answer": 209
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n38 x 32",
+          "answer": 1216
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n12 x 92",
+          "answer": 1104
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n52 x 52",
+          "answer": 2704
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n24 x 84",
+          "answer": 2016
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n10 x 90",
+          "answer": 900
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n73 x 33",
+          "answer": 2409
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n7.3 x 7.7",
+          "answer": 56.21
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n1.6 x 1.4",
+          "answer": 2.24
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n9.3 x 9.7",
+          "answer": 90.21
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n4.7 x 4.3",
+          "answer": 20.21
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n3.9 x 3.1",
+          "answer": 12.09
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n8",
+          "answer":2
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n5",
+          "answer":5
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n2",
+          "answer":8
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n7",
+          "answer":3
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n6",
+          "answer":4
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n4",
+          "answer":5
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n1",
+          "answer":8
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n3",
+          "answer":6
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n9",
+          "answer":0
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n7",
+          "answer":2
+        }
+      ]
+    },
+
+    {
       "title": "BFB 1",
       "time": 8,
       "questions": [
         {
+          "type": "multiple_choice",
           "question": "solve this:\n1\n-1\n1\n1",
           "options": [1, 2, 3, 4],
           "answer": 2
         },
         {
+          "type": "multiple_choice",
           "question": "solve this:\n2\n-1\n1\n-1",
           "options": [2, 3, 1, 4],
           "answer": 1
         },
         {
+          "type": "multiple_choice",
           "question": "solve this:\n3\n-2\n2\n1",
           "options": [3, 4, 2, 1],
           "answer": 4
         },
-        {
-          "question": "solve this:\n1\n-1\n1\n3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n1\n-1\n1\n3",
           "options": [1, 2, 5, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n4\n-1\n1\n-1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-1\n1\n-1",
           "options": [4, 1, 3, 2],
           "answer": 3
         },
-        {
-          "question": "solve this:\n4\n-2\n2\n-3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-2\n2\n-3",
           "options": [4, 6, 2, 1],
           "answer": 1
         },
-        {
-          "question": "solve this:\n3\n-3\n2\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n3\n-3\n2\n1",
           "options": [3, 2, 5, 1],
           "answer": 3
         },
-        {
-          "question": "solve this:\n2\n-2\n3\n-1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n2\n-2\n3\n-1",
           "options": [2, 0, 3, 1],
           "answer": 2
         },
-        {
-          "question": "solve this:\n2\n2\n-4\n4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n2\n2\n-4\n4",
           "options": [2, 5, 1, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n1\n3\n-3\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n1\n3\n-3\n2",
           "options": [1, 3, 5, 2],
           "answer": 3
         },
-        {
-          "question": "solve this:\n4\n-4\n1\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-4\n1\n2",
           "options": [4, 1, 3, 2],
           "answer": 3
         },
-        {
-          "question": "solve this:\n4\n-3\n-1\n4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-3\n-1\n4",
           "options": [3, 9, 1, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n7\n-1\n-5\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n-1\n-5\n2",
           "options": [7, 5, 3, 2],
           "answer": 3
         },
-        {
-          "question": "solve this:\n5\n4\n-7\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n5\n4\n-7\n1",
           "options": [5, 4, 3, 1],
           "answer": 3
         },
-        {
-          "question": "solve this:\n1\n6\n-5\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n1\n6\n-5\n2",
           "options": [1, 6, 3, 4],
           "answer": 4
         }
@@ -85,103 +320,103 @@
       "title": "BFB 2",
       "time": 10,
       "questions": [
-        {
-          "question": "solve this:\n3\n-3\n1\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n3\n-3\n1\n2",
           "options": [3, 7, 1, 2],
           "answer": 3
         },
-        {
-          "question": "solve this:\n2\n2\n-1\n-1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n2\n2\n-1\n-1",
           "options": [7, 2, 3, 8],
           "answer": 2
         },
-        {
-          "question": "solve this:\n3\n1\n-4\n4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n3\n1\n-4\n4",
           "options": [3, 1, 5, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n3\n1\n-3\n3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n3\n1\n-3\n3",
           "options": [3, 5, 1, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n9\n-4\n-5\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n9\n-4\n-5\n2",
           "options": [9, 4, 5, 2],
           "answer": 2
         },
-        {
-          "question": "solve this:\n6\n-5\n-1\n9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n-5\n-1\n9",
           "options": [6, 5, 1, 9],
           "answer": 9
         },
-        {
-          "question": "solve this:\n5\n4\n-9\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n5\n4\n-9\n5",
           "options": [4, 5, 9, 1],
           "answer": 5
         },
-        {
-          "question": "solve this:\n1\n2\n-3\n9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n1\n2\n-3\n9",
           "options": [1, 2, 3, 9],
           "answer": 9
         },
-        {
-          "question": "solve this:\n7\n-6\n1\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n-6\n1\n5",
           "options": [7, 6, 1, 3],
           "answer": 7
         },
-        {
-          "question": "solve this:\n7\n1\n-2\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n1\n-2\n1",
           "options": [7, 3, 2, 1],
           "answer": 7
         },
-        {
-          "question": "solve this:\n1\n1\n2\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n1\n1\n2\n5",
           "options": [1, 0, 2, 9],
           "answer": 9
         },
-        {
-          "question": "solve this:\n2\n5\n-6\n8",
+        { "type": "multiple_choice", "question":
+ "solve this:\n2\n5\n-6\n8",
           "options": [2, 5, 6, 9],
           "answer": 9
         },
-        {
-          "question": "solve this:\n20\n20\n-10\n-10",
+        { "type": "multiple_choice", "question":
+ "solve this:\n20\n20\n-10\n-10",
           "options": [20, 12, 10, 30],
           "answer": 20
         },
-        {
-          "question": "solve this:\n20\n-10\n-10\n20",
+        { "type": "multiple_choice", "question":
+ "solve this:\n20\n-10\n-10\n20",
           "options": [20, 10, 22, 14],
           "answer": 20
         },
-        {
-          "question": "solve this:\n30\n-10\n20\n-20",
+        { "type": "multiple_choice", "question":
+ "solve this:\n30\n-10\n20\n-20",
           "options": [30, 10, 20, 14],
           "answer": 20
         },
-        {
-          "question": "solve this:\n40\n-10\n-10\n20",
+        { "type": "multiple_choice", "question":
+ "solve this:\n40\n-10\n-10\n20",
           "options": [43, 10, 40, 20],
           "answer": 40
         },
-        {
-          "question": "solve this:\n40\n-20\n-10\n10",
+        { "type": "multiple_choice", "question":
+ "solve this:\n40\n-20\n-10\n10",
           "options": [40, 20, 30, 10],
           "answer": 20
         },
-        {
-          "question": "solve this:\n30\n-20\n30\n-30",
+        { "type": "multiple_choice", "question":
+ "solve this:\n30\n-20\n30\n-30",
           "options": [22, 20, 30, 10],
           "answer": 10
         },
-        {
-          "question": "solve this:\n40\n-20\n-10\n20",
+        { "type": "multiple_choice", "question":
+ "solve this:\n40\n-20\n-10\n20",
           "options": [40, 20, 30, 12],
           "answer": 30
         },
-        {
-          "question": "solve this:\n30\n-20\n-10\n10",
+        { "type": "multiple_choice", "question":
+ "solve this:\n30\n-20\n-10\n10",
           "options": [30, 10, 20, 16],
           "answer": 10
         }
@@ -191,103 +426,103 @@
       "title": "Combination",
       "time": 10,
       "questions": [
-        {
-          "question": "solve this:\n2\n-2\n4\n-3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n2\n-2\n4\n-3",
           "options": [1, 2, 4, 3],
           "answer": 1
         },
-        {
-          "question": "solve this:\n4\n-2\n1\n-2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-2\n1\n-2",
           "options": [4, 2, 7, 1],
           "answer": 1
         },
-        {
-          "question": "solve this:\n5\n2\n-5\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n5\n2\n-5\n1",
           "options": [3, 2, 5, 1],
           "answer": 3
         },
-        {
-          "question": "solve this:\n6\n-1\n2\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n-1\n2\n1",
           "options": [6, 7, 8, 1],
           "answer": 8
         },
-        {
-          "question": "solve this:\n7\n-6\n8\n-4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n-6\n8\n-4",
           "options": [7, 5, 8, 4],
           "answer": 5
         },
-        {
-          "question": "solve this:\n8\n-2\n3\n-5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n8\n-2\n3\n-5",
           "options": [8, 2, 3, 4],
           "answer": 4
         },
-        {
-          "question": "solve this:\n9\n-4\n-5\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n9\n-4\n-5\n2",
           "options": [9, 4, 5, 2],
           "answer": 2
         },
-        {
-          "question": "solve this:\n6\n-5\n8\n-7",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n-5\n8\n-7",
           "options": [6, 5, 2, 7],
           "answer": 2
         },
-        {
-          "question": "solve this:\n9\n-7\n-2\n8",
+        { "type": "multiple_choice", "question":
+ "solve this:\n9\n-7\n-2\n8",
           "options": [9, 7, 2, 8],
           "answer": 8
         },
-        {
-          "question": "solve this:\n4\n-2\n6\n-3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-2\n6\n-3",
           "options": [4, 2, 5, 3],
           "answer": 5
         },
-        {
-          "question": "solve this:\n7\n-1\n-6\n9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n-1\n-6\n9",
           "options": [7, 1, 6, 9],
           "answer": 9
         },
-        {
-          "question": "solve this:\n6\n2\n-7\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n2\n-7\n5",
           "options": [6, 2, 7, 8],
           "answer": 6
         },
-        {
-          "question": "solve this:\n10\n20\n50\n-60",
+        { "type": "multiple_choice", "question":
+ "solve this:\n10\n20\n50\n-60",
           "options": [10, 25, 50, 20],
           "answer": 20
         },
-        {
-          "question": "solve this:\n70\n-20\n30\n-80",
+        { "type": "multiple_choice", "question":
+ "solve this:\n70\n-20\n30\n-80",
           "options": [70, 0, 30, 8],
           "answer": 0
         },
-        {
-          "question": "solve this:\n90\n-70\n60\n-50",
+        { "type": "multiple_choice", "question":
+ "solve this:\n90\n-70\n60\n-50",
           "options": [30, 70, 60, 50],
           "answer": 30
         },
-        {
-          "question": "solve this:\n12\n25\n-32\n41",
+        { "type": "multiple_choice", "question":
+ "solve this:\n12\n25\n-32\n41",
           "options": [12, 25, 32, 46],
           "answer": 46
         },
-        {
-          "question": "solve this:\n11\n22\n-12\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n11\n22\n-12\n15",
           "options": [11, 36, 12, 15],
           "answer": 36
         },
-        {
-          "question": "solve this:\n22\n-22\n34\n-21",
+        { "type": "multiple_choice", "question":
+ "solve this:\n22\n-22\n34\n-21",
           "options": [22, 12, 13, 21],
           "answer": 13
         },
-        {
-          "question": "solve this:\n13\n16\n-17\n16",
+        { "type": "multiple_choice", "question":
+ "solve this:\n13\n16\n-17\n16",
           "options": [13, 16, 17, 28],
           "answer": 28
         },
-        {
-          "question": "solve this:\n19\n-18\n17\n-16",
+        { "type": "multiple_choice", "question":
+ "solve this:\n19\n-18\n17\n-16",
           "options": [19, 18, 2, 16],
           "answer": 2
         }
@@ -297,103 +532,103 @@
       "title": "Advance 1 Paper A",
       "time": 10,
       "questions": [
-        {
-          "question": "solve this:\n5\n1\n2\n-7",
+        { "type": "multiple_choice", "question":
+ "solve this:\n5\n1\n2\n-7",
           "options": [1, 9, 2, 7],
           "answer": 1
         },
-        {
-          "question": "solve this:\n6\n3\n-3\n2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n3\n-3\n2",
           "options": [6, 3, 7, 8],
           "answer": 8
         },
-        {
-          "question": "solve this:\n8\n-5\n6\n-2",
+        { "type": "multiple_choice", "question":
+ "solve this:\n8\n-5\n6\n-2",
           "options": [7, 5, 6, 2],
           "answer": 7
         },
-        {
-          "question": "solve this:\n7\n-1\n3\n-5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n7\n-1\n3\n-5",
           "options": [7, 1, 4, 5],
           "answer": 4
         },
-        {
-          "question": "solve this:\n6\n3\n-7\n-1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n3\n-7\n-1",
           "options": [6, 3, 7, 1],
           "answer": 1
         },
-        {
-          "question": "solve this:\n4\n-4\n8\n-5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-4\n8\n-5",
           "options": [4, 1, 3, 5],
           "answer": 3
         },
-        {
-          "question": "solve this:\n9\n-4\n-5\n6",
+        { "type": "multiple_choice", "question":
+ "solve this:\n9\n-4\n-5\n6",
           "options": [9, 4, 5, 6],
           "answer": 6
         },
-        {
-          "question": "solve this:\n8\n1\n-7\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n8\n1\n-7\n1",
           "options": [8, 1, 7, 3],
           "answer": 3
         },
-        {
-          "question": "solve this:\n20\n-10\n-10\n40",
+        { "type": "multiple_choice", "question":
+ "solve this:\n20\n-10\n-10\n40",
           "options": [20, 10, 17, 40],
           "answer": 40
         },
-        {
-          "question": "solve this:\n70\n-60\n80\n-30",
+        { "type": "multiple_choice", "question":
+ "solve this:\n70\n-60\n80\n-30",
           "options": [70, 20, 60, 30],
           "answer": 60
         },
-        {
-          "question": "solve this:\n90\n-10\n10\n-70",
+        { "type": "multiple_choice", "question":
+ "solve this:\n90\n-10\n10\n-70",
           "options": [20, 50, 10, 70],
           "answer": 20
         },
-        {
-          "question": "solve this:\n28\n51\n-66\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n28\n51\n-66\n15",
           "options": [28, 51, 66, 15],
           "answer": 28
         },
-        {
-          "question": "solve this:\n82\n-61\n55\n21",
+        { "type": "multiple_choice", "question":
+ "solve this:\n82\n-61\n55\n21",
           "options": [82, 61, 97, 21],
           "answer": 97
         },
-        {
-          "question": "solve this:\n37\n50\n10\n-85",
+        { "type": "multiple_choice", "question":
+ "solve this:\n37\n50\n10\n-85",
           "options": [37, 12, 10, 85],
           "answer": 12
         },
-        {
-          "question": "solve this:\n88\n11\n-77\n66",
+        { "type": "multiple_choice", "question":
+ "solve this:\n88\n11\n-77\n66",
           "options": [88, 11, 77, 66],
           "answer": 88
         },
-        {
-          "question": "solve this:\n45\n53\n-60\n-11",
+        { "type": "multiple_choice", "question":
+ "solve this:\n45\n53\n-60\n-11",
           "options": [45, 27, 60, 11],
           "answer": 27
         },
-        {
-          "question": "solve this:\n35\n51\n12\n-95",
+        { "type": "multiple_choice", "question":
+ "solve this:\n35\n51\n12\n-95",
           "options": [3, 51, 12, 95],
           "answer": 3
         },
-        {
-          "question": "solve this:\n21\n55\n-61\n24",
+        { "type": "multiple_choice", "question":
+ "solve this:\n21\n55\n-61\n24",
           "options": [21, 55, 39, 24],
           "answer": 39
         },
-        {
-          "question": "solve this:\n49\n-32\n62\n-55",
+        { "type": "multiple_choice", "question":
+ "solve this:\n49\n-32\n62\n-55",
           "options": [49, 24, 62, 55],
           "answer": 24
         },
-        {
-          "question": "solve this:\n31\n55\n-36\n11",
+        { "type": "multiple_choice", "question":
+ "solve this:\n31\n55\n-36\n11",
           "options": [31, 55, 36, 61],
           "answer": 61
         }
@@ -403,103 +638,103 @@
       "title": "Advance 1 Paper B",
       "time": 10,
       "questions": [
-        {
-          "question": "solve this:\n8\n-7\n6\n1",
+        { "type": "multiple_choice", "question":
+ "solve this:\n8\n-7\n6\n1",
           "options": [8, 7, 6, 1],
           "answer": 8
         },
-        {
-          "question": "solve this:\n6\n3\n-6\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n6\n3\n-6\n5",
           "options": [6, 3, 7, 8],
           "answer": 8
         },
-        {
-          "question": "solve this:\n4\n-1\n6\n-9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n4\n-1\n6\n-9",
           "options": [0, 1, 6, 9],
           "answer": 0
         },
-        {
-          "question": "solve this:\n8\n1\n-7\n5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n8\n1\n-7\n5",
           "options": [8, 1, 7, 5],
           "answer": 7
         },
-        {
-          "question": "solve this:\n9\n-3\n2\n-6",
+        { "type": "multiple_choice", "question":
+ "solve this:\n9\n-3\n2\n-6",
           "options": [9, 3, 2, 6],
           "answer": 2
         },
-        {
-          "question": "solve this:\n90\n-80\n70\n10",
+        { "type": "multiple_choice", "question":
+ "solve this:\n90\n-80\n70\n10",
           "options": [90, 80, 70, 10],
           "answer": 90
         },
-        {
-          "question": "solve this:\n70\n-60\n80\n-30",
+        { "type": "multiple_choice", "question":
+ "solve this:\n70\n-60\n80\n-30",
           "options": [70, 30, 80, 60],
           "answer": 60
         },
-        {
-          "question": "solve this:\n21\n2\n-3\n20",
+        { "type": "multiple_choice", "question":
+ "solve this:\n21\n2\n-3\n20",
           "options": [21, 2, 40, 20],
           "answer": 40
         },
-        {
-          "question": "solve this:\n44\n55\n-15\n10",
+        { "type": "multiple_choice", "question":
+ "solve this:\n44\n55\n-15\n10",
           "options": [44, 55, 15, 94],
           "answer": 94
         },
-        {
-          "question": "solve this:\n22\n22\n55\n-22",
+        { "type": "multiple_choice", "question":
+ "solve this:\n22\n22\n55\n-22",
           "options": [22, 77, 55, 52],
           "answer": 77
         },
-        {
-          "question": "solve this:\n62\n27\n-33\n-51",
+        { "type": "multiple_choice", "question":
+ "solve this:\n62\n27\n-33\n-51",
           "options": [62, 27, 33, 5],
           "answer": 5
         },
-        {
-          "question": "solve this:\n78\n-25\n46\n-4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n78\n-25\n46\n-4",
           "options": [78, 25, 46, 95],
           "answer": 95
         },
-        {
-          "question": "solve this:\n36\n52\n-71\n81",
+        { "type": "multiple_choice", "question":
+ "solve this:\n36\n52\n-71\n81",
           "options": [36, 52, 98, 81],
           "answer": 98
         },
-        {
-          "question": "solve this:\n99\n-71\n60\n-32",
+        { "type": "multiple_choice", "question":
+ "solve this:\n99\n-71\n60\n-32",
           "options": [99, 71, 60, 56],
           "answer": 56
         },
-        {
-          "question": "solve this:\n34\n65\n-88\n22",
+        { "type": "multiple_choice", "question":
+ "solve this:\n34\n65\n-88\n22",
           "options": [34, 65, 88, 33],
           "answer": 33
         },
-        {
-          "question": "solve this:\n85\n12\n-66\n52",
+        { "type": "multiple_choice", "question":
+ "solve this:\n85\n12\n-66\n52",
           "options": [85, 12, 83, 52],
           "answer": 83
         },
-        {
-          "question": "solve this:\n36\n52\n-77\n61",
+        { "type": "multiple_choice", "question":
+ "solve this:\n36\n52\n-77\n61",
           "options": [36, 72, 77, 61],
           "answer": 72
         },
-        {
-          "question": "solve this:\n84\n-72\n66\n-75",
+        { "type": "multiple_choice", "question":
+ "solve this:\n84\n-72\n66\n-75",
           "options": [84, 72, 3, 10],
           "answer": 3
         },
-        {
-          "question": "solve this:\n38\n-25\n10\n76",
+        { "type": "multiple_choice", "question":
+ "solve this:\n38\n-25\n10\n76",
           "options": [38, 25, 10, 99],
           "answer": 99
         },
-        {
-          "question": "solve this:\n32\n57\n-11\n-65",
+        { "type": "multiple_choice", "question":
+ "solve this:\n32\n57\n-11\n-65",
           "options": [32, 13, 11, 65],
           "answer": 13
         }
@@ -509,128 +744,128 @@
       "title": "Advance 2",
       "time": 10,
       "questions": [
-        {
-          "question": "solve this:\n75\n12\n-35\n22",
+        { "type": "multiple_choice", "question":
+ "solve this:\n75\n12\n-35\n22",
           "options": [75, 12, 35, 74],
           "answer": 74
         },
-        {
-          "question": "solve this:\n77\n-22\n10\n-55",
+        { "type": "multiple_choice", "question":
+ "solve this:\n77\n-22\n10\n-55",
           "options": [77, 22, 30, 10],
           "answer": 10
         },
-        {
-          "question": "solve this:\n57\n-55\n26\n21",
+        { "type": "multiple_choice", "question":
+ "solve this:\n57\n-55\n26\n21",
           "options": [57, 55, 49, 21],
           "answer": 49
         },
-        {
-          "question": "solve this:\n52\n42\n-12\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n52\n42\n-12\n15",
           "options": [52, 97, 12, 15],
           "answer": 97
         },
-        {
-          "question": "solve this:\n42\n51\n-12\n-60",
+        { "type": "multiple_choice", "question":
+ "solve this:\n42\n51\n-12\n-60",
           "options": [21, 51, 12, 60],
           "answer": 21
         },
-        {
-          "question": "solve this:\n453\n-301\n525\n200",
+        { "type": "multiple_choice", "question":
+ "solve this:\n453\n-301\n525\n200",
           "options": [877, 301, 525, 200],
           "answer": 877
         },
-        {
-          "question": "solve this:\n250\n210\n520\n-610",
+        { "type": "multiple_choice", "question":
+ "solve this:\n250\n210\n520\n-610",
           "options": [250, 210, 370, 610],
           "answer": 370
         },
-        {
-          "question": "solve this:\n225\n254\n-277\n211",
+        { "type": "multiple_choice", "question":
+ "solve this:\n225\n254\n-277\n211",
           "options": [225, 413, 277, 211],
           "answer": 413
         },
-        {
-          "question": "solve this:\n556\n242\n-698\n712",
+        { "type": "multiple_choice", "question":
+ "solve this:\n556\n242\n-698\n712",
           "options": [556, 242, 698, 812],
           "answer": 812
         },
-        {
-          "question": "solve this:\n534\n115\n250\n-677",
+        { "type": "multiple_choice", "question":
+ "solve this:\n534\n115\n250\n-677",
           "options": [534, 115, 222, 677],
           "answer": 222
         },
-        {
-          "question": "solve this:\n39\n-26\n43\n31",
+        { "type": "multiple_choice", "question":
+ "solve this:\n39\n-26\n43\n31",
           "options": [39, 26, 87, 31],
           "answer": 87
         },
-        {
-          "question": "solve this:\n68\n-57\n43\n21",
+        { "type": "multiple_choice", "question":
+ "solve this:\n68\n-57\n43\n21",
           "options": [68, 57, 43, 75],
           "answer": 75
         },
-        {
-          "question": "solve this:\n62\n33\n-85\n47",
+        { "type": "multiple_choice", "question":
+ "solve this:\n62\n33\n-85\n47",
           "options": [62, 33, 85, 57],
           "answer": 57
         },
-        {
-          "question": "solve this:\n93\n3\n-75\n34",
+        { "type": "multiple_choice", "question":
+ "solve this:\n93\n3\n-75\n34",
           "options": [93, 55, 75, 34],
           "answer": 55
         },
-        {
-          "question": "solve this:\n62\n33\n-75\n39",
+        { "type": "multiple_choice", "question":
+ "solve this:\n62\n33\n-75\n39",
           "options": [62, 59, 75, 39],
           "answer": 59
         },
-        {
-          "question": "solve this:\n88\n-66\n12\n21",
+        { "type": "multiple_choice", "question":
+ "solve this:\n88\n-66\n12\n21",
           "options": [88, 66, 12, 55],
           "answer": 55
         },
-        {
-          "question": "solve this:\n66\n31\n-75\n45",
+        { "type": "multiple_choice", "question":
+ "solve this:\n66\n31\n-75\n45",
           "options": [66, 31, 75, 67],
           "answer": 67
         },
-        {
-          "question": "solve this:\n77\n-30\n22\n-33",
+        { "type": "multiple_choice", "question":
+ "solve this:\n77\n-30\n22\n-33",
           "options": [36, 30, 22, 33],
           "answer": 36
         },
-        {
-          "question": "solve this:\n36\n21\n-31\n-13",
+        { "type": "multiple_choice", "question":
+ "solve this:\n36\n21\n-31\n-13",
           "options": [36, 21, 31, 13],
           "answer": 13
         },
-        {
-          "question": "solve this:\n42\n14\n-32\n60",
+        { "type": "multiple_choice", "question":
+ "solve this:\n42\n14\n-32\n60",
           "options": [42, 84, 32, 60],
           "answer": 84
         },
-        {
-          "question": "solve this:\n88\n-43\n92\n81",
+        { "type": "multiple_choice", "question":
+ "solve this:\n88\n-43\n92\n81",
           "options": [88, 43, 218, 81],
           "answer": 218
         },
-        {
-          "question": "solve this:\n64\n43\n31\n95",
+        { "type": "multiple_choice", "question":
+ "solve this:\n64\n43\n31\n95",
           "options": [233, 43, 31, 95],
           "answer": 233
         },
-        {
-          "question": "solve this:\n72\n11\n34\n92",
+        { "type": "multiple_choice", "question":
+ "solve this:\n72\n11\n34\n92",
           "options": [72, 11, 209, 92],
           "answer": 209
         },
-        {
-          "question": "solve this:\n56\n52\n61\n40",
+        { "type": "multiple_choice", "question":
+ "solve this:\n56\n52\n61\n40",
           "options": [56, 52, 61, 209],
           "answer": 209
         },
-        {
-          "question": "solve this:\n93\n24\n92\n80",
+        { "type": "multiple_choice", "question":
+ "solve this:\n93\n24\n92\n80",
           "options": [289, 24, 92, 80],
           "answer": 289
         }
@@ -640,153 +875,153 @@
       "title": "Advance 3",
       "time": 15,
       "questions": [
-        {
-          "question": "solve this:\n34\n-22\n56\n-50",
+        { "type": "multiple_choice", "question":
+ "solve this:\n34\n-22\n56\n-50",
           "options": [34, 28, 18, 50],
           "answer": 18
         },
-        {
-          "question": "solve this:\n99\n-55\n50\n-30",
+        { "type": "multiple_choice", "question":
+ "solve this:\n99\n-55\n50\n-30",
           "options": [99, 64, 67, 55],
           "answer": 64
         },
-        {
-          "question": "solve this:\n67\n21\n-55\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n67\n21\n-55\n15",
           "options": [73, 48, 15, 52],
           "answer": 48
         },
-        {
-          "question": "solve this:\n130\n219\n50\n-277",
+        { "type": "multiple_choice", "question":
+ "solve this:\n130\n219\n50\n-277",
           "options": [950, 122, 240, 940],
           "answer": 122
         },
-        {
-          "question": "solve this:\n666\n-511\n222\n-66",
+        { "type": "multiple_choice", "question":
+ "solve this:\n666\n-511\n222\n-66",
           "options": [490, 311, 810, 260],
           "answer": 311
         },
-        {
-          "question": "solve this:\n448\n-321\n572\n-80",
+        { "type": "multiple_choice", "question":
+ "solve this:\n448\n-321\n572\n-80",
           "options": [380, 250, 619, 790],
           "answer": 619
         },
-        {
-          "question": "solve this:\n87\n-65\n32\n41",
+        { "type": "multiple_choice", "question":
+ "solve this:\n87\n-65\n32\n41",
           "options": [95, 71, 34, 78],
           "answer": 95
         },
-        {
-          "question": "solve this:\n23\n42\n-60\n84",
+        { "type": "multiple_choice", "question":
+ "solve this:\n23\n42\n-60\n84",
           "options": [48, 89, 55, 32],
           "answer": 89
         },
-        {
-          "question": "solve this:\n36\n-25\n23\n43",
+        { "type": "multiple_choice", "question":
+ "solve this:\n36\n-25\n23\n43",
           "options": [62, 33, 85, 77],
           "answer": 77
         },
-        {
-          "question": "solve this:\n22\n14\n21\n-13",
+        { "type": "multiple_choice", "question":
+ "solve this:\n22\n14\n21\n-13",
           "options": [59, 20, 44, 34],
           "answer": 44
         },
-        {
-          "question": "solve this:\n63\n33\n-62\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n63\n33\n-62\n15",
           "options": [49, 88, 84, 32],
           "answer": 49
         },
-        {
-          "question": "solve this:\n24\n12\n23\n-16",
+        { "type": "multiple_choice", "question":
+ "solve this:\n24\n12\n23\n-16",
           "options": [98, 32, 43, 31],
           "answer": 43
         },
-        {
-          "question": "solve this:\n33\n75\n51\n50",
+        { "type": "multiple_choice", "question":
+ "solve this:\n33\n75\n51\n50",
           "options": [36, 14, 44, 209],
           "answer": 209
         },
-        {
-          "question": "solve this:\n68\n15\n56\n55",
+        { "type": "multiple_choice", "question":
+ "solve this:\n68\n15\n56\n55",
           "options": [97, 283, 59, 194],
           "answer": 194
         },
-        {
-          "question": "solve this:\n75\n41\n79\n55",
+        { "type": "multiple_choice", "question":
+ "solve this:\n75\n41\n79\n55",
           "options": [66, 250, 32, 12],
           "answer": 250
         },
-        {
-          "question": "solve this:\n64\n26\n70\n-87",
+        { "type": "multiple_choice", "question":
+ "solve this:\n64\n26\n70\n-87",
           "options": [73, 98, 21, 34],
           "answer": 73
         },
-        {
-          "question": "solve this:\n21\n35\n-18\n61",
+        { "type": "multiple_choice", "question":
+ "solve this:\n21\n35\n-18\n61",
           "options": [31, 99, 151, 43],
           "answer": 99
         },
-        {
-          "question": "solve this:\n34\n56\n78\n-91",
+        { "type": "multiple_choice", "question":
+ "solve this:\n34\n56\n78\n-91",
           "options": [42, 92, 77, 85],
           "answer": 77
         },
-        {
-          "question": "solve this:\n38\n58\n66\n73",
+        { "type": "multiple_choice", "question":
+ "solve this:\n38\n58\n66\n73",
           "options": [178, 54, 235, 35],
           "answer": 235
         },
-        {
-          "question": "solve this:\n63\n36\n72\n60",
+        { "type": "multiple_choice", "question":
+ "solve this:\n63\n36\n72\n60",
           "options": [74, 231, 240, 62],
           "answer": 231
         },
-        {
-          "question": "solve this:\n34\n43\n76\n59",
+        { "type": "multiple_choice", "question":
+ "solve this:\n34\n43\n76\n59",
           "options": [37, 56, 212, 164],
           "answer": 212
         },
-        {
-          "question": "solve this: \n\n46 x 7",
+        { "type": "multiple_choice", "question":
+ "solve this: \n\n46 x 7",
           "options": [320, 222, 322, 121],
           "answer": 322
         },
-        {
-          "question": "solve this:\n\n64 x 9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n64 x 9",
           "options": [576, 810, 282, 124],
           "answer": 576
         },
-        {
-          "question": "solve this:\n\n38 x 7",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n38 x 7",
           "options": [371, 256, 212, 266],
           "answer": 266
         },
-        {
-          "question": "solve this:\n\n65 x 3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n65 x 3",
           "options": [34, 195, 92, 16],
           "answer": 195
         },
-        {
-          "question": "solve this:\n\n75 x 9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n75 x 9",
           "options": [3, 510, 55, 675],
           "answer": 675
         },
-        {
-          "question": "solve this:\n\n32 x 3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n32 x 3",
           "options": [371, 96, 12, 64],
           "answer": 96
         },
-        {
-          "question": "solve this:\n\n65 x 8",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n65 x 8",
           "options": [321, 562, 520, 14],
           "answer": 520
         },
-        {
-          "question": "solve this:\n\n24 x 8",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n24 x 8",
           "options": [192, 256, 22, 16],
           "answer": 192
         },
-        {
-          "question": "solve this:\n\n53 x 9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n53 x 9",
           "options": [521, 202, 621, 477],
           "answer": 477
         }
@@ -797,203 +1032,203 @@
       "title": "Advance 4",
       "time": 20,
       "questions": [
-        {
-          "question": "solve this:\n250\n210\n520\n-610",
+        { "type": "multiple_choice", "question":
+ "solve this:\n250\n210\n520\n-610",
           "options": [250, 210, 370, 610],
           "answer": 370
         },
-        {
-          "question": "solve this:\n225\n254\n-277\n211",
+        { "type": "multiple_choice", "question":
+ "solve this:\n225\n254\n-277\n211",
           "options": [225, 254, 413, 211],
           "answer": 413
         },
-        {
-          "question": "solve this:\n556\n242\n-698\n712",
+        { "type": "multiple_choice", "question":
+ "solve this:\n556\n242\n-698\n712",
           "options": [556, 812, 698, 712],
           "answer": 812
         },
-        {
-          "question": "solve this:\n534\n115\n250\n-677",
+        { "type": "multiple_choice", "question":
+ "solve this:\n534\n115\n250\n-677",
           "options": [534, 115, 250, 222],
           "answer": 222
         },
-        {
-          "question": "solve this:\n878\n-728\n621\n122",
+        { "type": "multiple_choice", "question":
+ "solve this:\n878\n-728\n621\n122",
           "options": [878, 728, 621, 893],
           "answer": 893
         },
-        {
-          "question": "solve this:\n339\n-125\n750\n-500",
+        { "type": "multiple_choice", "question":
+ "solve this:\n339\n-125\n750\n-500",
           "options": [339, 125, 464, 500],
           "answer": 464
         },
-        {
-          "question": "solve this:\n27\n31\n-56\n43",
+        { "type": "multiple_choice", "question":
+ "solve this:\n27\n31\n-56\n43",
           "options": [27, 31, 45, 43],
           "answer": 45
         },
-        {
-          "question": "solve this:\n92\n-81\n42\n34",
+        { "type": "multiple_choice", "question":
+ "solve this:\n92\n-81\n42\n34",
           "options": [92, 81, 42, 87],
           "answer": 87
         },
-        {
-          "question": "solve this:\n64\n31\n-85\n49",
+        { "type": "multiple_choice", "question":
+ "solve this:\n64\n31\n-85\n49",
           "options": [64, 31, 59, 49],
           "answer": 59
         },
-        {
-          "question": "solve this:\n57\n31\n-54\n15",
+        { "type": "multiple_choice", "question":
+ "solve this:\n57\n31\n-54\n15",
           "options": [57, 31, 49, 15],
           "answer": 49
         },
-        {
-          "question": "solve this:\n69\n-52\n-13\n94",
+        { "type": "multiple_choice", "question":
+ "solve this:\n69\n-52\n-13\n94",
           "options": [69, 52, 13, 98],
           "answer": 98
         },
-        {
-          "question": "solve this:\n52\n24\n-73\n86",
+        { "type": "multiple_choice", "question":
+ "solve this:\n52\n24\n-73\n86",
           "options": [52, 24, 89, 86],
           "answer": 89
         },
-        {
-          "question": "solve this:\n35\n73\n67\n55",
+        { "type": "multiple_choice", "question":
+ "solve this:\n35\n73\n67\n55",
           "options": [35, 73, 67, 230],
           "answer": 230
         },
-        {
-          "question": "solve this:\n62\n95\n38\n51",
+        { "type": "multiple_choice", "question":
+ "solve this:\n62\n95\n38\n51",
           "options": [62, 246, 38, 51],
           "answer": 246
         },
-        {
-          "question": "solve this:\n78\n47\n23\n28",
+        { "type": "multiple_choice", "question":
+ "solve this:\n78\n47\n23\n28",
           "options": [78, 47, 23, 176],
           "answer": 176
         },
-        {
-          "question": "solve this:\n63\n58\n-37\n72",
+        { "type": "multiple_choice", "question":
+ "solve this:\n63\n58\n-37\n72",
           "options": [63, 58, 156, 72],
           "answer": 156
         },
-        {
-          "question": "solve this:\n38\n75\n64\n-82",
+        { "type": "multiple_choice", "question":
+ "solve this:\n38\n75\n64\n-82",
           "options": [38, 75, 64, 95],
           "answer": 95
         },
-        {
-          "question": "solve this:\n67\n44\n97\n-49",
+        { "type": "multiple_choice", "question":
+ "solve this:\n67\n44\n97\n-49",
           "options": [159, 44, 97, 49],
           "answer": 159
         },
-        {
-          "question": "solve this:\n56\n38\n25\n76\n98\n34",
+        { "type": "multiple_choice", "question":
+ "solve this:\n56\n38\n25\n76\n98\n34",
           "options": [56, 38, 98, 327],
           "answer": 327
         },
-        {
-          "question": "solve this:\n79\n19\n67\n57\n42\n64",
+        { "type": "multiple_choice", "question":
+ "solve this:\n79\n19\n67\n57\n42\n64",
           "options": [79, 19, 328, 64],
           "answer": 328
         },
-        {
-          "question": "solve this:\n75\n40\n96\n-45\n-69\n-57",
+        { "type": "multiple_choice", "question":
+ "solve this:\n75\n40\n96\n-45\n-69\n-57",
           "options": [75, 40, 96, 178],
           "answer": 178
         },
-        {
-          "question": "solve this:\n92\n47\n-85\n21\n36\n68",
+        { "type": "multiple_choice", "question":
+ "solve this:\n92\n47\n-85\n21\n36\n68",
           "options": [92, 21, 36, 179],
           "answer": 179
         },
-        {
-          "question": "solve this:\n87\n74\n-18\n40\n-31\n98",
+        { "type": "multiple_choice", "question":
+ "solve this:\n87\n74\n-18\n40\n-31\n98",
           "options": [250, 74, 40, 98],
           "answer": 250
         },
-        {
-          "question": "solve this:\n86\n31\n-35\n63\n67\n-81",
+        { "type": "multiple_choice", "question":
+ "solve this:\n86\n31\n-35\n63\n67\n-81",
           "options": [86, 63, 67, 131],
           "answer": 131
         },
-        {
-          "question": "solve this:\n\n74 x 9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n74 x 9",
           "options": [95, 600, 666, 121],
           "answer": 666
         },
-        {
-          "question": "solve this:\n\n38 x 7",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n38 x 7",
           "options": [166, 200, 266, 220],
           "answer": 266
         },
-        {
-          "question": "solve this:\n\n65 x 8",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n65 x 8",
           "options": [37, 520, 212, 64],
           "answer": 520
         },
-        {
-          "question": "solve this:\n\n38 x 6",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n38 x 6",
           "options": [288, 51, 218, 155],
           "answer": 288
         },
-        {
-          "question": "solve this:\n\n37 x 94",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n37 x 94",
           "options": [37, 3478, 546, 181],
           "answer": 3478
         },
-        {
-          "question": "solve this:\n\n27 x 93",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n27 x 93",
           "options": [516, 843, 2511, 1641],
           "answer": 2511
         },
-        {
-          "question": "solve this:\n\n35 x 52",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n35 x 52",
           "options": [564, 514, 1563, 1820],
           "answer": 1820
         },
-        {
-          "question": "solve this:\n\n 28 x 84",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n 28 x 84",
           "options": [2352, 3513, 1235, 5133],
           "answer": 2352
         },
-        {
-          "question": "solve this:\n\n 486 / 6",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n 486 / 6",
           "options": [61, 56, 351, 81],
           "answer": 81
         },
-        {
-          "question": "solve this:\n\n432 / 3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n432 / 3",
           "options": [144, 121, 212, 154],
           "answer": 144
         },
-        {
-          "question": "solve this:\n\n982 / 9",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n982 / 9",
           "options": [31, 651, 109, 164],
           "answer": 109
         },
-        {
-          "question": "solve this:\n\n395 / 6",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n395 / 6",
           "options": [65, 56, 21, 64],
           "answer": 65
         },
-        {
-          "question": "solve this:\n\n6721 / 3",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n6721 / 3",
           "options": [651, 2240, 5631, 713],
           "answer": 2240
         },
-        {
-          "question": "solve this:\n\n7426 / 5",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n7426 / 5",
           "options": [654, 1485, 51, 451],
           "answer": 1485
         },
-        {
-          "question": "solve this:\n\n8177 / 7",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n8177 / 7",
           "options": [866, 35, 321, 1168],
           "answer": 1168
         },
-        {
-          "question": "solve this:\n\n6238 / 4",
+        { "type": "multiple_choice", "question":
+ "solve this:\n\n6238 / 4",
           "options": [1559, 65, 564, 1651],
           "answer": 1559
         }

@@ -1,10 +1,14 @@
 class Question {
+  final String type;
   final String question;
-  final List<int> options;
-  final int answer;
+  final List<dynamic>? options;
+  final double answer;
 
   Question(
-      {required this.question, required this.options, required this.answer});
+      {required this.type,
+      required this.question,
+      this.options,
+      required this.answer});
 }
 
 class QuestionPaper {
