@@ -40,11 +40,6 @@
           "answer": 3
         },
         {
-          "question": "solve this:\n1\n6\n-5\n2",
-          "options": [1, 6, 3, 4],
-          "answer": 4
-        },
-        {
           "question": "solve this:\n2\n-2\n3\n-1",
           "options": [2, 0, 3, 1],
           "answer": 2
@@ -78,6 +73,11 @@
           "question": "solve this:\n5\n4\n-7\n1",
           "options": [5, 4, 3, 1],
           "answer": 3
+        },
+        {
+          "question": "solve this:\n1\n6\n-5\n2",
+          "options": [1, 6, 3, 4],
+          "answer": 4
         }
       ]
     },
@@ -638,7 +638,7 @@
     },
     {
       "title": "Advance 3",
-      "time": 10,
+      "time": 15,
       "questions": [
         {
           "question": "solve this:\n34\n-22\n56\n-50",
@@ -657,8 +657,8 @@
         },
         {
           "question": "solve this:\n130\n219\n50\n-277",
-          "options": [950, 112, 240, 940],
-          "answer": 112
+          "options": [950, 122, 240, 940],
+          "answer": 122
         },
         {
           "question": "solve this:\n666\n-511\n222\n-66",
@@ -744,12 +744,58 @@
           "question": "solve this:\n34\n43\n76\n59",
           "options": [37, 56, 212, 164],
           "answer": 212
+        },
+        {
+          "question": "solve this: \n\n46 x 7",
+          "options": [320, 222, 322, 121],
+          "answer": 322
+        },
+        {
+          "question": "solve this:\n\n64 x 9",
+          "options": [576, 810, 282, 124],
+          "answer": 576
+        },
+        {
+          "question": "solve this:\n\n38 x 7",
+          "options": [371, 256, 212, 266],
+          "answer": 266
+        },
+        {
+          "question": "solve this:\n\n65 x 3",
+          "options": [34, 195, 92, 16],
+          "answer": 195
+        },
+        {
+          "question": "solve this:\n\n75 x 9",
+          "options": [3, 510, 55, 675],
+          "answer": 675
+        },
+        {
+          "question": "solve this:\n\n32 x 3",
+          "options": [371, 96, 12, 64],
+          "answer": 96
+        },
+        {
+          "question": "solve this:\n\n65 x 8",
+          "options": [321, 562, 520, 14],
+          "answer": 520
+        },
+        {
+          "question": "solve this:\n\n24 x 8",
+          "options": [192, 256, 22, 16],
+          "answer": 192
+        },
+        {
+          "question": "solve this:\n\n53 x 9",
+          "options": [521, 202, 621, 477],
+          "answer": 477
         }
+
       ]
     },
     {
       "title": "Advance 4",
-      "time": 15,
+      "time": 20,
       "questions": [
         {
           "question": "solve this:\n250\n210\n520\n-610",
@@ -870,6 +916,86 @@
           "question": "solve this:\n86\n31\n-35\n63\n67\n-81",
           "options": [86, 63, 67, 131],
           "answer": 131
+        },
+        {
+          "question": "solve this:\n\n74 x 9",
+          "options": [95, 600, 666, 121],
+          "answer": 666
+        },
+        {
+          "question": "solve this:\n\n38 x 7",
+          "options": [166, 200, 266, 220],
+          "answer": 266
+        },
+        {
+          "question": "solve this:\n\n65 x 8",
+          "options": [37, 520, 212, 64],
+          "answer": 520
+        },
+        {
+          "question": "solve this:\n\n38 x 6",
+          "options": [288, 51, 218, 155],
+          "answer": 288
+        },
+        {
+          "question": "solve this:\n\n37 x 94",
+          "options": [37, 3478, 546, 181],
+          "answer": 3478
+        },
+        {
+          "question": "solve this:\n\n27 x 93",
+          "options": [516, 843, 2511, 1641],
+          "answer": 2511
+        },
+        {
+          "question": "solve this:\n\n35 x 52",
+          "options": [564, 514, 1563, 1820],
+          "answer": 1820
+        },
+        {
+          "question": "solve this:\n\n 28 x 84",
+          "options": [2352, 3513, 1235, 5133],
+          "answer": 2352
+        },
+        {
+          "question": "solve this:\n\n 486 / 6",
+          "options": [61, 56, 351, 81],
+          "answer": 81
+        },
+        {
+          "question": "solve this:\n\n432 / 3",
+          "options": [144, 121, 212, 154],
+          "answer": 144
+        },
+        {
+          "question": "solve this:\n\n982 / 9",
+          "options": [31, 651, 109, 164],
+          "answer": 109
+        },
+        {
+          "question": "solve this:\n\n395 / 6",
+          "options": [65, 56, 21, 64],
+          "answer": 65
+        },
+        {
+          "question": "solve this:\n\n6721 / 3",
+          "options": [651, 2240, 5631, 713],
+          "answer": 2240
+        },
+        {
+          "question": "solve this:\n\n7426 / 5",
+          "options": [654, 1485, 51, 451],
+          "answer": 1485
+        },
+        {
+          "question": "solve this:\n\n8177 / 7",
+          "options": [866, 35, 321, 1168],
+          "answer": 1168
+        },
+        {
+          "question": "solve this:\n\n6238 / 4",
+          "options": [1559, 65, 564, 1651],
+          "answer": 1559
         }
       ]
     }
