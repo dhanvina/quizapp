@@ -345,18 +345,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       _onSubmitQuiz();
                     },
                     child: Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.green),
-                    ),
-                  ),
-                  ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'No',
+                      'SUBMIT',
                       style: TextStyle(color: Colors.green),
                     ),
                   ),
