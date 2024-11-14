@@ -96,10 +96,7 @@ class PaperSelectionPage extends StatelessWidget {
                               title: paper.title,
                               subtitle: "${paper.time} Minutes - Level: Easy",
                               buttonText: "TRY",
-                              onPressed: (paper.title == "BFB 1" ||
-                                      paper.title ==
-                                          "Vedic Math Practice Paper 1")
-                                  ? () {
+                              onPressed: () {
                                       provider.selectPaper(
                                           provider.papers.indexOf(paper));
                                       Navigator.push(
@@ -117,8 +114,7 @@ class PaperSelectionPage extends StatelessWidget {
                                           ),
                                         ),
                                       );
-                                    }
-                                  : () {},
+                              },
                             );
                           }).toList(),
 
