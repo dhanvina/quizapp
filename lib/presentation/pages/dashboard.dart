@@ -96,23 +96,27 @@ class PaperSelectionPage extends StatelessWidget {
                               title: paper.title,
                               subtitle: "${paper.time} Minutes - Level: Easy",
                               buttonText: "TRY",
-                              onPressed: () {
-                                provider.selectPaper(
-                                    provider.papers.indexOf(paper));
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    // builder: (context) => QuestionPage(
-                                    //   quizTimeInMinutes: paper.time,
-                                    // ),
-                                    builder: (context) => QuizPreview(
-                                      title: paper.title, // Send paper title
-                                      time: paper.time, // Send time
-                                      numberOfQuestions: paper.questions.length,
-                                    ),
-                                  ),
-                                );
-                              },
+                              onPressed: paper.title == "BFB 1"
+                                  ? () {
+                                      provider.selectPaper(
+                                          provider.papers.indexOf(paper));
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          // builder: (context) => QuestionPage(
+                                          //   quizTimeInMinutes: paper.time,
+                                          // ),
+                                          builder: (context) => QuizPreview(
+                                            title:
+                                                paper.title, // Send paper title
+                                            time: paper.time, // Send time
+                                            numberOfQuestions:
+                                                paper.questions.length,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  : () {},
                             );
                           }).toList(),
 
