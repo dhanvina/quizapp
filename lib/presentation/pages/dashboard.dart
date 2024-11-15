@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_preview.dart';
-import 'package:quizapp/presentation/state_management/VedicQuestionProvider.dart';
 import 'package:quizapp/utils/constants.dart';
 
 import '../state_management/question_provider.dart';
@@ -12,9 +11,9 @@ class PaperSelectionPage extends StatelessWidget {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.loadPapers(context);
-    final VedicquestionProvider =
-        Provider.of<VedicQuestionProvider>(context, listen: false);
-    VedicquestionProvider.loadQuestions();
+    // final VedicquestionProvider =
+    //     Provider.of<VedicQuestionProvider>(context, listen: false);
+    // VedicquestionProvider.loadQuestions();
 
     return Scaffold(
       backgroundColor: Constants.limeGreen,
