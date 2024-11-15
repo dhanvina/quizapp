@@ -1,45 +1,71 @@
-// lib/data/models/vedic_math_model.dart
-class VedicMathQuestion {
+class Question {
   final String type;
   final String question;
-  final num answer;  // Use `num` to allow both int and double values
+  final dynamic answer;
 
-  VedicMathQuestion({
+  Question({
     required this.type,
     required this.question,
     required this.answer,
   });
 
-  factory VedicMathQuestion.fromJson(Map<String, dynamic> json) {
-    return VedicMathQuestion(
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
       type: json['type'] as String,
       question: json['question'] as String,
-      answer: json['answer'] as num,  // Can parse both int and double
+      answer: json['answer'],
     );
+  }
+
+  Question toEntity() {
+    return Question(
+      type: type,
+      question: question,
+      answer: answer,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'type': type,
+      'question': question,
+      'answer': answer,
+    };
   }
 }
 
-class VedicMathPracticePaper {
+class QuestionPaper {
   final String title;
   final int time;
-  final List<VedicMathQuestion> questions;
+  final String paper_type;
+  final List<Question> questions;
 
-  VedicMathPracticePaper({
+  QuestionPaper({
     required this.title,
     required this.time,
+    required this.paper_type,
     required this.questions,
   });
 
-  factory VedicMathPracticePaper.fromJson(Map<String, dynamic> json) {
+  factory QuestionPaper.fromJson(Map<String, dynamic> json) {
     var questionsJson = json['questions'] as List;
-    List<VedicMathQuestion> questionsList = questionsJson
-        .map((question) => VedicMathQuestion.fromJson(question))
-        .toList();
+    List<Question> questionsList =
+        questionsJson.map((q) => Question.fromJson(q)).toList();
 
-    return VedicMathPracticePaper(
+    return QuestionPaper(
       title: json['title'] as String,
       time: json['time'] as int,
+      paper_type: json['paper_type'] as String,
       questions: questionsList,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'time': time,
+      'paper_type': paper_type,
+      'questions': questions.map((q) => q.toJson()).toList(),
+    };
   }
 }

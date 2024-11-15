@@ -1,19 +1,29 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:quizapp/presentation/pages/question_page.dart'; // Import the QuestionPage
+import 'package:quizapp/presentation/pages/question_page.dart';
+import 'package:quizapp/presentation/pages/vedic_math_page.dart';
 
 class CountdownPage extends StatefulWidget {
-  final int quizTimeInMinutes; // dynamic quiz time in seconds
+  final int quizTimeInMinutes;
+  final String paperType;
+  final String title;
+  final int numberOfQuestions;
 
-  const CountdownPage({super.key, required this.quizTimeInMinutes});
+  const CountdownPage({
+    super.key,
+    required this.quizTimeInMinutes,
+    required this.paperType,
+    required this.title,
+    required this.numberOfQuestions,
+  });
 
   @override
   _CountdownPageState createState() => _CountdownPageState();
 }
 
 class _CountdownPageState extends State<CountdownPage> {
-  int _currentTime = 3; // 3 seconds countdown
+  int _currentTime = 3;
   late Timer _timer;
 
   @override
@@ -29,16 +39,25 @@ class _CountdownPageState extends State<CountdownPage> {
           _currentTime--;
         } else {
           _timer.cancel();
-          // After countdown finishes, navigate to QuestionPage
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => QuestionPage(
-                quizTimeInMinutes: widget
-                    .quizTimeInMinutes, // Pass the time dynamically in minutes
+          if (widget.paperType == 'vedic') {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VedicMathPage(
+                  quizTimeInMinutes: widget.quizTimeInMinutes,
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => QuestionPage(
+                  quizTimeInMinutes: widget.quizTimeInMinutes,
+                ),
+              ),
+            );
+          }
         }
       });
     });
@@ -56,7 +75,7 @@ class _CountdownPageState extends State<CountdownPage> {
       backgroundColor: Colors.white,
       body: Center(
         child: Text(
-          '$_currentTime', // Show the 3-second countdown
+          '$_currentTime',
           style: TextStyle(
             fontSize: 100,
             color: Colors.black,

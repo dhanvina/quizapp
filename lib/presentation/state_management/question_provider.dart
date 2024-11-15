@@ -97,6 +97,7 @@ class QuestionProvider extends ChangeNotifier {
       return QuestionPaper(
         title: qpm.title, // Get title from QuestionPaperModel
         time: qpm.time, // Get time from QuestionPaperModel
+        paper_type: qpm.paper_type,
         questions: qpm.questions
             .map((qm) => qm.toEntity())
             .toList(), // Convert QuestionModel to Question

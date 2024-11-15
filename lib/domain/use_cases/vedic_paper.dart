@@ -1,24 +1,23 @@
-import '../entities/question.dart';
-import '../repository/question_repository_interface.dart';
+import '../entities/vedic_math_entity.dart';
+import '../repository/vedic_math_repository.dart';
 
-class GetQuestions {
-  final QuestionRepositoryInterface repository;
+class FetchPracticePaper {
+  final VedicMathRepositoryInterface repository;
 
-  GetQuestions(this.repository);
+  FetchPracticePaper(this.repository);
 
-  Future<List<QuestionPaper>> call() async {
-    final questionPaperModels = await repository.getQuestionPapers();
+  Future<List<VedicMathPracticePaperEntity>> call() async {
+    final questionPaperModels = await repository.getVedicQuestionPapers();
     return questionPaperModels.map((paperModel) {
-      return QuestionPaper(
+      return VedicMathPracticePaperEntity(
         title: paperModel.title,
         time: paperModel.time,
         paper_type: paperModel.paper_type,
         questions: paperModel.questions.map((q) {
           // Include the type when mapping to the Question entity
-          return Question(
+          return VedicMathQuestionEntity(
             type: q.type, // Pass the type field from the data model
             question: q.question,
-            options: q.type == 'multiple_choice' ? q.options : null,
             answer: q.answer,
           );
         }).toList(),
