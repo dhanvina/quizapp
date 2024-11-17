@@ -66,6 +66,11 @@ class QuestionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateScore(int newScore) {
+    score = newScore;
+    notifyListeners();
+  }
+
   void nextQuestion() {
     if (currentQuestionIndex < totalQuestions - 1) {
       currentQuestionIndex++;

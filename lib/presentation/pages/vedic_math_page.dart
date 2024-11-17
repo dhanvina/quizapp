@@ -61,27 +61,83 @@ class _VedicMathPageState extends State<VedicMathPage> {
   void _calculateScore(List<Question> questions) {
     int score = 0;
     for (int i = 0; i < questions.length; i++) {
-      final correctAnswer = questions[i].answer;
-      final userAnswer = _userAnswers[i];
-      if (userAnswer != null && userAnswer == correctAnswer) {
+      final correctAnswer = questions[i].answer?.toString();
+      final userAnswer = _userAnswers[i]?.toString();
+
+      if (correctAnswer != null &&
+          userAnswer != null &&
+          userAnswer == correctAnswer) {
         score++;
       }
     }
+
+    // Update score in QuestionProvider
+    Provider.of<QuestionProvider>(context, listen: false).updateScore(score);
+
     setState(() {
       _score = score;
     });
+  }
+
+  void _showSubmitDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.green,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Submit Quiz',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24),
+              Text(
+                'You have completed the quiz. Would you like to submit your results?',
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _onSubmitQuiz();
+                    },
+                    child: Text(
+                      'SUBMIT',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final questionProvider = Provider.of<QuestionProvider>(context);
 
-    // First filter by paper_type "vedic"
+    // Filter papers to show only those with paper_type "vedic"
     final filteredPapers = questionProvider.papers
         .where((paper) => paper.paper_type == "vedic")
         .toList();
 
-    // Now filter further by the title passed through widget.title
+    // Filter further by the title passed through widget.title
     final selectedPaper =
         filteredPapers.firstWhere((paper) => paper.title == widget.title);
 
@@ -126,21 +182,7 @@ class _VedicMathPageState extends State<VedicMathPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           _calculateScore(selectedPaper.questions);
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Score"),
-                              content: Text(
-                                "Your score: $_score / ${selectedPaper.questions.length}",
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text("OK"),
-                                ),
-                              ],
-                            ),
-                          );
+                          _showSubmitDialog(); // Show the dialog
                         },
                         child: const Text("Submit"),
                       ),
