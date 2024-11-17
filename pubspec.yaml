@@ -68,20 +68,21 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-   uses-material-design: true
+  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-   assets:
-     - assets/login.png
-     - assets/dashboard.png
-     - assets/motivation_screen1.png
-     - assets/motivation_screen2.png
-     - assets/quiz_app_abacus.png
-     - assets/farm_background.png
-     - assets/quiz_preview.png
-     - assets/questions.json
-     - assets/Ears.gif
-     - assets/breathing.gif
+  assets:
+    - assets/login.png
+    - assets/dashboard.png
+    - assets/motivation_screen1.png
+    - assets/motivation_screen2.png
+    - assets/quiz_app_abacus.png
+    - assets/farm_background.png
+    - assets/quiz_preview.png
+    - assets/questions.json
+    - assets/vedic_math.json
+    - assets/Ears.gif
+    - assets/breathing.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

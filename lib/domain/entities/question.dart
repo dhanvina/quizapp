@@ -14,11 +14,13 @@ class Question {
 class QuestionPaper {
   final String title;
   final int time;
+  final String paper_type;
   final List<Question> questions;
 
   QuestionPaper({
     required this.title,
     required this.time,
+    required this.paper_type,
     required this.questions,
   });
 }

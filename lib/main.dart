@@ -9,10 +9,8 @@ import 'data/repositories/question_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  // await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -24,13 +22,19 @@ class MyApp extends StatelessWidget {
     final AppRouter appRouter = AppRouter();
     final jsonDataSource = JsonDataSource();
 
-    return ChangeNotifierProvider(
-      create: (context) =>
-          QuestionProvider(repository: QuestionRepository(jsonDataSource)),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => QuestionProvider(
+            repository: QuestionRepository(jsonDataSource),
+          ),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Quiz App',
         home: PaperSelectionPage(),
+        onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );
   }

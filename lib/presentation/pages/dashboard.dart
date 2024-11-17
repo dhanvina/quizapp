@@ -11,6 +11,9 @@ class PaperSelectionPage extends StatelessWidget {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.loadPapers(context);
+    // final VedicquestionProvider =
+    //     Provider.of<VedicQuestionProvider>(context, listen: false);
+    // VedicquestionProvider.loadQuestions();
 
     return Scaffold(
       backgroundColor: Constants.limeGreen,
@@ -42,14 +45,6 @@ class PaperSelectionPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          // Text(
-                          //   "Ranjith Kumar",
-                          //   style: TextStyle(
-                          //     fontSize: 24,
-                          //     fontWeight: FontWeight.bold,
-                          //     color: Colors.black,
-                          //   ),
-                          // ),
                         ],
                       ),
                       CircleAvatar(
@@ -97,23 +92,19 @@ class PaperSelectionPage extends StatelessWidget {
                               subtitle: "${paper.time} Minutes - Level: Easy",
                               buttonText: "TRY",
                               onPressed: () {
-                                      provider.selectPaper(
-                                          provider.papers.indexOf(paper));
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          // builder: (context) => QuestionPage(
-                                          //   quizTimeInMinutes: paper.time,
-                                          // ),
-                                          builder: (context) => QuizPreview(
-                                            title:
-                                                paper.title, // Send paper title
-                                            time: paper.time, // Send time
-                                            numberOfQuestions:
-                                                paper.questions.length,
-                                          ),
-                                        ),
-                                      );
+                                provider.selectPaper(
+                                    provider.papers.indexOf(paper));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => QuizPreview(
+                                      title: paper.title,
+                                      time: paper.time,
+                                      paper_type: paper.paper_type,
+                                      numberOfQuestions: paper.questions.length,
+                                    ),
+                                  ),
+                                );
                               },
                             );
                           }).toList(),

@@ -66,6 +66,11 @@ class QuestionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateScore(int newScore) {
+    score = newScore;
+    notifyListeners();
+  }
+
   void nextQuestion() {
     if (currentQuestionIndex < totalQuestions - 1) {
       currentQuestionIndex++;
@@ -97,6 +102,7 @@ class QuestionProvider extends ChangeNotifier {
       return QuestionPaper(
         title: qpm.title, // Get title from QuestionPaperModel
         time: qpm.time, // Get time from QuestionPaperModel
+        paper_type: qpm.paper_type,
         questions: qpm.questions
             .map((qm) => qm.toEntity())
             .toList(), // Convert QuestionModel to Question

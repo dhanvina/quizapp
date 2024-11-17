@@ -8,11 +8,13 @@ import 'package:quizapp/presentation/pages/motivation_screen2.dart';
 class QuizPreview extends StatefulWidget {
   final String title;
   final int time;
+  final String paper_type;
   final int numberOfQuestions;
 
   const QuizPreview(
       {required this.title,
       required this.time,
+      required this.paper_type,
       required this.numberOfQuestions});
 
   @override
@@ -130,7 +132,10 @@ class _QuizPreviewState extends State<QuizPreview> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => CountdownPage(
+                            title: widget.title,
                             quizTimeInMinutes: widget.time,
+                            paperType: widget.paper_type,
+                            numberOfQuestions: widget.numberOfQuestions,
                           ),
                         ),
                       );

@@ -1,4 +1,3 @@
-// domain/usecases/get_questions.dart
 import '../entities/question.dart';
 import '../repository/question_repository_interface.dart';
 
@@ -13,6 +12,7 @@ class GetQuestions {
       return QuestionPaper(
         title: paperModel.title,
         time: paperModel.time,
+        paper_type: paperModel.paper_type,
         questions: paperModel.questions.map((q) {
           // Include the type when mapping to the Question entity
           return Question(
