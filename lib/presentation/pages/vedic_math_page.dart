@@ -12,7 +12,7 @@ class VedicMathPage extends StatefulWidget {
   final int quizTimeInMinutes;
   final String title;
 
-  VedicMathPage({
+  const VedicMathPage({
     required this.quizTimeInMinutes,
     required this.title,
     Key? key,
@@ -32,11 +32,13 @@ class _VedicMathPageState extends State<VedicMathPage> {
   void initState() {
     super.initState();
     totalQuizTimeInSeconds = widget.quizTimeInMinutes * 60;
-    startTotalTimer();
-    Provider.of<QuestionProvider>(context, listen: false).loadPapers(context);
+    _startTotalTimer();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<QuestionProvider>(context, listen: false).loadPapers(context);
+    });
   }
 
-  void startTotalTimer() {
+  void _startTotalTimer() {
     totalTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (totalQuizTimeInSeconds > 0) {
@@ -47,6 +49,12 @@ class _VedicMathPageState extends State<VedicMathPage> {
         }
       });
     });
+  }
+
+  String get formattedTotalQuizTime {
+    final minutes = (totalQuizTimeInSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (totalQuizTimeInSeconds % 60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
   }
 
   void _onSubmitQuiz() {
@@ -71,7 +79,6 @@ class _VedicMathPageState extends State<VedicMathPage> {
       }
     }
 
-    // Update score in QuestionProvider
     Provider.of<QuestionProvider>(context, listen: false).updateScore(score);
 
     setState(() {
@@ -88,22 +95,26 @@ class _VedicMathPageState extends State<VedicMathPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Submit Quiz',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              const Center(
+                child: Text(
+                  'Submit Quiz',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-              SizedBox(height: 24),
-              Text(
-                'You have completed the quiz. Would you like to submit your results?',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
+              const SizedBox(height: 24),
+              const Center(
+                child: Text(
+                  'You have completed the quiz. Would you like to submit your results?',
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -114,7 +125,7 @@ class _VedicMathPageState extends State<VedicMathPage> {
                       Navigator.pop(context);
                       _onSubmitQuiz();
                     },
-                    child: Text(
+                    child: const Text(
                       'SUBMIT',
                       style: TextStyle(color: Colors.green),
                     ),
@@ -132,42 +143,85 @@ class _VedicMathPageState extends State<VedicMathPage> {
   Widget build(BuildContext context) {
     final questionProvider = Provider.of<QuestionProvider>(context);
 
-    // Filter papers to show only those with paper_type "vedic"
     final filteredPapers = questionProvider.papers
         .where((paper) => paper.paper_type == "vedic")
         .toList();
 
-    // Filter further by the title passed through widget.title
-    final selectedPaper =
-        filteredPapers.firstWhere((paper) => paper.title == widget.title);
+    final selectedPaper = filteredPapers.firstWhere(
+      (paper) => paper.title == widget.title,
+      orElse: () => throw Exception('Paper not found'),
+    );
 
     return Scaffold(
+      backgroundColor: Colors.green,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(
+          child: Text(widget.title, textAlign: TextAlign.center),
+        ),
+        automaticallyImplyLeading: false,
       ),
-      body: selectedPaper == null
-          ? const Center(child: Text("Paper not found"))
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                elevation: 5,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        title: Text(selectedPaper.title),
-                        subtitle: Text('Time: ${selectedPaper.time} minutes'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Card(
+            elevation: 5,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 16),
+                    Center(
+                      child: Text(
+                        '$formattedTotalQuizTime',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: selectedPaper.questions.length,
-                          itemBuilder: (context, index) {
-                            final question = selectedPaper.questions[index];
-                            return VedicText(
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              selectedPaper.title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Time: ${selectedPaper.time} minutes',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: selectedPaper.questions.length,
+                        itemBuilder: (context, index) {
+                          final question = selectedPaper.questions[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: VedicText(
                               questionText: question.question,
                               onAnswerChanged: (answer) {
                                 setState(() {
@@ -175,25 +229,38 @@ class _VedicMathPageState extends State<VedicMathPage> {
                                       num.tryParse(answer) ?? 0;
                                 });
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _calculateScore(selectedPaper.questions);
-                            _showSubmitDialog(); // Show the dialog
-                          },
-                          child: const Text("Submit"),
-                        ),
+                    ),
+                    SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _calculateScore(selectedPaper.questions);
+                          _showSubmitDialog();
+                        },
+                        child: const Text("Submit"),
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    )
+                  ],
                 ),
               ),
             ),
+          ),
+        ),
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    totalTimer.cancel();
+    super.dispose();
   }
 }
