@@ -45,6 +45,7 @@ class _CountdownPageState extends State<CountdownPage> {
               MaterialPageRoute(
                 builder: (context) => VedicMathPage(
                   quizTimeInMinutes: widget.quizTimeInMinutes,
+                  title: widget.title,
                 ),
               ),
             );

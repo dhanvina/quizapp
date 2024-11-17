@@ -10,9 +10,11 @@ import '../widgets/vedic_text.dart';
 
 class VedicMathPage extends StatefulWidget {
   final int quizTimeInMinutes;
+  final String title;
 
-  const VedicMathPage({
+  VedicMathPage({
     required this.quizTimeInMinutes,
+    required this.title,
     Key? key,
   }) : super(key: key);
 
@@ -74,83 +76,78 @@ class _VedicMathPageState extends State<VedicMathPage> {
   Widget build(BuildContext context) {
     final questionProvider = Provider.of<QuestionProvider>(context);
 
-    // Filter papers to show only those with paper_type "vedic"
+    // First filter by paper_type "vedic"
     final filteredPapers = questionProvider.papers
         .where((paper) => paper.paper_type == "vedic")
         .toList();
 
+    // Now filter further by the title passed through widget.title
+    final selectedPaper =
+        filteredPapers.firstWhere((paper) => paper.title == widget.title);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Vedic Math Quiz"),
+        title: Text(widget.title),
       ),
-      body: filteredPapers.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: filteredPapers.length,
-              itemBuilder: (context, paperIndex) {
-                final practicePaper = filteredPapers[paperIndex];
-
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Card(
-                    elevation: 5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListTile(
-                          title: Text(practicePaper.title),
-                          subtitle: Text('Time: ${practicePaper.time} minutes'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: practicePaper.questions.length,
-                            itemBuilder: (context, index) {
-                              final question = practicePaper.questions[index];
-                              return VedicText(
-                                questionText: question.question,
-                                onAnswerChanged: (answer) {
-                                  setState(() {
-                                    _userAnswers[index] =
-                                        num.tryParse(answer) ?? 0;
-                                  });
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _calculateScore(practicePaper.questions);
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: const Text("Score"),
-                                  content: Text(
-                                    "Your score: $_score / ${practicePaper.questions.length}",
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      child: const Text("OK"),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            child: const Text("Submit"),
-                          ),
-                        ),
-                      ],
+      body: selectedPaper == null
+          ? const Center(child: Text("Paper not found"))
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Card(
+                elevation: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text(selectedPaper.title),
+                      subtitle: Text('Time: ${selectedPaper.time} minutes'),
                     ),
-                  ),
-                );
-              },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: selectedPaper.questions.length,
+                        itemBuilder: (context, index) {
+                          final question = selectedPaper.questions[index];
+                          return VedicText(
+                            questionText: question.question,
+                            onAnswerChanged: (answer) {
+                              setState(() {
+                                _userAnswers[index] = num.tryParse(answer) ?? 0;
+                              });
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _calculateScore(selectedPaper.questions);
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Score"),
+                              content: Text(
+                                "Your score: $_score / ${selectedPaper.questions.length}",
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: const Text("OK"),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        child: const Text("Submit"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
     );
   }
