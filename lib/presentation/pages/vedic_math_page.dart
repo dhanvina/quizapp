@@ -151,43 +151,46 @@ class _VedicMathPageState extends State<VedicMathPage> {
               padding: const EdgeInsets.all(16.0),
               child: Card(
                 elevation: 5,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListTile(
-                      title: Text(selectedPaper.title),
-                      subtitle: Text('Time: ${selectedPaper.time} minutes'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: selectedPaper.questions.length,
-                        itemBuilder: (context, index) {
-                          final question = selectedPaper.questions[index];
-                          return VedicText(
-                            questionText: question.question,
-                            onAnswerChanged: (answer) {
-                              setState(() {
-                                _userAnswers[index] = num.tryParse(answer) ?? 0;
-                              });
-                            },
-                          );
-                        },
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        title: Text(selectedPaper.title),
+                        subtitle: Text('Time: ${selectedPaper.time} minutes'),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _calculateScore(selectedPaper.questions);
-                          _showSubmitDialog(); // Show the dialog
-                        },
-                        child: const Text("Submit"),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: selectedPaper.questions.length,
+                          itemBuilder: (context, index) {
+                            final question = selectedPaper.questions[index];
+                            return VedicText(
+                              questionText: question.question,
+                              onAnswerChanged: (answer) {
+                                setState(() {
+                                  _userAnswers[index] =
+                                      num.tryParse(answer) ?? 0;
+                                });
+                              },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _calculateScore(selectedPaper.questions);
+                            _showSubmitDialog(); // Show the dialog
+                          },
+                          child: const Text("Submit"),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
