@@ -1,9 +1,8 @@
-{
-    "question_papers": [
-{
+[
+    {
       "title": "Vedic Math (SAN)",
       "time": 15,
-    "paper_type": "vedic",
+      "paper_type": "vedic",
       "questions": [
         {
           "type": "fill",
@@ -232,7 +231,7 @@
         }
       ]
     },
-{
+    {
         "title": "Vedic Math",
         "time": 15,
         "paper_type": "vedic",
@@ -1660,7 +1659,6 @@
             "answer": 1559
           }
         ]
-      }  
-    ]
-  }
+      }
+]
  
