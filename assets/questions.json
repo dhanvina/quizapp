@@ -1,7 +1,7 @@
 {
   "question_papers": [
     {
-      "title": "Vedic Math (SAN) -- Practice Paper 1",
+      "title": "Vedic Math (SAN) Practice Paper 1",
       "time": 15,
       "paper_type": "vedic",
       "questions": [
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "title": "Vedic Math",
+      "title": "Vedic Math Practice Paper 1",
       "time": 15,
       "paper_type": "vedic",
       "questions": [
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "title": "Vedic Math (G)",
+      "title": "Vedic Math (G) Practice Paper 1",
       "time": 15,
       "paper_type": "vedic",
       "questions": [
