@@ -652,7 +652,653 @@
       ]
     },
     {
-      "title": "BFB 1",
+      "title": "Vedic Guntur Practice Paper 2",
+      "time": 15,
+      "paper_type": "vedic",
+      "questions": [
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n100 - 72",
+          "answer": 28
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n1000 - 875",
+          "answer": 125
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n1000 - 655",
+          "answer": 345
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n1000 - 725",
+          "answer": 275
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n1000 - 675",
+          "answer": 325
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n10000 - 8975",
+          "answer": 1025
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n10000 - 3279",
+          "answer": 6721
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n10000 - 5612",
+          "answer": 4388
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n10000 - 3297",
+          "answer": 6703
+        },
+        {
+          "type": "fill",
+          "question": "All from 9 last from 10 : \n\n10000 - 2468",
+          "answer": 7532
+        },
+        {
+          "type": "fill",
+          "question": "Single Digit Addition : \n\n73 + 8",
+          "answer": 81
+        },
+        {
+          "type": "fill",
+          "question": "Single Digit Addition : \n\n98 + 7",
+          "answer": 105
+        },
+        {
+          "type": "fill",
+          "question": "Single Digit Addition : \n\n94 + 6",
+          "answer": 100
+        },
+        {
+          "type": "fill",
+          "question": "Single Digit Addition : \n\n89 + 7",
+          "answer": 96
+        },
+        {
+          "type": "fill",
+          "question": "Single Digit Addition : \n\n95 + 7",
+          "answer": 102
+        },
+        {
+          "type": "fill",
+          "question": "Double Digit Addition : \n\n85 + 22",
+          "answer": 107
+        },
+        {
+          "type": "fill",
+          "question": "Double Digit Addition : \n\n79 + 65",
+          "answer": 144
+        },
+        {
+          "type": "fill",
+          "question": "Double Digit Addition : \n\n94 + 79",
+          "answer": 173
+        },
+        {
+          "type": "fill",
+          "question": "Double Digit Addition : \n\n97 + 23",
+          "answer": 120
+        },
+        {
+          "type": "fill",
+          "question": "Double Digit Addition : \n\n77 + 65",
+          "answer": 142
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n75 | 65",
+          "answer": 815
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n98 | 73",
+          "answer": 1053
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n34 | 33",
+          "answer": 363
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n25 | 52",
+          "answer": 302
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n72 | 87",
+          "answer": 807
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n13 | 17 | 23",
+          "answer": 1493
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n19 | 17 | 29",
+          "answer": 1099
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n27 | 19 | 29",
+          "answer": 2919
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n86 | 27 | 65",
+          "answer": 8935
+        },
+        {
+          "type": "fill",
+          "question": "Balancing Rule : \n\n15 | 07 | 15",
+          "answer": 1585
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n14 x 12",
+          "answer": 168
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n17 x 16",
+          "answer": 272
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n12 x 17",
+          "answer": 204
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n18 x 19",
+          "answer": 342
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n11 x 14",
+          "answer": 154
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n12 x 18",
+          "answer": 216
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n19 x 15",
+          "answer": 285
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n12 x 12",
+          "answer": 144
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n13 x 14",
+          "answer": 182
+        },
+        {
+          "type": "fill",
+          "question": "Teens x Teens : \n\n17 x 19",
+          "answer": 323
+        }
+      ]
+    },
+    {
+      "title": "Vedic Math Practice Paper 2",
+      "time": 15,
+      "paper_type": "vedic",
+      "questions": [
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n143",
+          "answer": 857
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n429",
+          "answer": 571
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n662",
+          "answer": 338
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n685",
+          "answer": 315
+        },
+        {
+          "type": "fill",
+          "question": "write the compliment : \n\n584",
+          "answer": 416
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n731 x 5",
+          "answer": 3655
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n845 x 5",
+          "answer": 4225
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n8543 x 5",
+          "answer": 42715
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n86434 x 5",
+          "answer": 432170
+        },
+        {
+          "type": "fill",
+          "question": "Power of 5 : \n\n494949 x 5",
+          "answer": 2474745
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n784388 x 25",
+          "answer": 19609700
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n6347 x 25",
+          "answer": 158675
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n5416 x 25",
+          "answer": 135400
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n4317 x 25",
+          "answer": 107925
+        },
+        {
+          "type": "fill",
+          "question": "Power of 25 : \n\n4817 x 25",
+          "answer": 120425
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n7873 x 125",
+          "answer": 984125
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n6654 x 125",
+          "answer": 831750
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n6511 x 125",
+          "answer": 813875
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n7273 x 125",
+          "answer": 909125
+        },
+        {
+          "type": "fill",
+          "question": "Power of 125 : \n\n548644 x 125",
+          "answer": 68580500
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n13 x 17",
+          "answer": 221
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n34 x 36",
+          "answer": 1224
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n42 x 48",
+          "answer": 2016
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n65 x 65",
+          "answer": 4225
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method : \n\n27 x 23",
+          "answer": 621
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n36 x 76",
+          "answer": 2736
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n64 x 44",
+          "answer": 2816
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n56 x 56",
+          "answer": 3136
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n92 x 12",
+          "answer": 1104
+        },
+        {
+          "type": "fill",
+          "question": "L Method : \n\n39 x 79",
+          "answer": 3081
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n8.4 x 8.6",
+          "answer": 72.24
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n8.2 x 8.8",
+          "answer": 72.16
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n2.7 x 2.3",
+          "answer": 6.21
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n9.4 x 9.6",
+          "answer": 90.24
+        },
+        {
+          "type": "fill",
+          "question": "Rule Method - Decimal : \n\n6.3 x 6.7",
+          "answer": 42.21
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n3",
+          "answer": 7
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n8",
+          "answer": 2
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n7",
+          "answer": 3
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n4",
+          "answer": 6
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (10 Base) : \n\n1",
+          "answer": 9
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n3",
+          "answer": 6
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n1",
+          "answer": 8
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n7",
+          "answer": 2
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n6",
+          "answer": 3
+        },
+        {
+          "type": "fill",
+          "question": "Find the Complement Number (9 Base) : \n\n5",
+          "answer": 4
+        }
+      ]
+    },
+    {
+      "title": "Vedic Math 2 Practice Paper 2",
+      "time": 15,
+      "paper_type": "vedic",
+      "questions": [
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n87 + 79 + 8",
+          "answer": 174
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n38 + 97 + 6",
+          "answer": 141
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n29 + 78 + 8",
+          "answer": 115
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n95 + 67 + 9",
+          "answer": 171
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n17 + 48 + 9",
+          "answer": 74
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n387 + 898 + 87",
+          "answer": 1372
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n599 + 898 + 398",
+          "answer": 1895
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n497 + 389 + 898",
+          "answer": 1784
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n797 + 878 + 499",
+          "answer": 2174
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Addition : \n\n488 + 197 + 89",
+          "answer": 774
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n7.9 + 2.8 + 0.9 + 0.7 + 0.3",
+          "answer": 12.6
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n1.5 + 4.9 + 3.4 + 1.8 + 5.0",
+          "answer": 16.6
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n8.8 + 2.9 + 7.9 + 2.7 + 0.7",
+          "answer": 23.0
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n3.5 + 7.7 + 3.4 + 2.1 + 5.3",
+          "answer": 53.5
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n9.4 + 5.1 + 4.3 + 2.1 + 3.4",
+          "answer": 24.3
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n7.55 + 2.10 + 1.43 + 4.56 + 2.61",
+          "answer": 18.25
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n5.66 + 2.66 + 2.34 + 1.46 + 0.87",
+          "answer": 12.99
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n2.45 + 9.65 + 0.24 + 2.97 + 1.42",
+          "answer": 16.73
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n8.98 + 4.34 + 1.45 + 1.55 + 1.60",
+          "answer": 17.92
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Decimal Addition : \n\n4.35 + 2.24 + 5.32 + 3.87 + 2.23",
+          "answer": 18.01
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n8241 - 4991",
+          "answer": 3250
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n9630 - 1880",
+          "answer": 7750
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n5896 - 4998",
+          "answer": 898
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n4513 - 1514",
+          "answer": 2999
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n3750 - 1870",
+          "answer": 1880
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n52471 - 17784",
+          "answer": 34687
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n47586 - 17879",
+          "answer": 29707
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n98176 - 89387",
+          "answer": 8789
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n78769 - 59789",
+          "answer": 18980
+        },
+        {
+          "type": "fill",
+          "question": "Rapid Subtraction : \n\n89292 - 69796",
+          "answer": 19496
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n39 x 11",
+          "answer": 429
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n76 x 11",
+          "answer": 836
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n49 x 11",
+          "answer": 539
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n57 x 11",
+          "answer": 627
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n271 x 11",
+          "answer": 2981
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n984 x 11",
+          "answer": 10824
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n594 x 11",
+          "answer": 6534
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n8035 x 11",
+          "answer": 88385
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n1817 x 11",
+          "answer": 19987
+        },
+        {
+          "type": "fill",
+          "question": "Multiplication of 11 : \n\n4968 x 11",
+          "answer": 54648
+        }
+      ]
+    },
+    {
+      "title": "BFB 1 -- Practise Paper 1",
       "time": 8,
       "paper_type": "abacus",
       "questions": [
@@ -737,7 +1383,7 @@
       ]
     },
     {
-      "title": "BFB 1 - Practice Paper 2",
+      "title": "BFB 1 -- Practice Paper 2",
       "time": 8,
       "paper_type": "abacus",
       "questions": [
@@ -828,7 +1474,7 @@
       ]
     },
     {
-      "title": "BFB 2",
+      "title": "BFB 2 -- Practise Paper 1",
       "time": 10,
       "paper_type": "abacus",
       "questions": [
@@ -935,7 +1581,7 @@
       ]
     },
     {
-      "title": "BFB 2 - Practice Paper 2",
+      "title": "BFB 2 -- Practice Paper 2",
       "time": 10,
       "paper_type": "abacus",
       "questions": [
@@ -1050,7 +1696,7 @@
       ]
     },
     {
-      "title": "Combination",
+      "title": "Combination -- Practise Paper 1",
       "time": 10,
       "paper_type": "abacus",
       "questions": [
@@ -1157,7 +1803,7 @@
       ]
     },
     {
-      "title": "Combination - Practice 2",
+      "title": "Combination -- Practise Paper 2",
       "time": 10,
       "paper_type": "abacus",
       "questions": [
@@ -1488,6 +2134,133 @@
         "solve this:\n32\n57\n-11\n-65",
           "options": [32, 13, 11, 65],
           "answer": 13
+        }
+      ]
+    },
+    {
+      "title": "Advance 1 - Paper A - Practice Paper 2",
+      "time": 10,
+      "paper_type": "abacus",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n7\n-1\n-5\n2",
+          "options": [3, 4, 5, 6],
+          "answer": 3
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n5\n3\n-7\n7",
+          "options": [6, 7, 8, 9],
+          "answer": 8
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n9\n-3\n-5\n6",
+          "options": [5, 6, 7, 8],
+          "answer": 7
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n4\n-3\n7\n-8",
+          "options": [0, 1, 2, 3],
+          "answer": 0
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n8\n-6\n2\n5",
+          "options": [7, 8, 9, 10],
+          "answer": 9
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n9\n-7\n5\n-6",
+          "options": [0, 1, 2, 3],
+          "answer": 1
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n9\n-6\n5\n1",
+          "options": [7, 8, 9, 10],
+          "answer": 9
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n6\n2\n-7\n6",
+          "options": [6, 7, 8, 9],
+          "answer": 7
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n7\n-6\n8\n-5",
+          "options": [3, 4, 5, 6],
+          "answer": 4
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n9\n-3\n-5\n6",
+          "options": [6, 7, 8, 9],
+          "answer": 7
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n18\n50\n11\n-23",
+          "options": [56, 54, 57, 59],
+          "answer": 56
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n31\n15\n-25\n55",
+          "options": [76, 77, 78, 79],
+          "answer": 76
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n24\n50\n15\n-53",
+          "options": [34, 35, 36, 37],
+          "answer": 36
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n18\n21\n-33\n12",
+          "options": [17, 18, 19, 20],
+          "answer": 18
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n13\n25\n51\n-10",
+          "options": [78, 79, 80, 81],
+          "answer": 79
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n21\n55\n-61\n24",
+          "options": [38, 39, 40, 41],
+          "answer": 39
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n31\n15\n-35\n22",
+          "options": [31, 32, 33, 34],
+          "answer": 33
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n37\n50\n10\n-85",
+          "options": [11, 12, 13, 14],
+          "answer": 12
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n52\n46\n-37\n-50",
+          "options": [9, 10, 11, 12],
+          "answer": 11
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n68\n10\n-21\n-52",
+          "options": [4, 5, 6, 7],
+          "answer": 5
         }
       ]
     },
@@ -2188,6 +2961,193 @@
           "answer": 477
         }
 
+      ]
+    },
+    {
+      "title": "Advance 3 -- Practice Paper--2",
+      "time": 15,
+      "paper_type": "abacus",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n94\n-71\n66\n-79",
+          "options": [10, 20, 30, 40],
+          "answer": 10
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n36\n63\n-78\n25",
+          "options": [46, 56, 66, 76],
+          "answer": 46
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n97\n-56\n-30\n65",
+          "options": [66, 76, 86, 96],
+          "answer": 76
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n666\n-511\n222\n-66",
+          "options": [311, 411, 511, 611],
+          "answer": 311
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n448\n-321\n572\n-80",
+          "options": [519, 619, 719, 819],
+          "answer": 619
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n339\n-125\n750\n-500",
+          "options": [439, 464, 489, 514],
+          "answer": 464
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n97\n-66\n24\n13",
+          "options": [68, 78, 88, 98],
+          "answer": 68
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n78\n-55\n32\n44",
+          "options": [89, 99, 109, 119],
+          "answer": 99
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n24\n31\n-55\n87",
+          "options": [67, 77, 87, 97],
+          "answer": 87
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n48\n-34\n73\n-51",
+          "options": [26, 36, 46, 56],
+          "answer": 36
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n38\n-24\n71\n-65",
+          "options": [10, 20, 30, 40],
+          "answer": 20
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n97\n-65\n54\n-12",
+          "options": [64, 74, 84, 94],
+          "answer": 74
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n45\n61\n30\n72",
+          "options": [208, 218, 228, 238],
+          "answer": 208
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n88\n-43\n92\n81",
+          "options": [198, 208, 218, 228],
+          "answer": 218
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n64\n43\n31\n95",
+          "options": [223, 233, 243, 253],
+          "answer": 233
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n21\n92\n-54\n51",
+          "options": [100, 110, 120, 130],
+          "answer": 110
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n13\n98\n-21\n34",
+          "options": [104, 114, 124, 134],
+          "answer": 124
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n54\n21\n-99\n54",
+          "options": [10, 20, 30, 40],
+          "answer": 30
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n62\n61\n37\n80",
+          "options": [40, 50, 60, 70],
+          "answer": 40
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n56\n74\n35\n60",
+          "options": [215, 225, 235, 245],
+          "answer": 225
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n64\n84\n10\n90",
+          "options": [228, 238, 248, 258],
+          "answer": 248
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n84 x 3",
+          "options": [252, 362, 472, 582],
+          "answer": 252
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n27 x 4",
+          "options": [108, 118, 128, 138],
+          "answer": 108
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n52 x 6",
+          "options": [312, 322, 332, 342],
+          "answer": 312
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n33 x 4",
+          "options": [122, 132, 142, 152],
+          "answer": 132
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n65 x 5",
+          "options": [325, 335, 345, 355],
+          "answer": 325
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n85 x 7",
+          "options": [585, 595, 605, 615],
+          "answer": 595
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n73 x 8",
+          "options": [574, 584, 594, 604],
+          "answer": 584
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n94 x 9",
+          "options": [836, 846, 856, 866],
+          "answer": 846
+        },
+        {
+          "type": "multiple_choice",
+          "question": "solve this:\n28 x 2",
+          "options": [46, 52, 56, 62],
+          "answer": 56
+        }
       ]
     },
     {
