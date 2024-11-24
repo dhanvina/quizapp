@@ -7,21 +7,22 @@ class QuestionModel {
   final List<dynamic>? options;
   final double answer;
 
-  QuestionModel(
-      {required this.type,
-      required this.question,
-      this.options,
-      required this.answer});
+  QuestionModel({
+    required this.type,
+    required this.question,
+    this.options,
+    required this.answer,
+  });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
       type: json['type'] as String,
       question: json['question'] as String,
-      // options: List<int>.from(json['options'] as List),
       options: json['type'] == 'multiple_choice'
           ? List<dynamic>.from(json['options'])
           : null,
-      answer: json['answer'] as double,
+      // Convert 'answer' to double safely
+      answer: (json['answer'] as num).toDouble(),
     );
   }
 
@@ -41,11 +42,12 @@ class QuestionPaperModel {
   final String paper_type;
   final List<QuestionModel> questions;
 
-  QuestionPaperModel(
-      {required this.title,
-      required this.time,
-      required this.paper_type,
-      required this.questions});
+  QuestionPaperModel({
+    required this.title,
+    required this.time,
+    required this.paper_type,
+    required this.questions,
+  });
 
   factory QuestionPaperModel.fromJson(Map<String, dynamic> json) {
     return QuestionPaperModel(
