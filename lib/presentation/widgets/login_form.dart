@@ -25,8 +25,6 @@ class LoginForm extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.96,
           child: Container(
             padding: const EdgeInsets.all(10),
-            width: 500,
-            height: 840,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -40,7 +38,6 @@ class LoginForm extends StatelessWidget {
             ),
             child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
                     height: 195,
@@ -58,8 +55,7 @@ class LoginForm extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.w600,
-                            color:
-                                const Color(0xFF1E1E1E), // Color for "Welcome"
+                            color: const Color(0xFF1E1E1E),
                           ),
                         ),
                         TextSpan(
@@ -67,33 +63,27 @@ class LoginForm extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.w600,
-                            color:
-                                const Color(0xFF00A455), // Color for "Student"
+                            color: const Color(0xFF00A455),
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   Text(
                     "Please enter your sign in details.",
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500, // Medium
-                      fontSize: 18, // Font size
-                      color: const Color(
-                          0xFF979797), // Text color (hex for #F4F4F7)
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      color: const Color(0xFF979797),
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   buildTextField("Full Name", fullNameController),
                   buildTextField("Roll Number", rollNumberController),
                   buildTextField("School Code", schoolCodeController),
                   buildTextField("Password", passwordController,
                       isPassword: true),
-
                   const SizedBox(height: 20),
-
-                  // Sign In Button
                   ElevatedButton(
                     onPressed: () {
                       loginNotifier.login(
@@ -106,10 +96,7 @@ class LoginForm extends StatelessWidget {
                     },
                     child: const Text("Sign In"),
                   ),
-
                   const SizedBox(height: 20),
-
-                  // Loading Indicator or Error Message
                   if (loginNotifier.state is LoginLoading)
                     const CircularProgressIndicator(),
                   if (loginNotifier.state is LoginFailure)
