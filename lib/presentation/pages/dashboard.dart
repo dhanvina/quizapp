@@ -11,6 +11,8 @@ class PaperSelectionPage extends StatelessWidget {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.loadPapers(context);
+    // Load user name
+    questionProvider.loadUserName();
     // final VedicquestionProvider =
     //     Provider.of<VedicQuestionProvider>(context, listen: false);
     // VedicquestionProvider.loadQuestions();
@@ -25,6 +27,8 @@ class PaperSelectionPage extends StatelessWidget {
               return Center(child: CircularProgressIndicator());
             }
 
+            final studentName = provider.userName;
+
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +41,7 @@ class PaperSelectionPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "GOOD MORNING",
+                            "GOOD MORNING $studentName",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,

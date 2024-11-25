@@ -1,5 +1,8 @@
 // providers/question_provider.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/models/question_model.dart';
 import '../../domain/entities/question.dart';
@@ -14,6 +17,21 @@ class QuestionProvider extends ChangeNotifier {
   String paperTitle = "";
   int paperTime = 0;
   int? selectedOption;
+
+  String _userName = "";
+  String get userName => _userName;
+
+  Future<void> loadUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    final loggedInStudent = prefs.getString('loggedInStudent');
+    if (loggedInStudent != null) {
+      // Assuming the student JSON contains a "name" key
+      _userName = jsonDecode(loggedInStudent)['name'];
+    } else {
+      _userName = "Guest"; // Default value if no user is logged in
+    }
+    notifyListeners();
+  }
 
   QuestionProvider({required this.repository});
 

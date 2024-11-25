@@ -17,4 +17,26 @@ class Student {
     required this.hasAttemptedLiveQuiz,
     required this.quizResults,
   });
+
+// Convert Student to JSON
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'school': school,
+        'roll_number': roll_number,
+        'school_code': school_code,
+        'hasAttemptedLiveQuiz': hasAttemptedLiveQuiz,
+        'quizResults': quizResults.map((quiz) => quiz.toJson()).toList(),
+      };
+
+// Create Student from JSON
+  factory Student.fromJson(Map<String, dynamic> json) => Student(
+        name: json['name'],
+        school: json['school'],
+        roll_number: json['roll_number'],
+        school_code: json['school_code'],
+        hasAttemptedLiveQuiz: json['hasAttemptedLiveQuiz'],
+        quizResults: (json['quizResults'] as List)
+            .map((quizJson) => QuizResultModel.fromJson(quizJson))
+            .toList(),
+      );
 }

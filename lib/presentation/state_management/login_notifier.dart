@@ -1,5 +1,8 @@
-import 'package:dartz/dartz.dart'; // For Either
+import 'dart:convert';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/student.dart';
 import '../../domain/repository/student_repository.dart';
@@ -12,6 +15,9 @@ class LoginNotifier extends ChangeNotifier {
 
   LoginState _state = LoginInitial();
   LoginState get state => _state;
+
+  Student? _loggedInStudent; // Hold the logged-in student data
+  Student? get loggedInStudent => _loggedInStudent;
 
   void login(
     String fullName,
@@ -51,7 +57,7 @@ class LoginNotifier extends ChangeNotifier {
           _state = LoginFailure("An error occurred: ${error.toString()}");
           notifyListeners();
         },
-        (student) {
+        (student) async {
           // Debug: Check what the student data is
           print('Fetched student: $student');
 
@@ -69,8 +75,17 @@ class LoginNotifier extends ChangeNotifier {
           } else {
             // Debug: Log successful login
             print('Login successful! Welcome, ${student.name}');
+            _loggedInStudent = student;
+            print(
+                'Logged in student: ${_loggedInStudent?.name ?? 'No student data'}');
             _state =
                 LoginSuccess("Login successful! Welcome, ${student.name}.");
+
+            // Save to Shared Preferences
+            final prefs = await SharedPreferences.getInstance();
+            final studentJson = jsonEncode(
+                student.toJson()); // Assuming Student has a toJson method
+            await prefs.setString('loggedInStudent', studentJson);
 
             // Navigate to home page after successful login
             Navigator.pushReplacementNamed(context, '/home');

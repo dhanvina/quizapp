@@ -45,4 +45,24 @@ class QuizResultModel {
       'timestamp': timestamp,
     };
   }
+
+// Convert QuizResultModel to JSON (for serialization)
+  Map<String, dynamic> toJson() {
+    return {
+      'quizId': quizId,
+      'score': score,
+      'timeTaken': timeTaken,
+      'timestamp': timestamp.toDate().toIso8601String(),
+    };
+  }
+
+  // Create QuizResultModel from JSON
+  factory QuizResultModel.fromJson(Map<String, dynamic> json) {
+    return QuizResultModel(
+      quizId: json['quizId'],
+      score: json['score'],
+      timeTaken: json['timeTaken'],
+      timestamp: Timestamp.fromDate(DateTime.parse(json['timestamp'])),
+    );
+  }
 }
