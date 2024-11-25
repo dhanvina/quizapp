@@ -1298,6 +1298,213 @@
       ]
     },
     {
+    "title": "Vedic Math A1 Practice Paper",
+    "time": 15,
+    "paper_type": "vedic",
+    "questions": [
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n74 + 18",
+        "answer": 92
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n449 + 77",
+        "answer": 526
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n124 + 98",
+        "answer": 222
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n505 + 297",
+        "answer": 802
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n244 + 75",
+        "answer": 319
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n678 + 156",
+        "answer": 834
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n764 + 297",
+        "answer": 1061
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n452 + 189",
+        "answer": 641
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n345 + 287",
+        "answer": 632
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Addition : \n\n253 + 198",
+        "answer": 451
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n6.5 + 0.8",
+        "answer": 7.3
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n4.4 + 2.8",
+        "answer": 7.2
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n3.19 + 1.86",
+        "answer": 5.05
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n2.78 + 4.58",
+        "answer": 7.36
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n3.768 + 4.595",
+        "answer": 8.363
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n5.43 + 1.87",
+        "answer": 7.30
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n6.49 + 5.88",
+        "answer": 12.37
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n1.55 + 2.46",
+        "answer": 4.01
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n4.852 + 1.259",
+        "answer": 6.111
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Addition : \n\n8.432 + 1.698",
+        "answer": 10.130
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n47 - 9",
+        "answer": 38
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n81 - 36",
+        "answer": 45
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n65 - 16",
+        "answer": 49
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n421 - 179",
+        "answer": 242
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n710 - 275",
+        "answer": 435
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n516 - 377",
+        "answer": 139
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n932 - 475",
+        "answer": 457
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n814 - 169",
+        "answer": 645
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n324 - 242",
+        "answer": 082
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Subtraction : \n\n213 - 194",
+        "answer": 019
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n8.2 - 0.8",
+        "answer": 7.4
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n3.2 - 1.5",
+        "answer": 1.7
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n4.3 - 3.7",
+        "answer": 0.6
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n5.24 - 2.76",
+        "answer": 2.48
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n7.42 - 3.68",
+        "answer": 3.74
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n4.121 - 0.769",
+        "answer": 3.352
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n8.622 - 1.899",
+        "answer": 6.723
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n1.642 - 0.976",
+        "answer": 0.666
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n6.245 - 1.769",
+        "answer": 4.476
+      },
+      {
+        "type": "fill",
+        "question": "Rapid Decimal Subtraction : \n\n3.303 - 0.998",
+        "answer": 2.305
+      }
+    ]
+  },
+    {
       "title": "BFB 1 -- Practise Paper 1",
       "time": 8,
       "paper_type": "abacus",
