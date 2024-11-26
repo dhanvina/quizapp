@@ -9,7 +9,7 @@ import 'package:quizapp/presentation/state_management/question_provider.dart';
 import '../widgets/vedic_text.dart';
 
 class VedicMathPage extends StatefulWidget {
-  final String quizTimeInMinutes;
+  final int quizTimeInMinutes;
   final String title;
 
   const VedicMathPage({

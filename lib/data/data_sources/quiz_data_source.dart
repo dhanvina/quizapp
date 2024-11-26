@@ -14,7 +14,41 @@ class QuizDataSource {
 
       // Debug: Log the raw data
       for (var doc in querySnapshot.docs) {
-        print('Document data: ${doc.data()}');
+        final docData = doc.data();
+        print('Document data: $docData');
+
+        // Check the type of each field
+        docData.forEach((key, value) {
+          print('Field: $key, Value: $value, Type: ${value.runtimeType}');
+        });
+
+        // Check and convert the 'options' field to a list of integers
+        if (docData['questions'] is List) {
+          List<dynamic> questions = docData['questions'];
+          questions.forEach((question) {
+            print('Checking question: $question');
+            if (question is Map) {
+              // Ensure the 'options' field is a list of integers
+              final options = question['options'];
+              if (options is List) {
+                print('Options is a list: $options');
+                options.forEach((option) {
+                  if (option is int) {
+                    print('Option is an integer: $option');
+                  } else if (option is String) {
+                    // If the option is a string, you can try to convert it to an integer
+                    final optionInt = int.tryParse(option);
+                    print('Converted option to integer: $optionInt');
+                  } else {
+                    print('Unknown type for option: $option');
+                  }
+                });
+              } else {
+                print('Options is not a list');
+              }
+            }
+          });
+        }
       }
 
       return querySnapshot.docs

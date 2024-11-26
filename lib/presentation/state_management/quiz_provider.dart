@@ -1,33 +1,27 @@
-// quiz_provider.dart
 import 'package:flutter/material.dart';
+import 'package:quizapp/domain/use_cases/firestore_fetch_quiz.dart';
 
 import '../../domain/entities/firestore_quiz.dart';
-import '../../domain/use_cases/firestore_fetch_quiz.dart';
 
-class QuizProvider with ChangeNotifier {
-  final GetQuizzesUseCase getQuizzesUseCase;
-  List<Quiz> quizzes = [];
+class QuizProvider extends ChangeNotifier {
+  final GetQuizzesUseCase _getQuizzesUseCase;
+
+  QuizProvider(this._getQuizzesUseCase);
+
   bool isLoading = false;
+  List<Quiz> quizzes = [];
 
-  QuizProvider(this.getQuizzesUseCase);
-
-  Future<void> getQuizzes() async {
-    // Mark as loading and notify listeners
-    _setLoading(true);
-
+  Future<void> fetchQuizzes() async {
+    isLoading = true;
+    notifyListeners();
     try {
-      // Fetch quizzes
-      quizzes = await getQuizzesUseCase.execute();
-    } finally {
-      // Mark as not loading and notify listeners
-      _setLoading(false);
+      quizzes = await _getQuizzesUseCase.execute();
+      print('Loaded quizzes provider: $quizzes');
+    } catch (e) {
+      print('Error in QuizProvider: $e');
+      quizzes = [];
     }
-  }
-
-  void _setLoading(bool value) {
-    isLoading = value;
+    isLoading = false;
     notifyListeners();
   }
-
-  List<Quiz> get liveQuizzes => quizzes.where((quiz) => quiz.isLive).toList();
 }

@@ -3,185 +3,115 @@ import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
 
-import '../state_management/question_provider.dart';
 import '../state_management/quiz_provider.dart';
-import 'LiveQuizPreview.dart';
 
-class PaperSelectionPage extends StatelessWidget {
+class PaperSelectionPage extends StatefulWidget {
+  @override
+  _PaperSelectionPageState createState() => _PaperSelectionPageState();
+}
+
+class _PaperSelectionPageState extends State<PaperSelectionPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<QuizProvider>(context, listen: false).fetchQuizzes();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
-    questionProvider.loadPapers(context);
-    questionProvider.loadUserName();
+    final quizProvider = Provider.of<QuizProvider>(context);
 
-    final quizProvider = Provider.of<QuizProvider>(context, listen: false);
-    quizProvider.getQuizzes();
+    final liveQuizzes =
+        quizProvider.quizzes.where((quiz) => quiz.paper == 'live').toList();
+    final practiceQuizzes =
+        quizProvider.quizzes.where((quiz) => quiz.paper == 'practice').toList();
 
     return Scaffold(
       backgroundColor: Constants.limeGreen,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Consumer<QuestionProvider>(
-          builder: (context, provider, _) {
-            if (provider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (provider.papers.isEmpty) {
-              return const Center(
-                child: Text(
-                  "No quizzes available at the moment.",
-                  style: TextStyle(fontSize: 16, color: Colors.black54),
-                ),
-              );
-            }
-
-            final studentName = provider.userName;
-
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Header with greeting and profile icon
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.all(8.0),
+        child: quizProvider.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : quizProvider.quizzes.isEmpty
+                ? const Center(
+                    child: Text(
+                      "No quizzes available.",
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                    ),
+                  )
+                : ListView(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "GOOD MORNING, $studentName",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                        ],
-                      ),
-                      const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.person, color: Constants.green),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-
-                  // Quizzes Container
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(30),
-                      decoration: BoxDecoration(
-                        color: Constants.offWhite,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            spreadRadius: 5,
-                            blurRadius: 10,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Practice Quizzes Section
-                          const Text(
-                            "Practice Quizzes",
+                      if (liveQuizzes.isNotEmpty) ...[
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Live Papers",
                             style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
-                          const SizedBox(height: 20),
-                          ...provider.papers.map((paper) {
-                            return QuizTile(
-                              title: paper.title,
-                              subtitle: "${paper.time} Minutes - Level: Easy",
-                              buttonText: "TRY",
+                        ),
+                        ...liveQuizzes.map((quiz) => QuizTile(
+                              title: quiz.title,
+                              subtitle: "${quiz.timeLimit} Minutes",
+                              buttonText: "START",
                               onPressed: () {
-                                provider.selectPaper(
-                                    provider.papers.indexOf(paper));
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => QuizPreview(
-                                      title: paper.title,
-                                      time: paper.time,
-                                      numberOfQuestions: paper.questions.length,
-                                      paper_type: '',
+                                      title: quiz.title,
+                                      time: quiz.timeLimit,
+                                      paper_type: quiz.paperType,
+                                      numberOfQuestions: quiz.questionCount,
                                     ),
                                   ),
                                 );
                               },
-                            );
-                          }).toList(),
-
-                          const SizedBox(height: 30),
-
-                          // Live Quizzes Section
-                          if (quizProvider.liveQuizzes.isNotEmpty) ...[
-                            const Text(
-                              "Live Quizzes",
-                              style: TextStyle(
-                                fontFamily: 'Rubik',
-                                color: Constants.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            ...quizProvider.liveQuizzes.map((quiz) {
-                              return QuizTile(
-                                title: quiz.title,
-                                subtitle: "${quiz.timeLimit} Minutes",
-                                buttonText: "JOIN",
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LiveQuizPreview(
-                                        title: quiz.title,
-                                        time: quiz.timeLimit,
-                                        paper_type: quiz.paperType,
-                                        numberOfQuestions:
-                                            quiz.questions.length,
-                                      ),
+                            )),
+                      ],
+                      if (practiceQuizzes.isNotEmpty) ...[
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Practice Papers",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                        ...practiceQuizzes.map((quiz) => QuizTile(
+                              title: quiz.title,
+                              subtitle: "${quiz.timeLimit} Minutes",
+                              buttonText: "TRY",
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => QuizPreview(
+                                      title: quiz.title,
+                                      time: quiz.timeLimit,
+                                      paper_type: quiz.paperType,
+                                      numberOfQuestions: quiz.questionCount,
                                     ),
-                                  );
-                                },
-                              );
-                            }).toList(),
-                          ] else ...[
-                            const Text(
-                              "No live quizzes available.",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
+                                  ),
+                                );
+                              },
+                            )),
+                      ],
+                    ],
                   ),
-                ],
-              ),
-            );
-          },
-        ),
       ),
     );
   }
 }
 
-// Widget for individual quiz tile
 class QuizTile extends StatelessWidget {
   final String title;
   final String subtitle;

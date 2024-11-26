@@ -7,7 +7,7 @@ import 'package:quizapp/presentation/pages/motivation_screen2.dart';
 
 class LiveQuizPreview extends StatefulWidget {
   final String title;
-  final String time;
+  final int time;
   final String paper_type;
   final int numberOfQuestions;
 

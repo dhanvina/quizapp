@@ -133,7 +133,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                         MaterialPageRoute(
                           builder: (context) => CountdownPage(
                             title: widget.title,
-                            quizTimeInMinutes: widget.time.toString(),
+                            quizTimeInMinutes: widget.time,
                             paperType: widget.paper_type,
                             numberOfQuestions: widget.numberOfQuestions,
                           ),

@@ -4,7 +4,7 @@ import '../../domain/entities/question.dart';
 class QuestionModel {
   final String type;
   final String question;
-  final List<dynamic>? options;
+  final List<double>? options;
   final double answer;
 
   QuestionModel({
@@ -19,7 +19,7 @@ class QuestionModel {
       type: json['type'] as String,
       question: json['question'] as String,
       options: json['type'] == 'multiple_choice'
-          ? List<dynamic>.from(json['options'])
+          ? List<double>.from(json['options'])
           : null,
       // Convert 'answer' to double safely
       answer: (json['answer'] as num).toDouble(),

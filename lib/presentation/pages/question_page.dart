@@ -15,7 +15,7 @@ import '../widgets/question_indicator.dart';
 import '../widgets/question_text.dart';
 
 class QuestionPage extends StatefulWidget {
-  final String quizTimeInMinutes;
+  final int quizTimeInMinutes;
 
   const QuestionPage({Key? key, required this.quizTimeInMinutes})
       : super(key: key);

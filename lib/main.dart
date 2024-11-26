@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider(
-          create: (context) => QuizProvider(getQuizzesUseCase),
+          create: (context) =>
+              QuizProvider(getQuizzesUseCase), // Pass GetQuizzesUseCase here
         ),
       ],
       child: MaterialApp(
@@ -55,8 +56,8 @@ class MyApp extends StatelessWidget {
         title: 'Student Login',
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoginPage(),
-          '/home': (context) => const HomePage(),
+          '/': (context) => LoginPage(),
+          '/home': (context) => HomePage(),
           '/paperSelection': (context) => PaperSelectionPage(),
         },
       ),
@@ -72,6 +73,7 @@ class HomePage extends StatelessWidget {
     // Automatically navigate to PaperSelectionPage without showing a success message.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.pushReplacementNamed(context, '/paperSelection');
+      print('Navigation to PaperSelectionPage successful');
     });
 
     return Scaffold(
