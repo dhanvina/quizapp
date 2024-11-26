@@ -1,13 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/data/data_sources/json_data_source.dart';
-import 'package:quizapp/presentation/pages/login_page.dart';
-import 'package:quizapp/presentation/pages/dashboard.dart';
-import 'package:quizapp/presentation/state_management/question_provider.dart';
+import 'package:quizapp/data/data_sources/quiz_data_source.dart'; // Ensure this import
 import 'package:quizapp/data/repositories/question_repository.dart';
+import 'package:quizapp/domain/use_cases/firestore_fetch_quiz.dart';
+import 'package:quizapp/presentation/pages/dashboard.dart';
+import 'package:quizapp/presentation/pages/login_page.dart';
+import 'package:quizapp/presentation/state_management/question_provider.dart';
+import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/utils/app_router.dart';
 
+import 'data/repositories/firestore_quiz_repository_impl.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,7 +29,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppRouter appRouter = AppRouter();
+
+    // Create instances of the required data sources and repositories
     final jsonDataSource = JsonDataSource();
+    final quizDataSource = QuizDataSource(FirebaseFirestore
+        .instance); // Replace with your actual QuizDataSource implementation
+    final quizRepository =
+        QuizRepositoryImpl(quizDataSource); // Instantiate QuizRepositoryImpl
+    final getQuizzesUseCase =
+        GetQuizzesUseCase(quizRepository); // Pass it to the use case
 
     return MultiProvider(
       providers: [
@@ -32,6 +45,9 @@ class MyApp extends StatelessWidget {
           create: (context) => QuestionProvider(
             repository: QuestionRepository(jsonDataSource),
           ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => QuizProvider(getQuizzesUseCase),
         ),
       ],
       child: MaterialApp(
@@ -41,7 +57,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const LoginPage(),
           '/home': (context) => const HomePage(),
-          '/paperSelection': (context) => PaperSelectionPage(), // Route for the paper list page
+          '/paperSelection': (context) => PaperSelectionPage(),
         },
       ),
     );
@@ -54,7 +70,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Automatically navigate to PaperSelectionPage without showing a success message.
-    Future.delayed(Duration.zero, () {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.pushReplacementNamed(context, '/paperSelection');
     });
 
@@ -63,7 +79,8 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: const Center(
-        child: CircularProgressIndicator(), // Show a loading indicator while navigating
+        child:
+            CircularProgressIndicator(), // Show a loading indicator while navigating
       ),
     );
   }

@@ -6,7 +6,7 @@ class GetQuizByIdUseCase {
 
   GetQuizByIdUseCase(this.repository);
 
-  Future<Quiz> call(String quizId) async {
+  Future<Quiz> execute(String quizId) async {
     return await repository.getQuizById(quizId);
   }
 }

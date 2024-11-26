@@ -5,23 +5,24 @@ import 'package:quizapp/presentation/pages/countdown_page.dart';
 import 'package:quizapp/presentation/pages/motivation_screen1.dart';
 import 'package:quizapp/presentation/pages/motivation_screen2.dart';
 
-class QuizPreview extends StatefulWidget {
+class LiveQuizPreview extends StatefulWidget {
   final String title;
-  final int time;
+  final String time;
   final String paper_type;
   final int numberOfQuestions;
 
-  const QuizPreview(
-      {required this.title,
-      required this.time,
-      required this.paper_type,
-      required this.numberOfQuestions});
+  const LiveQuizPreview({
+    required this.title,
+    required this.time,
+    required this.paper_type,
+    required this.numberOfQuestions,
+  });
 
   @override
-  _QuizPreviewState createState() => _QuizPreviewState();
+  _LiveQuizPreviewState createState() => _LiveQuizPreviewState();
 }
 
-class _QuizPreviewState extends State<QuizPreview> {
+class _LiveQuizPreviewState extends State<LiveQuizPreview> {
   String formatTime(int totalMinutes) {
     final int minutes = totalMinutes % 60;
     final int seconds = 0;
@@ -92,7 +93,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                   ),
                   SizedBox(height: 15.0),
                   Text(
-                    "Time - ${formatTime(widget.time)}",
+                    "Time - ${formatTime(widget.time as int)}",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -111,7 +112,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                       );
 
                       // Wait for 5 seconds
-                      await Future.delayed(Duration(seconds: 10));
+                      await Future.delayed(Duration(seconds: 5));
 
                       // Navigate to the next screen (replace with your actual screen)
                       if (!mounted)
@@ -133,7 +134,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                         MaterialPageRoute(
                           builder: (context) => CountdownPage(
                             title: widget.title,
-                            quizTimeInMinutes: widget.time.toString(),
+                            quizTimeInMinutes: widget.time,
                             paperType: widget.paper_type,
                             numberOfQuestions: widget.numberOfQuestions,
                           ),
@@ -150,14 +151,15 @@ class _QuizPreviewState extends State<QuizPreview> {
                       decoration: BoxDecoration(
                         color: const Color(0xFF00A455), // Custom color #00A455
                         borderRadius: BorderRadius.circular(
-                            8), // Adjust the radius for rounded corners, or remove for a rectangle
+                            8), // Adjust the radius for rounded corners
                         border: Border.all(color: Colors.transparent),
                       ),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10), // Adjust padding as needed
+                        horizontal: 20,
+                        vertical: 10,
+                      ), // Adjust padding as needed
                       child: const Text(
-                        'NEXT',
+                        'START LIVE QUIZ',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

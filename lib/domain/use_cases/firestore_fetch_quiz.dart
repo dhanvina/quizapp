@@ -6,7 +6,7 @@ class GetQuizzesUseCase {
 
   GetQuizzesUseCase(this.repository);
 
-  Future<List<Quiz>> call() async {
+  Future<List<Quiz>> execute() async {
     return await repository.getQuizzes();
   }
 }

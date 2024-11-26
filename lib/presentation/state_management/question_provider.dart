@@ -17,9 +17,13 @@ class QuestionProvider extends ChangeNotifier {
   String paperTitle = "";
   int paperTime = 0;
   int? selectedOption;
+  List<QuestionPaper> _liveQuizzes = [];
 
   String _userName = "";
   String get userName => _userName;
+
+  bool _isLoading = false; // Track loading state
+  bool get isLoading => _isLoading; // Getter to access loading state
 
   Future<void> loadUserName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -36,6 +40,7 @@ class QuestionProvider extends ChangeNotifier {
   QuestionProvider({required this.repository});
 
   List<QuestionPaper> get papers => _papers;
+  List<QuestionPaper> get liveQuizzes => _liveQuizzes;
 
   Future<void> loadPapers(BuildContext context) async {
     // Assuming repository.getQuestionPapers() returns List<QuestionPaperModel>

@@ -5,7 +5,7 @@ import 'package:quizapp/presentation/pages/question_page.dart';
 import 'package:quizapp/presentation/pages/vedic_math_page.dart';
 
 class CountdownPage extends StatefulWidget {
-  final int quizTimeInMinutes;
+  final String quizTimeInMinutes;
   final String paperType;
   final String title;
   final int numberOfQuestions;

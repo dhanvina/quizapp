@@ -15,7 +15,7 @@ import '../widgets/question_indicator.dart';
 import '../widgets/question_text.dart';
 
 class QuestionPage extends StatefulWidget {
-  final int quizTimeInMinutes;
+  final String quizTimeInMinutes;
 
   const QuestionPage({Key? key, required this.quizTimeInMinutes})
       : super(key: key);
@@ -40,8 +40,8 @@ class _QuestionPageState extends State<QuestionPage> {
     super.initState();
     questionProvider = Provider.of<QuestionProvider>(context, listen: false);
     timePerQuestion =
-        (widget.quizTimeInMinutes * 60) ~/ questionProvider.totalQuestions;
-    totalQuizTimeInSeconds = widget.quizTimeInMinutes * 60;
+        // (widget.quizTimeInMinutes * 60) ~/ questionProvider.totalQuestions;
+        totalQuizTimeInSeconds = (widget.quizTimeInMinutes * 60) as int;
     startTotalTimer();
   }
 

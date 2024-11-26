@@ -4,6 +4,8 @@ import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
 
 import '../state_management/question_provider.dart';
+import '../state_management/quiz_provider.dart';
+import 'LiveQuizPreview.dart';
 
 class PaperSelectionPage extends StatelessWidget {
   @override
@@ -11,11 +13,10 @@ class PaperSelectionPage extends StatelessWidget {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
     questionProvider.loadPapers(context);
-    // Load user name
     questionProvider.loadUserName();
-    // final VedicquestionProvider =
-    //     Provider.of<VedicQuestionProvider>(context, listen: false);
-    // VedicquestionProvider.loadQuestions();
+
+    final quizProvider = Provider.of<QuizProvider>(context, listen: false);
+    quizProvider.getQuizzes();
 
     return Scaffold(
       backgroundColor: Constants.limeGreen,
@@ -23,8 +24,17 @@ class PaperSelectionPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Consumer<QuestionProvider>(
           builder: (context, provider, _) {
+            if (provider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
             if (provider.papers.isEmpty) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(
+                child: Text(
+                  "No quizzes available at the moment.",
+                  style: TextStyle(fontSize: 16, color: Colors.black54),
+                ),
+              );
             }
 
             final studentName = provider.userName;
@@ -41,8 +51,8 @@ class PaperSelectionPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "GOOD MORNING $studentName",
-                            style: TextStyle(
+                            "GOOD MORNING, $studentName",
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Colors.black54,
@@ -51,7 +61,7 @@ class PaperSelectionPage extends StatelessWidget {
                           const SizedBox(height: 4),
                         ],
                       ),
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 20,
                         backgroundColor: Colors.white,
                         child: Icon(Icons.person, color: Constants.green),
@@ -63,7 +73,7 @@ class PaperSelectionPage extends StatelessWidget {
                   // Quizzes Container
                   Center(
                     child: Container(
-                      padding: EdgeInsets.all(30),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
                         color: Constants.offWhite,
                         borderRadius: BorderRadius.circular(20),
@@ -72,7 +82,7 @@ class PaperSelectionPage extends StatelessWidget {
                             color: Colors.black.withOpacity(0.2),
                             spreadRadius: 5,
                             blurRadius: 10,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -80,7 +90,7 @@ class PaperSelectionPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Practice Quizzes Section
-                          Text(
+                          const Text(
                             "Practice Quizzes",
                             style: TextStyle(
                               fontFamily: 'Rubik',
@@ -104,8 +114,8 @@ class PaperSelectionPage extends StatelessWidget {
                                     builder: (context) => QuizPreview(
                                       title: paper.title,
                                       time: paper.time,
-                                      paper_type: paper.paper_type,
                                       numberOfQuestions: paper.questions.length,
+                                      paper_type: '',
                                     ),
                                   ),
                                 );
@@ -116,24 +126,47 @@ class PaperSelectionPage extends StatelessWidget {
                           const SizedBox(height: 30),
 
                           // Live Quizzes Section
-                          Text(
-                            "Live Quizzes",
-                            style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
+                          if (quizProvider.liveQuizzes.isNotEmpty) ...[
+                            const Text(
+                              "Live Quizzes",
+                              style: TextStyle(
+                                fontFamily: 'Rubik',
+                                color: Constants.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 20),
-                          QuizTile(
-                            title: "Quiz 1 - 20 Questions",
-                            subtitle: "10 Minutes - Level: Easy",
-                            buttonText: "START",
-                            onPressed: () {
-                              // Action for Live Quiz
-                            },
-                          ),
+                            const SizedBox(height: 20),
+                            ...quizProvider.liveQuizzes.map((quiz) {
+                              return QuizTile(
+                                title: quiz.title,
+                                subtitle: "${quiz.timeLimit} Minutes",
+                                buttonText: "JOIN",
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LiveQuizPreview(
+                                        title: quiz.title,
+                                        time: quiz.timeLimit,
+                                        paper_type: quiz.paperType,
+                                        numberOfQuestions:
+                                            quiz.questions.length,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          ] else ...[
+                            const Text(
+                              "No live quizzes available.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -155,7 +188,7 @@ class QuizTile extends StatelessWidget {
   final String buttonText;
   final VoidCallback onPressed;
 
-  QuizTile({
+  const QuizTile({
     required this.title,
     required this.subtitle,
     required this.buttonText,
@@ -174,7 +207,7 @@ class QuizTile extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -183,14 +216,14 @@ class QuizTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.menu_book, color: Constants.green, size: 40),
+              const Icon(Icons.menu_book, color: Constants.green, size: 40),
               const SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                       fontSize: 16,
@@ -199,7 +232,7 @@ class QuizTile extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black54,
                       fontSize: 12,
                     ),
@@ -219,7 +252,7 @@ class QuizTile extends StatelessWidget {
             ),
             child: Text(
               buttonText,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,

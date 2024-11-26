@@ -1,24 +1,73 @@
+import '../../domain/entities/firestore_quiz.dart';
+import '../../domain/repository/firestore_quiz_repository.dart';
 import '../data_sources/quiz_data_source.dart';
-import '../models/firestore_question_model.dart';
 
-class QuizRepository {
+class QuizRepositoryImpl implements QuizRepository {
   final QuizDataSource dataSource;
 
-  QuizRepository(this.dataSource);
+  QuizRepositoryImpl(this.dataSource);
 
-  // Fetch all quizzes
-  Future<List<QuizModel>> getQuizzes() async {
-    return await dataSource.fetchQuizzes();
+  @override
+  Future<List<Quiz>> getQuizzes() async {
+    final models = await dataSource.getQuizzes();
+    return models
+        .map((model) => Quiz(
+              quizId: model.quizId,
+              title: model.title,
+              isLive: model.isLive,
+              paperType: model.paperType,
+              timeLimit: model.timeLimit,
+              questions: model.questions
+                  .map((q) => QuizQuestion(
+                        question: q.question,
+                        options: q.options,
+                        correctOption: q.correctOption,
+                      ))
+                  .toList(),
+            ))
+        .toList();
   }
 
   // Fetch a single quiz by ID
-  Future<QuizModel> getQuizById(String quizId) async {
-    return await dataSource.fetchQuizById(quizId);
+  @override
+  Future<Quiz> getQuizById(String quizId) async {
+    final model = await dataSource.fetchQuizById(quizId);
+    return Quiz(
+      quizId: model.quizId,
+      title: model.title,
+      isLive: model.isLive,
+      paperType: model.paperType,
+      timeLimit: model.timeLimit,
+      questions: model.questions
+          .map((q) => QuizQuestion(
+                question: q.question,
+                options: q.options,
+                correctOption: q.correctOption,
+              ))
+          .toList(),
+    );
   }
 
-  // Filter quizzes by paper type
-  Future<List<QuizModel>> getQuizzesByType(String paperType) async {
-    final quizzes = await getQuizzes();
-    return quizzes.where((quiz) => quiz.paperType == paperType).toList();
+  @override
+  Future<List<Quiz>> getQuizzesByType(String paperType) async {
+    final quizModels = await dataSource.getQuizzes();
+    final filteredQuizzes =
+        quizModels.where((quiz) => quiz.paperType == paperType).toList();
+    return filteredQuizzes
+        .map((model) => Quiz(
+              quizId: model.quizId,
+              title: model.title,
+              isLive: model.isLive,
+              paperType: model.paperType,
+              timeLimit: model.timeLimit,
+              questions: model.questions
+                  .map((q) => QuizQuestion(
+                        question: q.question,
+                        options: q.options,
+                        correctOption: q.correctOption,
+                      ))
+                  .toList(),
+            ))
+        .toList();
   }
 }

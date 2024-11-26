@@ -1,40 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class QuestionModel {
-  final String question;
-  final String correctOption;
-  final List<String>? options; // Optional for MCQ questions
-
-  QuestionModel({
-    required this.question,
-    required this.correctOption,
-    this.options,
-  });
-
-  factory QuestionModel.fromMap(Map<String, dynamic> data) {
-    return QuestionModel(
-      question: data['question'],
-      correctOption: data['correct_option'],
-      options:
-          data['options'] != null ? List<String>.from(data['options']) : null,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'question': question,
-      'correct_option': correctOption,
-      'options': options,
-    };
-  }
-}
-
 class QuizModel {
   final String quizId;
   final String title;
   final bool isLive;
   final String paperType;
-  final int timeLimit;
+  final String timeLimit;
   final List<QuestionModel> questions;
 
   QuizModel({
@@ -46,28 +15,58 @@ class QuizModel {
     required this.questions,
   });
 
-  factory QuizModel.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+  // Unified factory constructor
+  factory QuizModel.fromFirestore(Map<String, dynamic> json) {
     return QuizModel(
-      quizId: doc.id,
-      title: data['title'],
-      isLive: data['is_Live'] == 1,
-      paperType: data['paper_type'],
-      timeLimit: data['time_limit'],
-      questions: (data['questions'] as List)
-          .map((q) => QuestionModel.fromMap(q))
+      quizId: json['quiz_id'],
+      title: json['title'],
+      isLive: json['is_live'] ?? false, // Default to false if missing
+      paperType: json['paper_type'],
+      timeLimit: json['time_limit'],
+      questions: (json['questions'] as List<dynamic>)
+          .map((q) => QuestionModel.fromFirestore(q as Map<String, dynamic>))
           .toList(),
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toFirestore() {
     return {
       'quiz_id': quizId,
       'title': title,
-      'is_Live': isLive ? 1 : 0,
+      'is_live': isLive,
       'paper_type': paperType,
       'time_limit': timeLimit,
-      'questions': questions.map((q) => q.toMap()).toList(),
+      'questions': questions.map((q) => q.toFirestore()).toList(),
+    };
+  }
+}
+
+// QuestionModel
+class QuestionModel {
+  final String question;
+  final String correctOption;
+  final List<String>? options;
+
+  QuestionModel({
+    required this.question,
+    required this.correctOption,
+    this.options,
+  });
+
+  factory QuestionModel.fromFirestore(Map<String, dynamic> json) {
+    return QuestionModel(
+      question: json['question'],
+      correctOption: json['correct_option'],
+      options:
+          json['options'] != null ? List<String>.from(json['options']) : null,
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'question': question,
+      'correct_option': correctOption,
+      'options': options,
     };
   }
 }

@@ -9,7 +9,7 @@ import 'package:quizapp/presentation/state_management/question_provider.dart';
 import '../widgets/vedic_text.dart';
 
 class VedicMathPage extends StatefulWidget {
-  final int quizTimeInMinutes;
+  final String quizTimeInMinutes;
   final String title;
 
   const VedicMathPage({
@@ -31,7 +31,7 @@ class _VedicMathPageState extends State<VedicMathPage> {
   @override
   void initState() {
     super.initState();
-    totalQuizTimeInSeconds = widget.quizTimeInMinutes * 60;
+    totalQuizTimeInSeconds = (widget.quizTimeInMinutes * 60) as int;
     _startTotalTimer();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<QuestionProvider>(context, listen: false).loadPapers(context);

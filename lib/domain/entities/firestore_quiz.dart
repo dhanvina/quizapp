@@ -1,10 +1,10 @@
 // entities/question.dart
-class Question {
+class QuizQuestion {
   final String question;
   final String correctOption;
-  final List<String>? options; // Optional for MCQs
+  final List<String>? options;
 
-  Question({
+  QuizQuestion({
     required this.question,
     required this.correctOption,
     this.options,
@@ -17,8 +17,8 @@ class Quiz {
   final String title;
   final bool isLive;
   final String paperType;
-  final int timeLimit;
-  final List<Question> questions;
+  final String timeLimit;
+  final List<QuizQuestion> questions;
 
   Quiz({
     required this.quizId,
