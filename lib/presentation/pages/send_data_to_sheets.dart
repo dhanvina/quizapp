@@ -19,7 +19,7 @@ class GoogleSheetsAPI {
       print('Retrieved score: $score');
 
       // Check if the id is retrieved successfully
-      if (id == null) {
+      if (id == null || id.trim().isEmpty) {
         print('No ID found in SharedPreferences');
         return; // Exit if ID is not found
       }

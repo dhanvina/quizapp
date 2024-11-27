@@ -77,15 +77,15 @@ class PaperSelectionPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Practice Quizzes Section
-                          Text(
-                            "Practice Quizzes",
-                            style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
+                          // Text(
+                          //   "Practice Quizzes",
+                          //   style: TextStyle(
+                          //     fontFamily: 'Rubik',
+                          //     color: Constants.black,
+                          //     fontWeight: FontWeight.w500,
+                          //     fontSize: 20,
+                          //   ),
+                          // ),
                           const SizedBox(height: 20),
                           ...provider.papers.map((paper) {
                             return QuizTile(
@@ -119,15 +119,15 @@ class PaperSelectionPage extends StatelessWidget {
                           const SizedBox(height: 30),
 
                           // Live Quizzes Section
-                          Text(
-                            "Live Quizzes",
-                            style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
+                          // Text(
+                          //   "Live Quizzes",
+                          //   style: TextStyle(
+                          //     fontFamily: 'Rubik',
+                          //     color: Constants.black,
+                          //     fontWeight: FontWeight.w500,
+                          //     fontSize: 20,
+                          //   ),
+                          // ),
                           const SizedBox(height: 20),
                           QuizTile(
                             title: "Quiz 1 - 20 Questions",
