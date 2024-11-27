@@ -82,7 +82,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(height: 15.0),
+                      const SizedBox(height: 10.0),
                       Text(
                         widget.title,
                         style: const TextStyle(
@@ -91,7 +91,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 15.0),
+                      const SizedBox(height: 10.0),
                       Text(
                         "There are a total of ${widget.numberOfQuestions} questions",
                         textAlign: TextAlign.center,
@@ -115,7 +115,8 @@ class _QuizPreviewState extends State<QuizPreview> {
                         child: Column(
                           children: [
                             // TextFormField for ID input
-                            if (widget.title == "Live Quiz") ...[
+                            if (RegExp(r'Live', caseSensitive: false)
+                                .hasMatch(widget.title)) ...[
                               TextFormField(
                                 controller: _idController,
                                 decoration: InputDecoration(
