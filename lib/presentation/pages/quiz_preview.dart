@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quizapp/presentation/pages/countdown_page.dart';
 import 'package:quizapp/presentation/pages/motivation_screen1.dart';
 import 'package:quizapp/presentation/pages/motivation_screen2.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizPreview extends StatefulWidget {
   final String title;
@@ -30,6 +31,11 @@ class _QuizPreviewState extends State<QuizPreview> {
     final int minutes = totalMinutes % 60;
     final int seconds = 0;
     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  Future<void> saveId(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('id', id);
   }
 
   @override
@@ -125,6 +131,8 @@ class _QuizPreviewState extends State<QuizPreview> {
                             ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
+                                  await saveId(_idController.text);
+
                                   // Perform actions after form is validated
                                   // Navigate to MotivationScreen1
                                   Navigator.push(

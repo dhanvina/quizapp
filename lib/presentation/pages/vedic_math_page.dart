@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/domain/entities/question.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
+import 'package:quizapp/presentation/pages/send_data_to_sheets.dart';
 import 'package:quizapp/presentation/state_management/question_provider.dart';
 
 import '../widgets/vedic_text.dart';
@@ -57,7 +58,12 @@ class _VedicMathPageState extends State<VedicMathPage> {
     return '$minutes:$seconds';
   }
 
-  void _onSubmitQuiz() {
+  void _onSubmitQuiz() async {
+    // Call the sendIDToSheet function before navigation
+    await GoogleSheetsAPI.sendIDToSheet(); // This will send the ID to the sheet
+
+    // Debug: Print a statement after sending data
+    print("Data sent to Google Sheets");
     Navigator.push(
       context,
       MaterialPageRoute(
