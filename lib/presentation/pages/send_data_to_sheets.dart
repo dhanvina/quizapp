@@ -12,7 +12,7 @@ class GoogleSheetsAPI {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? id = prefs.getString('id');
       String? paper = prefs.getString('paper');
-      int? score = prefs.getInt('score');
+      String? score = prefs.getString('score');
 
       print('Retrieved ID: $id');
       print('Retrieved paper: $paper');

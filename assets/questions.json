@@ -1,7 +1,7 @@
 {
   "question_papers": [
     {
-      "title": "Live Quiz",
+      "title": "Vedic Math (SAN) Practice Paper 1",
       "time": 15,
       "paper_type": "vedic",
       "questions": [
@@ -2027,7 +2027,7 @@
       ]
     },
     {
-      "title": "Combination -- Practice Paper 2",
+      "title": "Live Quiz",
       "time": 10,
       "paper_type": "abacus",
       "questions": [

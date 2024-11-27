@@ -25,7 +25,10 @@ class QuizPreview extends StatefulWidget {
 
 class _QuizPreviewState extends State<QuizPreview> {
   final TextEditingController _idController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  static const String correctPassword = "awf8a9";
 
   String formatTime(int totalMinutes) {
     final int minutes = totalMinutes % 60;
@@ -124,6 +127,23 @@ class _QuizPreviewState extends State<QuizPreview> {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your ID';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                controller: _passwordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  labelText: "Enter Password",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value != correctPassword) {
+                                    return 'Incorrect Password';
                                   }
                                   return null;
                                 },
