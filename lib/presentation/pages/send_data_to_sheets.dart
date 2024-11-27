@@ -1,58 +1,35 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GoogleSheetsAPI {
-  static const String _googleSheetsAPIEndpoint =
-      'https://script.google.com/macros/s/AKfycbwOvA7QeQZZqZT4SIOFzPoPX4sYQmJr6k4x5xoTcGiINv-g7jNxYqW2PxIlzms-s5s1/exec';
+  static const String _webAppUrl =
+      "https://script.google.com/macros/s/AKfycbwOvA7QeQZZqZT4SIOFzPoPX4sYQmJr6k4x5xoTcGiINv-g7jNxYqW2PxIlzms-s5s1/exec"; // Replace with the actual URL of your Google Apps Script Web App
 
+  // Function to send data via POST request with static values
   static Future<void> sendIDToSheet() async {
     try {
-      print('Attempting to send ID to Google Sheets...');
+      final response = await http.post(
+        Uri.parse(_webAppUrl),
+        body: {
+          'name': 'John Doe', // Static Name
+          'email': 'john.doe@example.com', // Static Email
+          'message': 'This is a static message from Flutter!', // Static Message
+        },
+      );
 
-      // Retrieve the user ID from SharedPreferences
-      final prefs = await SharedPreferences.getInstance();
-      String? Id = prefs.getString('id'); // Make sure this ID is stored
-
-      print('Retrieved ID from SharedPreferences: $Id');
-
-      if (Id != null && Id.isNotEmpty) {
-        // Prepare the data to send (in this case, user ID)
-        final body = json.encode({
-          "Id": [
-            [Id], // Send the user ID in the first column of the sheet
-          ]
-        });
-
-        print('Prepared body for POST request: $body');
-
-        // Send the POST request to Google Apps Script
-        final response = await http.post(
-          Uri.parse(_googleSheetsAPIEndpoint),
-          headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            "Access-Control-Allow-Headers":
-                "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-            "Access-Control-Allow-Methods": "POST, OPTIONS"
-          },
-          body: body,
-        );
-
-        // Check if the request was successful
-        if (response.statusCode == 200) {
-          print('ID successfully sent to Google Sheets');
-        } else {
-          print('Failed to send ID. Status Code: ${response.statusCode}');
-          print('Response body: ${response.body}');
-        }
+      // Check the response status
+      if (response.statusCode == 200 && response.body.contains("Success")) {
+        // Handle success
+        print('Data sent successfully');
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Data sent successfully!")));
       } else {
-        print('User ID is not stored in SharedPreferences');
+        // Handle error
+        print('Failed to send data');
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to send data")));
       }
-    } catch (e) {
-      print('Error: $e');
+    } catch (error) {
+      // Handle any exception that occurs
+      print('Error: $error');
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error: $error")));
     }
   }
 }
