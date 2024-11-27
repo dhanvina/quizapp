@@ -10,10 +10,13 @@ class GoogleSheetsAPI {
     try {
       // Retrieve the ID from SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? id = prefs.getString(
-          'id'); // Replace 'user_id' with your actual SharedPreferences key
+      String? id = prefs.getString('id');
+      String? paper = prefs.getString('paper');
+      String? score = prefs.getString('score');
 
       print('Retrieved ID: $id');
+      print('Retrieved paper: $paper');
+      print('Retrieved score: $score');
 
       // Check if the id is retrieved successfully
       if (id == null) {
@@ -21,11 +24,19 @@ class GoogleSheetsAPI {
         return; // Exit if ID is not found
       }
 
+      if (paper == null) {
+        print('No paper found in SharedPreferences');
+        return; // Exit if ID is not found
+      }
+
+      if (score == null) {
+        print('No score found in SharedPreferences');
+        return; // Exit if ID is not found
+      }
+
       final response = await http.post(
         Uri.parse(_webAppUrl),
-        body: {
-          'id': id, // Dynamic ID from SharedPreferences
-        },
+        body: {'id': id, 'paper': paper, 'score': score},
       );
 
       // Check the response status
