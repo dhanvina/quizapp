@@ -1,7 +1,8 @@
-// presentation/pages/quiz_completed_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quizapp/presentation/pages/send_data_to_sheets.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state_management/question_provider.dart';
 
@@ -10,6 +11,11 @@ class QuizCompletedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final questionProvider =
         Provider.of<QuestionProvider>(context, listen: false);
+
+    // Save score to shared preferences
+    print('Current score: ${questionProvider.score}');
+    _saveScore(questionProvider.score.toString());
+    GoogleSheetsAPI.sendIDToSheet();
 
     return Scaffold(
       appBar: AppBar(
@@ -111,5 +117,11 @@ class QuizCompletedPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _saveScore(String score) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('score', score);
+    print('Score saved: $score');
   }
 }

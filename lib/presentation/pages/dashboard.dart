@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state_management/question_provider.dart';
 
@@ -76,22 +77,28 @@ class PaperSelectionPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Practice Quizzes Section
-                          Text(
-                            "Practice Quizzes",
-                            style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
+                          // Text(
+                          //   "Practice Quizzes",
+                          //   style: TextStyle(
+                          //     fontFamily: 'Rubik',
+                          //     color: Constants.black,
+                          //     fontWeight: FontWeight.w500,
+                          //     fontSize: 20,
+                          //   ),
+                          // ),
                           const SizedBox(height: 20),
                           ...provider.papers.map((paper) {
                             return QuizTile(
                               title: paper.title,
                               subtitle: "${paper.time} Minutes - Level: Easy",
                               buttonText: "TRY",
-                              onPressed: () {
+                              onPressed: () async {
+                                // Save the paper title in SharedPreferences
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('paper', paper.title);
+
+                                print('Paper title saved: ${paper.title}');
                                 provider.selectPaper(
                                     provider.papers.indexOf(paper));
                                 Navigator.push(
@@ -112,15 +119,15 @@ class PaperSelectionPage extends StatelessWidget {
                           const SizedBox(height: 30),
 
                           // Live Quizzes Section
-                          Text(
-                            "Live Quizzes",
-                            style: TextStyle(
-                              fontFamily: 'Rubik',
-                              color: Constants.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
+                          // Text(
+                          //   "Live Quizzes",
+                          //   style: TextStyle(
+                          //     fontFamily: 'Rubik',
+                          //     color: Constants.black,
+                          //     fontWeight: FontWeight.w500,
+                          //     fontSize: 20,
+                          //   ),
+                          // ),
                           const SizedBox(height: 20),
                           QuizTile(
                             title: "Quiz 1 - 20 Questions",

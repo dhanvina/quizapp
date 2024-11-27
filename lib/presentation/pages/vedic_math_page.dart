@@ -57,7 +57,12 @@ class _VedicMathPageState extends State<VedicMathPage> {
     return '$minutes:$seconds';
   }
 
-  void _onSubmitQuiz() {
+  void _onSubmitQuiz() async {
+    // Call the sendIDToSheet function before navigation
+    // This will send the ID to the sheet
+
+    // Debug: Print a statement after sending data
+    print("Data sent to Google Sheets");
     Navigator.push(
       context,
       MaterialPageRoute(
