@@ -101,11 +101,12 @@ class _QuizPreviewState extends State<QuizPreview> {
                         ),
                       ),
                       const SizedBox(height: 20.0),
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            // TextFormField for ID input
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          // Conditionally render the TextFormField based on the title
+                          if (widget.title == "Live Quiz") ...[
                             TextFormField(
                               controller: _idController,
                               decoration: InputDecoration(
@@ -122,61 +123,60 @@ class _QuizPreviewState extends State<QuizPreview> {
                               },
                             ),
                             const SizedBox(height: 20.0),
-                            ElevatedButton(
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  // Perform actions after form is validated
-                                  // Navigate to MotivationScreen1
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MotivationScreen1(),
+                          ],
+
+                          ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate() || widget.title != "Live Quiz") {
+                                // Navigate to MotivationScreen1
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MotivationScreen1(),
+                                  ),
+                                );
+
+                                // Wait for 10 seconds
+                                await Future.delayed(Duration(seconds: 10));
+
+                                // Navigate to MotivationScreen2
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MotivationScreen2(),
+                                  ),
+                                );
+
+                                await Future.delayed(Duration(seconds: 12));
+
+                                // Navigate to CountdownPage
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CountdownPage(
+                                      title: widget.title,
+                                      quizTimeInMinutes: widget.time,
+                                      paperType: widget.paper_type,
+                                      numberOfQuestions: widget.numberOfQuestions,
                                     ),
-                                  );
-
-                                  // Wait for 10 seconds
-                                  await Future.delayed(Duration(seconds: 10));
-
-                                  // Navigate to MotivationScreen2
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MotivationScreen2(),
-                                    ),
-                                  );
-
-                                  await Future.delayed(Duration(seconds: 12));
-
-                                  // Navigate to CountdownPage
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CountdownPage(
-                                        title: widget.title,
-                                        quizTimeInMinutes: widget.time,
-                                        paperType: widget.paper_type,
-                                        numberOfQuestions:
-                                            widget.numberOfQuestions,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                backgroundColor: const Color(0xFF00A455),
-                              ),
-                              child: const Text(
-                                'NEXT',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                                  ),
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              backgroundColor: const Color(0xFF00A455),
+                            ),
+                            child: const Text(
+                              'NEXT',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
                             ),
-                          ],
+                          ),
+                        ],
                         ),
                       ),
                     ],

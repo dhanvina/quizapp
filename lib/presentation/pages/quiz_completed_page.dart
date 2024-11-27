@@ -1,6 +1,6 @@
-// presentation/pages/quiz_completed_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
 
 import '../state_management/question_provider.dart';
@@ -9,7 +9,10 @@ class QuizCompletedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final questionProvider =
-        Provider.of<QuestionProvider>(context, listen: false);
+    Provider.of<QuestionProvider>(context, listen: false);
+
+    // Save score to shared preferences
+    _saveScore(questionProvider.score);
 
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +87,7 @@ class QuizCompletedPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          Color(0xFF1E1E1E), // Button background color
+                      Color(0xFF1E1E1E), // Button background color
                       fixedSize: Size(200, 50), // Button width and height
                       padding: EdgeInsets.zero,
                       shadowColor: Color(0xFF000000), // Shadow color
@@ -111,5 +114,11 @@ class QuizCompletedPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _saveScore(int score) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('FinalScore', score);
+    print('Score saved: $score');
   }
 }
