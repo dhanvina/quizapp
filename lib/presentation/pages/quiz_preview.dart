@@ -67,7 +67,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                 const SizedBox(height: 20.0),
                 Container(
                   width: 350,
-                  height: 300,
+                  height: 350,
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -100,7 +100,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 15.0),
+                      const SizedBox(height: 10.0),
                       Text(
                         "Time - ${formatTime(widget.time)}",
                         style: const TextStyle(
@@ -109,7 +109,7 @@ class _QuizPreviewState extends State<QuizPreview> {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(height: 20.0),
+                      const SizedBox(height: 10.0),
                       Form(
                         key: _formKey,
                         child: Column(
