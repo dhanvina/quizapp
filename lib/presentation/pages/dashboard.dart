@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state_management/question_provider.dart';
 
@@ -91,7 +92,13 @@ class PaperSelectionPage extends StatelessWidget {
                               title: paper.title,
                               subtitle: "${paper.time} Minutes - Level: Easy",
                               buttonText: "TRY",
-                              onPressed: () {
+                              onPressed: () async {
+                                // Save the paper title in SharedPreferences
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('paper', paper.title);
+
+                                print('Paper title saved: ${paper.title}');
                                 provider.selectPaper(
                                     provider.papers.indexOf(paper));
                                 Navigator.push(

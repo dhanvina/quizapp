@@ -112,22 +112,24 @@ class _QuizPreviewState extends State<QuizPreview> {
                         child: Column(
                           children: [
                             // TextFormField for ID input
-                            TextFormField(
-                              controller: _idController,
-                              decoration: InputDecoration(
-                                labelText: "Enter your ID",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                            if (widget.title == "Live Quiz") ...[
+                              TextFormField(
+                                controller: _idController,
+                                decoration: InputDecoration(
+                                  labelText: "Enter your ID",
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
                                 ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your ID';
+                                  }
+                                  return null;
+                                },
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your ID';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 20.0),
+                              const SizedBox(height: 20.0),
+                            ],
                             ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
