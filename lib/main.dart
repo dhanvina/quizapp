@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider(
-          create: (context) =>
-              QuizProvider(getQuizzesUseCase), // Pass GetQuizzesUseCase here
+          create: (context) => QuizProvider(
+              quizRepository, getQuizzesUseCase), // Pass GetQuizzesUseCase here
         ),
       ],
       child: MaterialApp(

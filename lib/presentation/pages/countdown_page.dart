@@ -2,13 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:quizapp/presentation/pages/question_page.dart';
-import 'package:quizapp/presentation/pages/vedic_math_page.dart';
+import 'package:quizapp/presentation/pages/vedic_quiz.dart';
+
+import '../../domain/entities/firestore_quiz.dart';
 
 class CountdownPage extends StatefulWidget {
   final int quizTimeInMinutes;
   final String paperType;
   final String title;
   final int numberOfQuestions;
+  final List<QuizQuestion> questions;
 
   const CountdownPage({
     super.key,
@@ -16,6 +19,7 @@ class CountdownPage extends StatefulWidget {
     required this.paperType,
     required this.title,
     required this.numberOfQuestions,
+    required this.questions,
   });
 
   @override
@@ -43,9 +47,8 @@ class _CountdownPageState extends State<CountdownPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => VedicMathPage(
-                  quizTimeInMinutes: widget.quizTimeInMinutes,
-                  title: widget.title,
+                builder: (context) => VedicQuizPage(
+                  quiz: widget.questions,
                 ),
               ),
             );
