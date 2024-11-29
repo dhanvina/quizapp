@@ -267,19 +267,19 @@
         },
         {
           "type": "multiple_choice",
-          "question": "solve this:\n19\n-15\n10\n10",
+          "question": "solve this:\n20\n-10\n80\n-70",
           "options": [20, 24, 34, 45],
-          "answer": 24
+          "answer": 20
         },
         {
           "type": "multiple_choice",
-          "question": "solve this:\n12\n11\n11\n15",
-          "options": [68, 50, 49, 69],
-          "answer": 49
+          "question": "solve this:\n40\n-20\n60\n-80",
+          "options": [20, 80, 0, 10],
+          "answer": 0
         },
         {
           "type": "multiple_choice",
-          "question": "solve this:\n11\n18\n-19\n10",
+          "question": "solve this:\n60\n30\n-90\n20",
           "options": [80, 20, 70, 60],
           "answer": 20
         }
@@ -524,8 +524,8 @@
         {
           "type": "multiple_choice",
           "question": "Solve this:\n90\n-10\n10\n-10",
-          "options": [35, 23, 31, 20],
-          "answer": 20
+          "options": [70, 80, 60, 90],
+          "answer": 80
         },
         {
           "type": "multiple_choice",
@@ -586,6 +586,12 @@
           "question": "Solve this:\n48\n51\n-44\n13",
           "options": [89, 68, 78, 88],
           "answer": 68
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Solve this:\n92\n-80\n65\n11",
+          "options": [89, 68, 78, 88],
+          "answer": 88
         },
         {
           "type": "multiple_choice",
@@ -6364,3 +6370,4 @@
     }
   ]
 }
+ 
