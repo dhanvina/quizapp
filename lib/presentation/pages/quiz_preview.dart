@@ -28,7 +28,7 @@ class _QuizPreviewState extends State<QuizPreview> {
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  static const String correctPassword = "awf8a9";
+  static const String correctPassword = "fk6f!";
 
   String formatTime(int totalMinutes) {
     final int minutes = totalMinutes % 60;
