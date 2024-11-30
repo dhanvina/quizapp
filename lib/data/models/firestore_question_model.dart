@@ -7,7 +7,7 @@ class QuizModel {
   final String quizId;
   final String title;
   final String paper;
-  final bool isLive;
+  final bool is_Live;
   final String paperType;
   final int timeLimit;
   final List<QuestionModel> questions;
@@ -17,7 +17,7 @@ class QuizModel {
     required this.quizId,
     required this.title,
     required this.paper,
-    required this.isLive,
+    required this.is_Live,
     required this.paperType,
     required this.timeLimit,
     required this.questions,
@@ -34,7 +34,8 @@ class QuizModel {
         quizId: json['quiz_id'] ?? '',
         title: json['title'] ?? '',
         paper: json['paper'] ?? '',
-        isLive: json['is_live'] ?? false, // Default to false if missing
+        is_Live: json['is_Live'] ??
+            false, // Default to false if null or not a boolean
         paperType: json['paper_type'] ?? 'unknown',
         timeLimit: json['time_limit'] ?? 0,
         questions: (json['questions'] as List<dynamic> ?? [])
@@ -59,7 +60,7 @@ class QuizModel {
       'quiz_id': quizId,
       'title': title,
       'paper': paper,
-      'is_live': isLive,
+      'is_Live': is_Live,
       'paper_type': paperType,
       'time_limit': timeLimit,
       'questions': questions.map((q) => q.toFirestore()).toList(),

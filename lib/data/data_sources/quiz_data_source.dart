@@ -29,7 +29,14 @@ class QuizDataSource {
 
       // Optionally, log the first document data for a preview
       if (querySnapshot.docs.isNotEmpty) {
+        final firstDocData = querySnapshot.docs.first.data();
         logger.d('First document data: ${querySnapshot.docs.first.data()}');
+        // Check and log the value of 'isLive'
+        if (firstDocData.containsKey('is_Live')) {
+          logger.d('First quiz isLive: ${firstDocData['is_Live']}');
+        } else {
+          logger.d('First quiz isLive not found.');
+        }
       }
 
       // Convert each document into a QuizModel object and return the list.

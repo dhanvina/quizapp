@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import '../widgets/ImageSection.dart';
 import '../widgets/MainContainer.dart';
@@ -23,6 +24,9 @@ class QuizPreview extends StatefulWidget {
 }
 
 class _QuizPreviewState extends State<QuizPreview> {
+  // Logger instance for logging
+  final Logger logger = Logger();
+
   String formatTime(int totalMinutes) {
     final int minutes = totalMinutes % 60;
     final int seconds = 0;
@@ -31,6 +35,9 @@ class _QuizPreviewState extends State<QuizPreview> {
 
   @override
   Widget build(BuildContext context) {
+    // Log that the quiz preview is being built
+    logger.i('Building QuizPreview for: ${widget.title}');
+
     return Center(
       child: MainContainer(
         child: Column(

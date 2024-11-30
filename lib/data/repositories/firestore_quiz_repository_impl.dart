@@ -29,7 +29,7 @@ class QuizRepositoryImpl implements QuizRepository {
                 quizId: model.quizId,
                 title: model.title,
                 paper: model.paper,
-                isLive: model.isLive,
+                isLive: model.is_Live,
                 paperType: model.paperType,
                 timeLimit: model.timeLimit,
                 questions: model.questions
@@ -64,7 +64,7 @@ class QuizRepositoryImpl implements QuizRepository {
         quizId: model.quizId,
         title: model.title,
         paper: model.paper,
-        isLive: model.isLive,
+        isLive: model.is_Live,
         paperType: model.paperType,
         timeLimit: model.timeLimit,
         questions: model.questions
@@ -103,7 +103,7 @@ class QuizRepositoryImpl implements QuizRepository {
                 quizId: model.quizId,
                 title: model.title,
                 paper: model.paper,
-                isLive: model.isLive,
+                isLive: model.is_Live,
                 paperType: model.paperType,
                 timeLimit: model.timeLimit,
                 questions: model.questions

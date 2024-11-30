@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quizapp/presentation/pages/vedic_quiz.dart';
 
 import '../../domain/entities/firestore_quiz.dart';
 
@@ -42,14 +43,14 @@ class _CountdownPageState extends State<CountdownPage> {
         } else {
           _timer.cancel();
           if (widget.paperType == 'vedic') {
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => VedicQuizPage(
-            //       quiz: widget.questions,
-            //     ),
-            //   ),
-            // );
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VedicQuizPage(
+                  quiz: widget.questions,
+                ),
+              ),
+            );
           } else {
             // Navigator.pushReplacement(
             //   context,
