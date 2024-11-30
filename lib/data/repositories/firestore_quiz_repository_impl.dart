@@ -28,7 +28,6 @@ class QuizRepositoryImpl implements QuizRepository {
           .map((model) => Quiz(
                 quizId: model.quizId,
                 title: model.title,
-                paper: model.paper,
                 isLive: model.is_Live,
                 paperType: model.paperType,
                 timeLimit: model.timeLimit,
@@ -63,7 +62,6 @@ class QuizRepositoryImpl implements QuizRepository {
       return Quiz(
         quizId: model.quizId,
         title: model.title,
-        paper: model.paper,
         isLive: model.is_Live,
         paperType: model.paperType,
         timeLimit: model.timeLimit,
@@ -102,7 +100,6 @@ class QuizRepositoryImpl implements QuizRepository {
           .map((model) => Quiz(
                 quizId: model.quizId,
                 title: model.title,
-                paper: model.paper,
                 isLive: model.is_Live,
                 paperType: model.paperType,
                 timeLimit: model.timeLimit,

@@ -15,7 +15,7 @@ final Logger logger = Logger();
 class QuizProvider extends ChangeNotifier {
   /// The repository instance for quiz-related data.
   final QuizRepository repository;
-  List<QuizProvider> _papers = [];
+  List<Quiz> papers = [];
 
   /// The use case for fetching quizzes.
   final GetQuizzesUseCase _getQuizzesUseCase;
@@ -93,29 +93,29 @@ class QuizProvider extends ChangeNotifier {
   }
 
   /// Gets the current question from the selected quiz.
-  // QuizQuestion get currentQuestion {
-  //   if (quizzes.isNotEmpty) {
-  //     return quizzes[selectedPaperIndex].questions[currentQuestionIndex];
-  //   }
-  //   throw Exception("No quizzes or questions available.");
-  // }
+  QuizQuestion get currentQuestion {
+    if (quizzes.isNotEmpty) {
+      return quizzes[selectedPaperIndex].questions[currentQuestionIndex];
+    }
+    throw Exception("No quizzes or questions available.");
+  }
 
   /// Checks the selected answer against the correct answer.
-  // void checkAnswer(double selectedAnswer) {
-  //   try {
-  //     double correctAnswer = currentQuestion.correctAnswer;
-  //     if (selectedAnswer == correctAnswer) {
-  //       score++; // Increment score if the answer is correct
-  //       logger.i('Answer correct! Score incremented to $score.');
-  //     } else {
-  //       logger.i('Answer incorrect.');
-  //     }
-  //   } catch (e) {
-  //     // Handle the error if parsing fails
-  //     logger.e("Error parsing answer: $e");
-  //   }
-  //   notifyListeners();
-  // }
+  void checkAnswer(double selectedAnswer) {
+    try {
+      double correctAnswer = currentQuestion.correctOption;
+      if (selectedAnswer == correctAnswer) {
+        score++; // Increment score if the answer is correct
+        logger.i('Answer correct! Score incremented to $score.');
+      } else {
+        logger.i('Answer incorrect.');
+      }
+    } catch (e) {
+      // Handle the error if parsing fails
+      logger.e("Error parsing answer: $e");
+    }
+    notifyListeners();
+  }
 
   // List<QuestionPaper> get papers => _papers;
 

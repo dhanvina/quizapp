@@ -67,6 +67,7 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                           onPressed: (quiz) {
                             logger.i(
                                 'Navigating to QuizPreview for live quiz: ${quiz.title}');
+                            logger.d('Quiz data: ${quiz.questions}');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -75,6 +76,10 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                                   time: quiz.timeLimit,
                                   paper_type: quiz.paperType,
                                   numberOfQuestions: quiz.questionCount,
+                                  isLive: quiz.isLive,
+                                  timeLimit: quiz.timeLimit,
+                                  quizId: quiz.quizId,
+                                  questions: quiz.questions,
                                 ),
                               ),
                             );
@@ -88,6 +93,8 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                           onPressed: (quiz) {
                             logger.i(
                                 'Navigating to QuizPreview for practice quiz: ${quiz.title}');
+                            logger.d('Quiz data: ${quiz.questions}');
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -96,6 +103,10 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                                   time: quiz.timeLimit,
                                   paper_type: quiz.paperType,
                                   numberOfQuestions: quiz.questionCount,
+                                  isLive: quiz.isLive,
+                                  timeLimit: quiz.timeLimit,
+                                  quizId: quiz.quizId,
+                                  questions: quiz.questions,
                                 ),
                               ),
                             );

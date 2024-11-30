@@ -4,17 +4,27 @@ import 'package:quizapp/presentation/pages/countdown_page.dart';
 import 'package:quizapp/presentation/pages/motivation_screen1.dart';
 import 'package:quizapp/presentation/pages/motivation_screen2.dart';
 
+import '../../domain/entities/firestore_quiz.dart';
+
 class NextButton extends StatelessWidget {
   final String title;
   final int time;
   final String paperType;
   final int numberOfQuestions;
+  final bool isLive;
+  final int timeLimit;
+  final String quizId;
+  final List<QuizQuestion> questions;
 
   const NextButton({
     required this.title,
     required this.time,
     required this.paperType,
     required this.numberOfQuestions,
+    required this.isLive,
+    required this.timeLimit,
+    required this.quizId,
+    required this.questions,
   });
 
   @override
@@ -67,7 +77,10 @@ class NextButton extends StatelessWidget {
               quizTimeInMinutes: time,
               paperType: paperType,
               numberOfQuestions: numberOfQuestions,
-              questions: [], // Empty list of questions for now, can be populated later
+              questions: questions,
+              isLive: isLive,
+              quizId: quizId,
+              timeLimit: timeLimit,
             ),
           ),
         );

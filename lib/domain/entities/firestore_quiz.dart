@@ -21,13 +21,16 @@ class QuizQuestion {
     }
     logger.i('Correct option: $correctOption');
   }
+  @override
+  String toString() {
+    return 'Question: $question, Options: ${options?.join(', ')}, Correct Answer: $correctOption';
+  }
 }
 
 // entities/quiz.dart
 class Quiz {
   final String quizId;
   final String title;
-  final String paper;
   final bool isLive;
   final String paperType;
   final int timeLimit;
@@ -36,7 +39,6 @@ class Quiz {
   Quiz({
     required this.quizId,
     required this.title,
-    required this.paper,
     required this.isLive,
     required this.paperType,
     required this.timeLimit,
