@@ -1,83 +1,120 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
 
 import '../models/firestore_question_model.dart';
 
+/// Data source class for managing quiz-related operations in Firestore.
 class QuizDataSource {
-  final FirebaseFirestore _firestore;
+  final FirebaseFirestore
+      _firestore; // Firestore instance for database interactions.
+  final Logger logger; // Logger instance for structured logging.
 
-  QuizDataSource(this._firestore);
+  /// Constructor to initialize Firestore and Logger.
+  QuizDataSource(this._firestore) : logger = Logger();
 
-  // Fetch quizzes from Firestore
+  /// Fetches all quizzes from the 'quizzes' collection in Firestore.
+  ///
+  /// Returns:
+  /// - A list of [QuizModel] objects representing all quizzes.
+  /// - Throws an exception if the fetch operation fails.
   Future<List<QuizModel>> getQuizzes() async {
     try {
+      logger.i('Fetching quizzes from Firestore...');
+
+      // Retrieve all documents from the 'quizzes' collection.
       final querySnapshot = await _firestore.collection('quizzes').get();
 
-      // Debug: Log the raw data
+      // Iterate through each document to log its data and analyze fields.
       for (var doc in querySnapshot.docs) {
         final docData = doc.data();
-        print('Document data: $docData');
+        logger.d('Document data: $docData');
 
-        // Check the type of each field
+        // Log the field types and values.
         docData.forEach((key, value) {
-          print('Field: $key, Value: $value, Type: ${value.runtimeType}');
+          logger.d('Field: $key, Value: $value, Type: ${value.runtimeType}');
         });
 
-        // Check and convert the 'options' field to a list of integers
+        // Check and validate the 'options' field in the 'questions' field.
         if (docData['questions'] is List) {
           List<dynamic> questions = docData['questions'];
-          questions.forEach((question) {
-            print('Checking question: $question');
+          for (var question in questions) {
+            logger.d('Checking question: $question');
             if (question is Map) {
-              // Ensure the 'options' field is a list of integers
               final options = question['options'];
               if (options is List) {
-                print('Options is a list: $options');
-                options.forEach((option) {
+                logger.d('Options is a list: $options');
+                for (var option in options) {
                   if (option is int) {
-                    print('Option is an integer: $option');
+                    logger.d('Option is an integer: $option');
                   } else if (option is String) {
-                    // If the option is a string, you can try to convert it to an integer
+                    // Convert string options to integers if applicable.
                     final optionInt = int.tryParse(option);
-                    print('Converted option to integer: $optionInt');
+                    logger.d('Converted option to integer: $optionInt');
                   } else {
-                    print('Unknown type for option: $option');
+                    logger.w('Unknown type for option: $option');
                   }
-                });
+                }
               } else {
-                print('Options is not a list');
+                logger.w('Options is not a list for question: $question');
               }
             }
-          });
+          }
         }
       }
 
+      logger.i('Successfully fetched quizzes from Firestore.');
+
+      // Convert each document into a QuizModel object and return the list.
       return querySnapshot.docs
           .map((doc) => QuizModel.fromFirestore(doc.data()))
           .toList();
-    } catch (e) {
+    } catch (e, stackTrace) {
+      // Log the error and rethrow it as an exception.
+      logger.e('Failed to fetch quizzes from Firestore',
+          error: e, stackTrace: stackTrace);
       throw Exception('Failed to fetch quizzes: $e');
     }
   }
 
-  // Fetch a single quiz by ID
+  /// Fetches a single quiz by its ID from Firestore.
+  ///
+  /// Parameters:
+  /// - `quizId`: The ID of the quiz to be fetched.
+  ///
+  /// Returns:
+  /// - A [QuizModel] object representing the quiz if it exists.
+  /// - Throws an exception if the quiz is not found or the fetch operation fails.
   Future<QuizModel> fetchQuizById(String quizId) async {
     try {
+      logger.i('Fetching quiz with ID: $quizId from Firestore...');
+
+      // Retrieve the document with the specified quiz ID.
       final docSnapshot =
           await _firestore.collection('quizzes').doc(quizId).get();
+
+      // Check if the document exists in Firestore.
       if (docSnapshot.exists) {
         final data = docSnapshot.data();
         if (data != null) {
+          logger.i('Successfully fetched quiz with ID: $quizId.');
+
+          // Merge the Firestore data with the quiz ID and return the QuizModel.
           return QuizModel.fromFirestore({
             ...data,
             'quiz_id': docSnapshot.id,
           });
         } else {
+          logger.w('Document data is null for quiz ID: $quizId.');
           throw Exception('Document data is null for quiz $quizId');
         }
       } else {
+        logger.w('Quiz with ID $quizId not found.');
         throw Exception('Quiz with ID $quizId not found');
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
+      // Log the error and rethrow it as an exception.
+      logger.e('Failed to fetch quiz with ID $quizId',
+          error: e, stackTrace: stackTrace);
       throw Exception('Failed to fetch quiz with ID $quizId: $e');
     }
   }

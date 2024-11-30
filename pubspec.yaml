@@ -45,6 +45,7 @@ dependencies:
   carousel_slider: ^4.0.0
   flutter_image: ^4.1.11
   shared_preferences: ^2.3.3
+  logger: ^2.5.0
 
 
 dev_dependencies:

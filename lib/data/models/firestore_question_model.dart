@@ -1,3 +1,8 @@
+import 'package:logger/logger.dart';
+
+// Logger instance for structured logging
+final Logger logger = Logger();
+
 class QuizModel {
   final String quizId;
   final String title;
@@ -7,6 +12,7 @@ class QuizModel {
   final int timeLimit;
   final List<QuestionModel> questions;
 
+  // Constructor for the QuizModel class
   QuizModel({
     required this.quizId,
     required this.title,
@@ -17,23 +23,38 @@ class QuizModel {
     required this.questions,
   });
 
-  // Unified factory constructor
+  // Unified factory constructor to create a QuizModel from Firestore data
   factory QuizModel.fromFirestore(Map<String, dynamic> json) {
-    return QuizModel(
-      quizId: json['quiz_id'],
-      title: json['title'],
-      paper: json['paper'],
-      isLive: json['is_live'] ?? false, // Default to false if missing
-      paperType: json['paper_type'],
-      timeLimit: json['time_limit'],
-      questions: (json['questions'] as List<dynamic>)
-          .map((q) => QuestionModel.fromFirestore(
-              q as Map<String, dynamic>, json['paper_type']))
-          .toList(),
-    );
+    // Log the incoming data for troubleshooting
+    logger.i('Creating QuizModel from Firestore data: $json');
+
+    try {
+      // Create and return the QuizModel instance from the Firestore document data
+      return QuizModel(
+        quizId: json['quiz_id'],
+        title: json['title'],
+        paper: json['paper'],
+        isLive: json['is_live'] ?? false, // Default to false if missing
+        paperType: json['paper_type'],
+        timeLimit: json['time_limit'],
+        questions: (json['questions'] as List<dynamic>)
+            .map((q) => QuestionModel.fromFirestore(
+                q as Map<String, dynamic>, json['paper_type']))
+            .toList(),
+      );
+    } catch (e, stackTrace) {
+      // Log any error that occurs while creating the model
+      logger.e('Error creating QuizModel from Firestore',
+          error: e, stackTrace: stackTrace);
+      rethrow; // Re-throw the error after logging
+    }
   }
 
+  // Convert the QuizModel instance back to a Firestore document map
   Map<String, dynamic> toFirestore() {
+    // Log the data being converted to Firestore format
+    logger.i('Converting QuizModel to Firestore format: $this');
+
     return {
       'quiz_id': quizId,
       'title': title,
@@ -46,31 +67,47 @@ class QuizModel {
   }
 }
 
-// QuestionModel
+// QuestionModel class to represent individual questions in the quiz
 class QuestionModel {
   final String question;
   final double correctOption;
   final List<dynamic>? options;
 
+  // Constructor for QuestionModel class
   QuestionModel({
     required this.question,
     required this.correctOption,
     this.options,
   });
 
+  // Factory constructor to create a QuestionModel from Firestore data
   factory QuestionModel.fromFirestore(
       Map<String, dynamic> json, String paperType) {
-    return QuestionModel(
-      question: json['question'] ?? 'No question provided',
-      correctOption: _convertToInt(json['correct_option']),
-      options: paperType == 'mcq'
-          ? _convertToOptions(json['options'])
-          : [], // No options for fill
-    );
+    // Log the incoming question data
+    logger.i('Creating QuestionModel from Firestore data: $json');
+
+    try {
+      // Return the QuestionModel with proper fields and options based on paper type
+      return QuestionModel(
+        question: json['question'] ??
+            'No question provided', // Default to a placeholder if missing
+        correctOption: _convertToInt(json['correct_option']),
+        options: paperType == 'mcq'
+            ? _convertToOptions(json['options'])
+            : [], // No options for fill-in-the-blank questions
+      );
+    } catch (e, stackTrace) {
+      // Log errors that occur while creating the QuestionModel
+      logger.e('Error creating QuestionModel from Firestore',
+          error: e, stackTrace: stackTrace);
+      rethrow; // Re-throw the error after logging
+    }
   }
 
-  // Helper method to safely convert correct_option to int or double
+  // Helper method to safely convert the correct_option to int or double
   static dynamic _convertToInt(dynamic value) {
+    logger.d('Converting correct_option value: $value');
+
     if (value is int) {
       return value;
     } else if (value is String) {
@@ -78,20 +115,24 @@ class QuestionModel {
     } else if (value is double) {
       return value;
     } else {
-      return 0;
+      return 0; // Default fallback value
     }
   }
 
-  // Helper method to handle missing or null options
+  // Helper method to handle and convert options to a List<dynamic> format
   static List<dynamic> _convertToOptions(dynamic value) {
+    logger.d('Converting options value: $value');
+
     if (value == null) {
-      return [];
+      return []; // Return an empty list if no options are provided
     }
-    // Convert to List<dynamic> to support both int and double options
-    return List<dynamic>.from(value);
+    return List<dynamic>.from(
+        value); // Convert to List<dynamic> to support both int and double options
   }
 
+  // Convert the QuestionModel instance back to Firestore document format
   Map<String, dynamic> toFirestore() {
+    logger.i('Converting QuestionModel to Firestore format: $this');
     return {
       'question': question,
       'correct_option': correctOption,
