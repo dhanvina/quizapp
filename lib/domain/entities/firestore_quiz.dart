@@ -1,4 +1,9 @@
+import 'package:logger/logger.dart';
+
 // entities/question.dart
+// Initialize logger instance for logging
+final Logger logger = Logger();
+
 class QuizQuestion {
   final String question;
   final double correctOption;
@@ -8,7 +13,14 @@ class QuizQuestion {
     required this.question,
     required this.correctOption,
     this.options,
-  });
+  }) {
+    // Log details when a new QuizQuestion is created
+    logger.i('QuizQuestion created: $question');
+    if (options != null) {
+      logger.i('Options: $options');
+    }
+    logger.i('Correct option: $correctOption');
+  }
 }
 
 // entities/quiz.dart
@@ -29,7 +41,20 @@ class Quiz {
     required this.paperType,
     required this.timeLimit,
     required this.questions,
-  });
+  }) {
+    // Log details when a new Quiz is created
+    logger.i('Quiz created with ID: $quizId');
+    logger.i('Title: $title');
+    logger.i('Paper type: $paperType');
+    logger.i('Time limit: $timeLimit minutes');
+    logger.i('Is live: $isLive');
+    logger.i('Number of questions: ${questions.length}');
+  }
 
-  int get questionCount => questions.length;
+  // Method to get the count of questions in the quiz
+  int get questionCount {
+    // Log the count of questions each time it's accessed
+    logger.i('Number of questions accessed: ${questions.length}');
+    return questions.length;
+  }
 }
