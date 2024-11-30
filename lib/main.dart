@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +15,16 @@ import 'data/repositories/firestore_quiz_repository_impl.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  // Ensure that all bindings are initialized before running the app
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase with platform-specific options
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  log('Firebase initialized successfully'); // Log Firebase initialization status
+
   runApp(const MyApp());
 }
 
@@ -25,15 +33,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppRouter appRouter = AppRouter();
+    final AppRouter appRouter = AppRouter(); // Initialize the app router
 
     // Create instances of the required data sources and repositories
-    final quizDataSource = QuizDataSource(FirebaseFirestore
-        .instance); // Replace with your actual QuizDataSource implementation
-    final quizRepository =
-        QuizRepositoryImpl(quizDataSource); // Instantiate QuizRepositoryImpl
-    final getQuizzesUseCase =
-        GetQuizzesUseCase(quizRepository); // Pass it to the use case
+    final quizDataSource = QuizDataSource(FirebaseFirestore.instance);
+    log('QuizDataSource initialized'); // Log the initialization of QuizDataSource
+
+    final quizRepository = QuizRepositoryImpl(quizDataSource);
+    log('QuizRepositoryImpl initialized'); // Log the initialization of QuizRepositoryImpl
+
+    final getQuizzesUseCase = GetQuizzesUseCase(quizRepository);
+    log('GetQuizzesUseCase initialized'); // Log the initialization of GetQuizzesUseCase
 
     return MultiProvider(
       providers: [
@@ -61,10 +71,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Automatically navigate to PaperSelectionPage without showing a success message.
+    // Use a post-frame callback to automatically navigate to PaperSelectionPage
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.pushReplacementNamed(context, '/paperSelection');
-      print('Navigation to PaperSelectionPage successful');
+      log('Navigated to PaperSelectionPage'); // Log navigation success
     });
 
     return Scaffold(
@@ -72,8 +82,7 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: const Center(
-        child:
-            CircularProgressIndicator(), // Show a loading indicator while navigating
+        child: CircularProgressIndicator(),
       ),
     );
   }

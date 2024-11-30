@@ -64,12 +64,6 @@ class QuizProvider extends ChangeNotifier {
       // Log the quizzes fetched successfully.
       logger
           .i('Quizzes fetched successfully: ${quizzes.length} quizzes loaded.');
-
-      // Set the paper title and time for the first quiz (if available).
-      if (quizzes.isNotEmpty) {
-        paperTitle = quizzes[0].title;
-        paperTime = quizzes[0].timeLimit;
-      }
     } catch (e) {
       // Log any errors encountered during the fetch.
       logger.e('Error occurred while fetching quizzes: $e');

@@ -41,15 +41,7 @@ class Quiz {
     required this.paperType,
     required this.timeLimit,
     required this.questions,
-  }) {
-    // Log details when a new Quiz is created
-    logger.i('Quiz created with ID: $quizId');
-    logger.i('Title: $title');
-    logger.i('Paper type: $paperType');
-    logger.i('Time limit: $timeLimit minutes');
-    logger.i('Is live: $isLive');
-    logger.i('Number of questions: ${questions.length}');
-  }
+  });
 
   // Method to get the count of questions in the quiz
   int get questionCount {
