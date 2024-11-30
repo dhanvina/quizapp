@@ -2,13 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quizapp/data/data_sources/json_data_source.dart';
-import 'package:quizapp/data/data_sources/quiz_data_source.dart'; // Ensure this import
-import 'package:quizapp/data/repositories/question_repository.dart';
+import 'package:quizapp/data/data_sources/quiz_data_source.dart';
 import 'package:quizapp/domain/use_cases/firestore_fetch_quiz.dart';
 import 'package:quizapp/presentation/pages/dashboard.dart';
 import 'package:quizapp/presentation/pages/login_page.dart';
-import 'package:quizapp/presentation/state_management/question_provider.dart';
 import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/utils/app_router.dart';
 
@@ -31,7 +28,6 @@ class MyApp extends StatelessWidget {
     final AppRouter appRouter = AppRouter();
 
     // Create instances of the required data sources and repositories
-    final jsonDataSource = JsonDataSource();
     final quizDataSource = QuizDataSource(FirebaseFirestore
         .instance); // Replace with your actual QuizDataSource implementation
     final quizRepository =
@@ -41,11 +37,6 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => QuestionProvider(
-            repository: QuestionRepository(jsonDataSource),
-          ),
-        ),
         ChangeNotifierProvider(
           create: (context) => QuizProvider(
               quizRepository, getQuizzesUseCase), // Pass GetQuizzesUseCase here

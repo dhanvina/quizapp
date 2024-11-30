@@ -2,100 +2,102 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/student.dart';
 import '../../domain/repository/student_repository.dart';
 import '../state_management/login_state.dart';
 
+// Create a Logger instance
+final Logger logger = Logger();
+
 class LoginNotifier extends ChangeNotifier {
   final StudentRepository studentRepository;
 
+  // Constructor to initialize the repository
   LoginNotifier({required this.studentRepository});
 
   LoginState _state = LoginInitial();
   LoginState get state => _state;
 
-  Student? _loggedInStudent; // Hold the logged-in student data
+  Student? _loggedInStudent; // Holds the logged-in student data
   Student? get loggedInStudent => _loggedInStudent;
 
-  void login(
+  /// Handles the login functionality for a student.
+  /// Validates input, checks credentials, and manages login state.
+  Future<void> login(
     String fullName,
     String roll_number,
     String school_code,
     String password,
     BuildContext context,
   ) async {
-    // Validation
+    // Validate inputs
     if (fullName.isEmpty ||
         roll_number.isEmpty ||
         school_code.isEmpty ||
         password.isEmpty) {
+      logger.w('Validation failed: One or more fields are empty.');
       _state = LoginFailure("All fields are required.");
       notifyListeners();
       return;
     }
 
     try {
+      // Update state to loading and notify listeners
       _state = LoginLoading();
       notifyListeners();
+      logger.i(
+          'Login initiated for Roll Number: $roll_number, School Code: $school_code');
 
-      // Debug: Check if validation passed
-      print('Validation passed, attempting to fetch student...');
-
-      // Fetch student details by school code and roll number
+      // Fetch student details from the repository
       final Either<Exception, Student?> result = await studentRepository
           .getStudentBySchoolCodeAndRollNumber(school_code, roll_number);
 
-      // Debug: Log the result of the student fetch
-      print('Result from repository: $result');
-
+      // Handle the repository result
       result.fold(
         (error) {
-          // Debug: Log the error
-          print('Error occurred: ${error.toString()}');
+          // Log the error and update the state
+          logger.e('Error fetching student: ${error.toString()}');
           _state = LoginFailure("An error occurred: ${error.toString()}");
           notifyListeners();
         },
         (student) async {
-          // Debug: Check what the student data is
-          print('Fetched student: $student');
-
           if (student == null) {
-            // Debug: Log if student is null
-            print('No matching student found');
+            // Log if no matching student is found
+            logger.w(
+                'No matching student found for Roll Number: $roll_number, School Code: $school_code');
             _state = LoginFailure("Student not found.");
           } else if (student.roll_number != roll_number ||
               student.school_code != school_code) {
-            // Debug: Log if credentials don't match
-            print(
-                'Invalid credentials. Expected Roll Number: ${student.roll_number}, School Code: ${student.school}');
+            // Log if credentials don't match
+            logger.w('Invalid credentials provided.');
             _state =
                 LoginFailure("Invalid credentials. Please check your details.");
           } else {
-            // Debug: Log successful login
-            print('Login successful! Welcome, ${student.name}');
+            // Log successful login
+            logger.i('Login successful for student: ${student.name}');
             _loggedInStudent = student;
-            print(
-                'Logged in student: ${_loggedInStudent?.name ?? 'No student data'}');
             _state =
                 LoginSuccess("Login successful! Welcome, ${student.name}.");
 
-            // Save to Shared Preferences
+            // Save logged-in student details to SharedPreferences
             final prefs = await SharedPreferences.getInstance();
-            final studentJson = jsonEncode(
-                student.toJson()); // Assuming Student has a toJson method
+            final studentJson =
+                jsonEncode(student.toJson()); // Assuming Student has toJson
             await prefs.setString('loggedInStudent', studentJson);
+            logger.i('Student data saved to SharedPreferences.');
 
-            // Navigate to home page after successful login
+            // Navigate to the home page
             Navigator.pushReplacementNamed(context, '/home');
           }
           notifyListeners();
         },
       );
     } catch (e) {
-      // Debug: Log any unexpected errors
-      print('An unexpected error occurred: $e');
+      // Log unexpected errors and update state
+      logger.e('Unexpected error during login: $e');
       _state = LoginFailure("An error occurred: ${e.toString()}");
       notifyListeners();
     }

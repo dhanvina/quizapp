@@ -31,15 +31,15 @@ class QuizModel {
     try {
       // Create and return the QuizModel instance from the Firestore document data
       return QuizModel(
-        quizId: json['quiz_id'],
-        title: json['title'],
-        paper: json['paper'],
+        quizId: json['quiz_id'] ?? '',
+        title: json['title'] ?? '',
+        paper: json['paper'] ?? '',
         isLive: json['is_live'] ?? false, // Default to false if missing
-        paperType: json['paper_type'],
-        timeLimit: json['time_limit'],
-        questions: (json['questions'] as List<dynamic>)
+        paperType: json['paper_type'] ?? 'unknown',
+        timeLimit: json['time_limit'] ?? 0,
+        questions: (json['questions'] as List<dynamic> ?? [])
             .map((q) => QuestionModel.fromFirestore(
-                q as Map<String, dynamic>, json['paper_type']))
+                q as Map<String, dynamic>, json['paper_type'] ?? 'unknown'))
             .toList(),
       );
     } catch (e, stackTrace) {

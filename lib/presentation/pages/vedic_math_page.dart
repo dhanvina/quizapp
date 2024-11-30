@@ -4,7 +4,7 @@
 // import 'package:provider/provider.dart';
 // import 'package:quizapp/domain/entities/question.dart';
 // import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
-// import 'package:quizapp/presentation/state_management/quiz_provider.dart'; // Use QuizProvider instead
+// import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 //
 // import '../widgets/vedic_text.dart';
 //

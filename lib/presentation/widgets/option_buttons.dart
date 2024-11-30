@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/presentation/state_management/question_provider.dart';
+import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/presentation/widgets/custom_button.dart';
 import 'package:quizapp/utils/constants.dart';
 
 class OptionButtons extends StatefulWidget {
-  final QuestionProvider questionProvider;
+  final QuizProvider questionProvider;
   final question;
   final Function(int) onOptionSelected;
 
