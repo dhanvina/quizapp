@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:logger/logger.dart';
 
+import '../entities/quiz_result.dart';
 import '../entities/student.dart';
 
 // Initialize the logger instance for logging
@@ -14,5 +15,9 @@ abstract class StudentRepository {
   Future<Either<Exception, Student?>> getStudentBySchoolCodeAndRollNumber(
       String school_code, String roll_number);
 
-// Future<void> updateQuizResult(String studentId, QuizResult quizResult);
+  Future<Either<Exception, void>> updateQuizResults(
+    String schoolCode,
+    String rollNumber,
+    QuizResult quizResult,
+  );
 }

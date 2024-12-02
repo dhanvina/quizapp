@@ -11,7 +11,10 @@ import 'package:quizapp/presentation/pages/login_page.dart';
 import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/utils/app_router.dart';
 
+import 'data/data_sources/student_data_source.dart';
 import 'data/repositories/firestore_quiz_repository_impl.dart';
+import 'data/repositories/student_repository_impl.dart';
+import 'domain/use_cases/update_quiz_results_use_case.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -45,11 +48,20 @@ class MyApp extends StatelessWidget {
     final getQuizzesUseCase = GetQuizzesUseCase(quizRepository);
     log('GetQuizzesUseCase initialized'); // Log the initialization of GetQuizzesUseCase
 
+    // Corrected instantiation of StudentDataSource
+    final studentDataSource = StudentDataSource(FirebaseFirestore.instance);
+    final studentRepository =
+        StudentRepositoryImpl(dataSource: studentDataSource);
+    final getStudentUseCase = UpdateQuizResultsUseCase(studentRepository);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => QuizProvider(
-              quizRepository, getQuizzesUseCase), // Pass GetQuizzesUseCase here
+              quizRepository: quizRepository,
+              getQuizzesUseCase: getQuizzesUseCase,
+              updateQuizResultsUseCase:
+                  getStudentUseCase), // Pass GetQuizzesUseCase here
         ),
       ],
       child: MaterialApp(

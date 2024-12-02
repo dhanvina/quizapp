@@ -3,6 +3,7 @@ import 'package:logger/logger.dart'; // Logger package
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_preview.dart';
 import 'package:quizapp/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../state_management/quiz_provider.dart';
 import '../widgets/quiz_section.dart';
@@ -64,7 +65,18 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                         QuizSection(
                           title: "Live Papers", // Section for live quizzes
                           quizzes: liveQuizzes,
-                          onPressed: (quiz) {
+                          onPressed: (quiz) async {
+                            logger.i('Live Quiz selected: ${quiz.quizId}');
+                            logger.i(
+                                'onPressed triggered for quizId: ${quiz.quizId}');
+
+                            // Save the selected quizId to SharedPreferences
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setString(
+                                'selectedQuizId', quiz.quizId);
+                            logger.i(
+                                'Saved quizId: ${quiz.quizId} to SharedPreferences.');
+
                             logger.i(
                                 'Navigating to QuizPreview for live quiz: ${quiz.title}');
                             logger.d('Quiz data: ${quiz.questions}');
@@ -91,6 +103,7 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                               "Practice Papers", // Section for practice quizzes
                           quizzes: practiceQuizzes,
                           onPressed: (quiz) {
+                            logger.i('Practice Quiz selected: ${quiz.quizId}');
                             logger.i(
                                 'Navigating to QuizPreview for practice quiz: ${quiz.title}');
                             logger.d('Quiz data: ${quiz.questions}');

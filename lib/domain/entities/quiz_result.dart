@@ -10,19 +10,16 @@ final Logger logger = Logger();
 class QuizResult {
   final String quizId;
   final int score;
-  final int timeTaken;
   final DateTime timestamp;
 
   QuizResult({
     required this.quizId,
     required this.score,
-    required this.timeTaken,
     required this.timestamp,
   }) {
     // Log details when a QuizResult object is created
     logger.i('QuizResult created: $quizId');
     logger.i('Score: $score');
-    logger.i('Time taken: $timeTaken seconds');
     logger.i('Timestamp: $timestamp');
   }
 
@@ -35,8 +32,24 @@ class QuizResult {
     return QuizResultModel(
       quizId: quizId,
       score: score,
-      timeTaken: timeTaken,
+      // Convert DateTime to Timestamp for Firestore
       timestamp: Timestamp.fromDate(timestamp),
+    );
+  }
+
+  // Convert Firestore's Timestamp back to DateTime
+  static QuizResult fromDataModel(QuizResultModel model) {
+    // Convert Timestamp to DateTime
+    DateTime timestamp = model.timestamp.toDate();
+
+    // Log the conversion process
+    logger.i('Converting QuizResultModel to QuizResult: $model.quizId');
+
+    // Return a QuizResult object
+    return QuizResult(
+      quizId: model.quizId,
+      score: model.score,
+      timestamp: timestamp,
     );
   }
 }

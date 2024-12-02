@@ -81,7 +81,6 @@ flutter:
     - assets/quiz_app_abacus.png
     - assets/farm_background.png
     - assets/quiz_preview.png
-    - assets/questions.json
     - assets/Ears.gif
     - assets/breathing.gif
 

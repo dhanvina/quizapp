@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:logger/logger.dart';
 import 'package:quizapp/data/data_sources/student_data_source.dart';
 
+import '../../domain/entities/quiz_result.dart';
 import '../../domain/entities/student.dart';
 import '../../domain/repository/student_repository.dart';
 import '../models/student_model.dart';
@@ -56,9 +57,32 @@ class StudentRepositoryImpl implements StudentRepository {
     }
   }
 
-// You can add additional methods here, for example:
-// @override
-// Future<void> updateQuizResult(String studentId, QuizResult quizResult) async {
-//   await dataSource.updateQuizResult(studentId, quizResult.toDataModel());
-// }
+  // Update quiz results for a student
+  // Update quiz results for a student
+  @override
+  Future<Either<Exception, void>> updateQuizResults(
+      String schoolCode, String rollNumber, QuizResult quizResult) async {
+    try {
+      // Convert domain QuizResult to data layer QuizResultModel
+      final quizResultModel = quizResult.toDataModel(); // Use toDataModel()
+
+      // Delegate to the data source to update quiz results in Firestore
+      await dataSource.updateQuizResults(
+          schoolCode,
+          rollNumber,
+          quizResultModel.quizId,
+          quizResultModel.score,
+          quizResultModel.timestamp as String // Pass the Timestamp directly
+          );
+
+      // Return Right to indicate success
+      return Right(null); // Indicating successful execution
+    } catch (e, stackTrace) {
+      logger.e('Error in StudentRepositoryImpl: $e',
+          error: e, stackTrace: stackTrace);
+
+      // Return Left to indicate failure
+      return Left(Exception('Error updating quiz results: $e'));
+    }
+  }
 }

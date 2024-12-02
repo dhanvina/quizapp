@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart'; // Import the logger package
+import 'package:quizapp/presentation/pages/question_page.dart';
 import 'package:quizapp/presentation/pages/vedic_math_page.dart';
 
 import '../../domain/entities/firestore_quiz.dart';
@@ -90,16 +91,30 @@ class _CountdownPageState extends State<CountdownPage> {
               logger.e("Error navigating to quiz page: $e");
             }
           } else {
-            // Uncomment this block for other paper types (e.g., regular quiz)
-            // logger.i('Navigating to regular quiz page');
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => QuestionPage(
-            //       quizTimeInMinutes: widget.quizTimeInMinutes,
-            //     ),
-            //   ),
-            // );
+            logger.i(
+                "Navigating to AbacusQuizPage with quiz data: ${widget.title}");
+            logger.i("Questions: ${widget.questions}");
+
+            Quiz quizData = Quiz(
+              quizId: widget
+                  .quizId, // pass the quizId from your widget or wherever it's defined
+              title: widget.title, // pass the title
+              isLive: widget.isLive, // pass the isLive status
+              paperType: widget.paperType, // pass the paperType
+              timeLimit: widget.timeLimit, // pass the timeLimit
+              questions: widget.questions, // pass the list of QuizQuestion
+            );
+            try {
+              logger.i('Navigating to abacus page');
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QuestionPage(quiz: quizData),
+                ),
+              );
+            } catch (e) {
+              logger.e("Error navigating to quiz page: $e");
+            }
           }
         }
       });

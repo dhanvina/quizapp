@@ -14,6 +14,16 @@ class QuizCompletedPage extends StatelessWidget {
     // Access the QuizProvider to fetch quiz data like score and questions.
     final quizProvider = Provider.of<QuizProvider>(context, listen: false);
 
+    // Save the score when the page is displayed.
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      quizProvider.saveScore();
+      final savedScore = await quizProvider.getScore();
+      developer.log(
+        'Score saved in SharedPreferences: $savedScore',
+        name: 'QuizCompletedPage',
+      );
+    });
+
     // Log the user's score and selected quiz paper information.
     developer.log(
       'Quiz Completed - Score: ${quizProvider.score}, '
