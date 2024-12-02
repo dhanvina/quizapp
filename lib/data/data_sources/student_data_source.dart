@@ -4,8 +4,7 @@ import 'package:quizapp/data/models/student_model.dart';
 
 /// Data source class for handling student-related operations in Firestore.
 class StudentDataSource {
-  final FirebaseFirestore
-      _firestore; // Firestore instance for database interactions.
+  final FirebaseFirestore _firestore; // Firestore instance for database interactions.
   final Logger logger; // Logger instance for structured logging.
 
   /// Constructor to initialize the Firestore instance and logger.
@@ -24,19 +23,17 @@ class StudentDataSource {
   /// - A [StudentModel] object if the student exists.
   /// - `null` if no matching student is found.
   Future<StudentModel?> getStudentBySchoolCodeAndRollNumber(
-      String school_code, String roll_number) async {
+      String schoolCode, String rollNumber) async {
     try {
       // Log the parameters being used for the query.
       logger.i(
-          'Fetching student from Firestore with school_code: $school_code, roll_number: $roll_number');
+          'Fetching student from Firestore with school_code: $schoolCode, roll_number: $rollNumber');
 
       // Query Firestore to find a student matching the school code and roll number.
       final querySnapshot = await _firestore
           .collection('students') // Collection name in Firestore.
-          .where('school_code',
-              isEqualTo: school_code) // Filter by school code.
-          .where('roll_number',
-              isEqualTo: roll_number) // Filter by roll number.
+          .where('school_code', isEqualTo: schoolCode) // Filter by school code.
+          .where('roll_number', isEqualTo: rollNumber) // Filter by roll number.
           .get();
 
       // Check if the query returned any documents.
@@ -50,7 +47,7 @@ class StudentDataSource {
       } else {
         // Log a warning if no student matches the query.
         logger.w(
-            'No student found in Firestore with school_code: $school_code, roll_number: $roll_number');
+            'No student found in Firestore with school_code: $schoolCode, roll_number: $rollNumber');
         return null;
       }
     } catch (e, stackTrace) {
@@ -61,14 +58,21 @@ class StudentDataSource {
     }
   }
 
-  // Updates the student's quiz results in Firestore.
+  /// Updates the student's quiz results in Firestore.
+  ///
+  /// Parameters:
+  /// - `schoolCode`: The school code of the student.
+  /// - `rollNumber`: The roll number of the student.
+  /// - `quizId`: The ID of the quiz.
+  /// - `score`: The score obtained in the quiz.
+  /// - `timestamp`: The time the quiz was completed.
   Future<void> updateQuizResults(
-    String schoolCode,
-    String rollNumber,
-    String quizId,
-    int score,
-    String timestamp,
-  ) async {
+      String schoolCode,
+      String rollNumber,
+      String quizId,
+      int score,
+      DateTime timestamp, // Accepting DateTime instead of String
+      ) async {
     try {
       logger.i(
           'Updating quiz results for student with quizId: $quizId, schoolCode: $schoolCode, rollNumber: $rollNumber, score: $score, timestamp: $timestamp');
@@ -84,11 +88,14 @@ class StudentDataSource {
       if (querySnapshot.docs.isNotEmpty) {
         final studentDoc = querySnapshot.docs.first;
 
+        // Convert DateTime to Firestore Timestamp.
+        final firestoreTimestamp = Timestamp.fromDate(timestamp);
+
         // Add the quiz result to the student's quiz_results subcollection.
         await studentDoc.reference.collection('quiz_results').add({
           'quiz_id': quizId,
           'score': score,
-          'timestamp': timestamp,
+          'timestamp': firestoreTimestamp, // Store as Firestore Timestamp
         });
 
         logger.d('Successfully updated quiz results for student');

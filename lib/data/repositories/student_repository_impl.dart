@@ -7,7 +7,6 @@ import '../../domain/entities/student.dart';
 import '../../domain/repository/student_repository.dart';
 import '../models/student_model.dart';
 
-// Initialize logger instance for logging
 final Logger logger = Logger();
 
 class StudentRepositoryImpl implements StudentRepository {
@@ -15,7 +14,6 @@ class StudentRepositoryImpl implements StudentRepository {
 
   StudentRepositoryImpl({required this.dataSource});
 
-  // Fetch student by school code and roll number
   @override
   Future<Either<Exception, Student?>> getStudentBySchoolCodeAndRollNumber(
       String schoolCode, String rollNumber) async {
@@ -23,14 +21,12 @@ class StudentRepositoryImpl implements StudentRepository {
         'Fetching student with schoolCode: $schoolCode, rollNumber: $rollNumber');
 
     try {
-      // Fetch student from the data source
       final StudentModel? studentModel = await dataSource
           .getStudentBySchoolCodeAndRollNumber(schoolCode, rollNumber);
 
       if (studentModel != null) {
         logger.i('Student found: ${studentModel.name}');
 
-        // Convert student model to student entity
         final student = Student(
             name: studentModel.name,
             school: studentModel.school,
@@ -39,49 +35,35 @@ class StudentRepositoryImpl implements StudentRepository {
             hasAttemptedLiveQuiz: studentModel.hasAttemptedLiveQuiz,
             quizResults: studentModel.quizResults);
 
-        // Return student wrapped in a Right (success)
         return Right(student);
       } else {
         logger.w(
             'No matching student found for schoolCode: $schoolCode, rollNumber: $rollNumber');
-
-        // Return error in case no student is found (Left)
         return Left(Exception("Login failed: No matching student found"));
       }
     } catch (e, stackTrace) {
       logger.e('Error in StudentRepositoryImpl: $e',
           error: e, stackTrace: stackTrace);
-
-      // Return error wrapped in Left
       return Left(Exception("Login failed: $e"));
     }
   }
 
-  // Update quiz results for a student
-  // Update quiz results for a student
   @override
   Future<Either<Exception, void>> updateQuizResults(
       String schoolCode, String rollNumber, QuizResult quizResult) async {
     try {
-      // Convert domain QuizResult to data layer QuizResultModel
-      final quizResultModel = quizResult.toDataModel(); // Use toDataModel()
-
-      // Delegate to the data source to update quiz results in Firestore
       await dataSource.updateQuizResults(
-          schoolCode,
-          rollNumber,
-          quizResultModel.quizId,
-          quizResultModel.score,
-          quizResultModel.timestamp as String // Pass the Timestamp directly
-          );
+        schoolCode,
+        rollNumber,
+        quizResult.quizId,
+        quizResult.score,
+        quizResult.timestamp, // Pass DateTime directly
+      );
 
-      // Return Right to indicate success
-      return Right(null); // Indicating successful execution
+      return Right(null); // Success
     } catch (e, stackTrace) {
       logger.e('Error in StudentRepositoryImpl: $e',
           error: e, stackTrace: stackTrace);
-
-      // Return Left to indicate failure
       return Left(Exception('Error updating quiz results: $e'));
     }
   }
