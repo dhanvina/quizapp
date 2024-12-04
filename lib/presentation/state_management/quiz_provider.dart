@@ -1,9 +1,8 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore package
-import 'package:firebase_core/firebase_core.dart'; // Firebase initialization
 
 import '../../domain/entities/firestore_quiz.dart';
 import '../../domain/entities/quiz_result.dart';
@@ -47,7 +46,8 @@ class QuizProvider extends ChangeNotifier {
 
     try {
       quizzes = await getQuizzesUseCase.execute();
-      logger.i('Quizzes fetched successfully: ${quizzes.length} quizzes loaded.');
+      logger
+          .i('Quizzes fetched successfully: ${quizzes.length} quizzes loaded.');
     } catch (e) {
       logger.e('Error occurred while fetching quizzes: $e');
       quizzes = [];
@@ -163,7 +163,7 @@ class QuizProvider extends ChangeNotifier {
     try {
       logger.i('Starting updateQuizResults...');
       final prefs = await SharedPreferences.getInstance();
-      final quizId = prefs.getString('selectedLiveQuizId') ?? "unknown_quiz";
+      final quizId = prefs.getString('selectedQuizId') ?? "unknown_quiz";
       final timestamp = DateTime.now();
 
       final quizResult = QuizResult(
@@ -173,7 +173,7 @@ class QuizProvider extends ChangeNotifier {
       );
 
       // Save quiz results to Firestore
-      await saveQuizResultToFirestore(quizResult);
+      // await saveQuizResultToFirestore(quizResult);
 
       final result = await updateQuizResultsUseCase.call(
         schoolCode,
@@ -182,10 +182,10 @@ class QuizProvider extends ChangeNotifier {
       );
 
       result.fold(
-            (failure) {
+        (failure) {
           logger.e('Failed to update quiz results: $failure');
         },
-            (_) {
+        (_) {
           logger.i('Quiz results updated successfully.');
         },
       );
@@ -195,20 +195,20 @@ class QuizProvider extends ChangeNotifier {
   }
 
   /// Saves the quiz result to Firestore.
-  Future<void> saveQuizResultToFirestore(QuizResult quizResult) async {
-    try {
-      final firestore = FirebaseFirestore.instance;
-      final resultsCollection = firestore.collection('quiz_results');
-
-      logger.i('Preparing to save quiz result to Firestore...');
-      await resultsCollection.add({
-        'quizId': quizResult.quizId,
-        'score': quizResult.score,
-        'timestamp': quizResult.timestamp.toIso8601String(),
-      });
-      logger.i('Quiz result saved to Firestore successfully.');
-    } catch (e) {
-      logger.e('Error while saving quiz result to Firestore: $e');
-    }
-  }
+  // Future<void> saveQuizResultToFirestore(QuizResult quizResult) async {
+  //   try {
+  //     final firestore = FirebaseFirestore.instance;
+  //     final resultsCollection = firestore.collection('quiz_results');
+  //
+  //     logger.i('Preparing to save quiz result to Firestore...');
+  //     await resultsCollection.add({
+  //       'quizId': quizResult.quizId,
+  //       'score': quizResult.score,
+  //       'timestamp': quizResult.timestamp.toIso8601String(),
+  //     });
+  //     logger.i('Quiz result saved to Firestore successfully.');
+  //   } catch (e) {
+  //     logger.e('Error while saving quiz result to Firestore: $e');
+  //   }
+  // }
 }

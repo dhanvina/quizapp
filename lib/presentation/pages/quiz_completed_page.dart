@@ -24,7 +24,7 @@ class QuizCompletedPage extends StatelessWidget {
       // Firestore integration: Update quiz results in Firestore.
       try {
         developer.log('Attempting to save results to Firestore...');
-        await quizProvider.updateQuizResults("schoolCode", "rollNumber");
+        await quizProvider.updateQuizResults("BA002", "102");
         developer.log('Quiz results saved to Firestore successfully.');
       } catch (e) {
         developer.log('Failed to save quiz results to Firestore: $e');
@@ -34,7 +34,7 @@ class QuizCompletedPage extends StatelessWidget {
     // Log the user's score and selected quiz paper information.
     developer.log(
       'Quiz Completed - Score: ${quizProvider.score}, '
-          'Total Questions: ${quizProvider.totalQuestions}',
+      'Total Questions: ${quizProvider.totalQuestions}',
       name: 'QuizCompletedPage',
     );
 
@@ -121,7 +121,7 @@ class QuizCompletedPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                      const Color(0xFF1E1E1E), // Button background.
+                          const Color(0xFF1E1E1E), // Button background.
                       fixedSize: const Size(200, 50), // Button size.
                       padding: EdgeInsets.zero,
                       shadowColor: const Color(0xFF000000), // Shadow color.

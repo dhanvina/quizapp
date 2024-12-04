@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -83,10 +81,10 @@ class LoginNotifier extends ChangeNotifier {
                 LoginSuccess("Login successful! Welcome, ${student.name}.");
 
             // Save logged-in student details to SharedPreferences
-            final prefs = await SharedPreferences.getInstance();
-            final studentJson =
-                jsonEncode(student.toJson()); // Assuming Student has toJson
-            await prefs.setString('loggedInStudent', studentJson);
+            final prefs = await SharedPreferences
+                .getInstance(); // Assuming Student has toJson
+            await prefs.setString('rollNumber', student.roll_number);
+            await prefs.setString('schoolCode', student.school_code);
             logger.i('Student data saved to SharedPreferences.');
 
             // Navigate to the home page
