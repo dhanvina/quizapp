@@ -1,6 +1,20 @@
+// Project-level build.gradle
+
+buildscript {
+    repositories {
+        google()  // Make sure this is included
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2' // Check if this is up to date
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10'  // Ensure this is the correct version
+        classpath 'com.google.gms:google-services:4.4.2'  // Firebase services plugin (necessary for google-services.json)
+    }
+}
+
 allprojects {
     repositories {
-        google()
+        google()  // Make sure this is included
         mavenCentral()
     }
 }
