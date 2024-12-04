@@ -159,6 +159,21 @@ class QuizProvider extends ChangeNotifier {
         quizzes[selectedPaperIndex].questions.length - 1;
   }
 
+  /// Resets the quiz state including quizId, score, and isLive after submitting results or starting a new quiz.
+  Future<void> resetQuiz() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Reset fields in SharedPreferences
+    await prefs.remove('selectedQuizId');
+    await prefs.remove('isLive');
+
+    // Reset internal state
+    score = 0;
+    notifyListeners();
+
+    logger.i('Quiz state has been reset: quizId, score, and isLive cleared.');
+  }
+
   Future<void> updateQuizResults(
       String schoolCode, String rollNumber, bool isLive) async {
     try {
@@ -185,8 +200,9 @@ class QuizProvider extends ChangeNotifier {
         (failure) {
           logger.e('Failed to update quiz results: $failure');
         },
-        (_) {
+        (_) async {
           logger.i('Quiz results updated successfully.');
+          await resetQuiz();
         },
       );
     } catch (e) {
