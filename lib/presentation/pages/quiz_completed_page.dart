@@ -24,7 +24,7 @@ class QuizCompletedPage extends StatelessWidget {
       // Firestore integration: Update quiz results in Firestore.
       try {
         developer.log('Attempting to save results to Firestore...');
-        await quizProvider.updateQuizResults("BA002", "102");
+        await quizProvider.updateQuizResults("BA002", "102", true);
         developer.log('Quiz results saved to Firestore successfully.');
       } catch (e) {
         developer.log('Failed to save quiz results to Firestore: $e');

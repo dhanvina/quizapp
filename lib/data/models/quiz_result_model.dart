@@ -9,12 +9,14 @@ final Logger logger = Logger();
 class QuizResultModel {
   final String quizId;
   final int score;
+  final bool isLive;
   final Timestamp timestamp;
 
   // Constructor for QuizResultModel
   QuizResultModel({
     required this.quizId,
     required this.score,
+    required this.isLive,
     required this.timestamp,
   });
 
@@ -28,6 +30,7 @@ class QuizResultModel {
     return QuizResult(
       quizId: quizId,
       score: score,
+      isLive: isLive,
       timestamp: timestamp.toDate(),
     );
   }
@@ -43,6 +46,7 @@ class QuizResultModel {
       return QuizResultModel(
         quizId: data['quiz_id'],
         score: data['score'],
+        isLive: data['isLive'],
         timestamp: data['timestamp'],
       );
     } catch (e, stackTrace) {
@@ -93,6 +97,7 @@ class QuizResultModel {
       return QuizResultModel(
         quizId: json['quizId'],
         score: json['score'],
+        isLive: json['isLive'],
         timestamp: Timestamp.fromDate(DateTime.parse(json['timestamp'])),
       );
     } catch (e, stackTrace) {

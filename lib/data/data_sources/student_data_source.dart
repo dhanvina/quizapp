@@ -64,6 +64,7 @@ class StudentDataSource {
     String rollNumber,
     String quizId,
     int score,
+    bool isLive,
     DateTime timestamp,
   ) async {
     try {
@@ -71,6 +72,13 @@ class StudentDataSource {
       logger.i('Starting updateQuizResults');
       logger.i('Received schoolCode: $schoolCode');
       logger.i('Received rollNumber: $rollNumber');
+      logger.i('Received isLive: $isLive');
+
+      // Check if the quiz is live
+      if (!isLive) {
+        logger.w('Quiz is not live. Skipping update.');
+        return; // Exit early if the quiz is not live
+      }
 
       // Query to find the student document
       final querySnapshot = await _firestore

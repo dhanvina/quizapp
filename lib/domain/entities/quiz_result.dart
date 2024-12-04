@@ -9,11 +9,13 @@ final Logger logger = Logger();
 class QuizResult {
   final String quizId;
   final int score;
+  final bool isLive;
   final DateTime timestamp;
 
   QuizResult({
     required this.quizId,
     required this.score,
+    required this.isLive,
     required this.timestamp,
   }) {
     logger.i('QuizResult created: $quizId');
@@ -26,6 +28,7 @@ class QuizResult {
     return QuizResultModel(
       quizId: quizId,
       score: score,
+      isLive: isLive,
       timestamp: Timestamp.fromDate(timestamp), // Convert DateTime to Timestamp
     );
   }
@@ -38,6 +41,7 @@ class QuizResult {
     return QuizResult(
       quizId: model.quizId,
       score: model.score,
+      isLive: model.isLive,
       timestamp: convertedTimestamp, // Ensure DateTime type
     );
   }

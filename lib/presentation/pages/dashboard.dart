@@ -74,6 +74,9 @@ class _PaperSelectionPageState extends State<PaperSelectionPage> {
                             final prefs = await SharedPreferences.getInstance();
                             await prefs.setString(
                                 'selectedQuizId', quiz.quizId);
+                            await prefs.setBool('isLive', quiz.isLive);
+                            logger.i(
+                                "Saved Live quiz: ${quiz.isLive} to SharedPreferences");
                             logger.i(
                                 'Saved quizId: ${quiz.quizId} to SharedPreferences.');
 

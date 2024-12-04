@@ -57,6 +57,7 @@ class StudentRepositoryImpl implements StudentRepository {
         rollNumber,
         quizResult.quizId,
         quizResult.score,
+        quizResult.isLive,
         quizResult.timestamp, // Pass DateTime directly
       );
 

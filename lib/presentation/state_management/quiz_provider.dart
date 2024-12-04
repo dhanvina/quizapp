@@ -159,21 +159,21 @@ class QuizProvider extends ChangeNotifier {
         quizzes[selectedPaperIndex].questions.length - 1;
   }
 
-  Future<void> updateQuizResults(String schoolCode, String rollNumber) async {
+  Future<void> updateQuizResults(
+      String schoolCode, String rollNumber, bool isLive) async {
     try {
       logger.i('Starting updateQuizResults...');
       final prefs = await SharedPreferences.getInstance();
       final quizId = prefs.getString('selectedQuizId') ?? "unknown_quiz";
+      final isLive = prefs.getBool('isLive') ?? false;
       final timestamp = DateTime.now();
 
       final quizResult = QuizResult(
         quizId: quizId,
         score: score,
+        isLive: isLive,
         timestamp: timestamp,
       );
-
-      // Save quiz results to Firestore
-      // await saveQuizResultToFirestore(quizResult);
 
       final result = await updateQuizResultsUseCase.call(
         schoolCode,
@@ -193,22 +193,4 @@ class QuizProvider extends ChangeNotifier {
       logger.e('Error while updating quiz results: $e');
     }
   }
-
-  /// Saves the quiz result to Firestore.
-  // Future<void> saveQuizResultToFirestore(QuizResult quizResult) async {
-  //   try {
-  //     final firestore = FirebaseFirestore.instance;
-  //     final resultsCollection = firestore.collection('quiz_results');
-  //
-  //     logger.i('Preparing to save quiz result to Firestore...');
-  //     await resultsCollection.add({
-  //       'quizId': quizResult.quizId,
-  //       'score': quizResult.score,
-  //       'timestamp': quizResult.timestamp.toIso8601String(),
-  //     });
-  //     logger.i('Quiz result saved to Firestore successfully.');
-  //   } catch (e) {
-  //     logger.e('Error while saving quiz result to Firestore: $e');
-  //   }
-  // }
 }
