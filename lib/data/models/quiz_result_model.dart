@@ -46,7 +46,7 @@ class QuizResultModel {
       return QuizResultModel(
         quizId: data['quiz_id'],
         score: data['score'],
-        isLive: data['isLive'],
+        isLive: data['isLive'] ?? false,
         timestamp: data['timestamp'],
       );
     } catch (e, stackTrace) {
