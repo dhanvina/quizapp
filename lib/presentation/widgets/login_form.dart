@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../state_management/login_notifier.dart';
 import '../state_management/login_state.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
+
+  Future<bool> isInternetAvailable() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult != ConnectivityResult.none;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,9 @@ class LoginForm extends StatelessWidget {
       backgroundColor: const Color(0xFF00A651),
       body: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.30,
+          width: MediaQuery.of(context).size.width > 600
+              ? MediaQuery.of(context).size.width * 0.30
+              : MediaQuery.of(context).size.width * 0.90,
           height: MediaQuery.of(context).size.height * 0.96,
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -85,14 +93,22 @@ class LoginForm extends StatelessWidget {
                       isPassword: true),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      loginNotifier.login(
-                        fullNameController.text,
-                        rollNumberController.text,
-                        schoolCodeController.text,
-                        passwordController.text,
-                        context,
-                      );
+                    onPressed: () async {
+                      if (await isInternetAvailable()) {
+                        loginNotifier.login(
+                          fullNameController.text,
+                          rollNumberController.text,
+                          schoolCodeController.text,
+                          passwordController.text,
+                          context,
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("No internet connection. Please connect and try again."),
+                          ),
+                        );
+                      }
                     },
                     child: const Text("Sign In"),
                   ),

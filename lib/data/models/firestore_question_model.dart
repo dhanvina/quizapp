@@ -106,19 +106,20 @@ class QuestionModel {
   }
 
   // Helper method to safely convert the correct_option to int or double
-  static dynamic _convertToInt(dynamic value) {
+  static double _convertToInt(dynamic value) {
     logger.d('Converting correct_option value: $value');
 
     if (value is int) {
-      return value;
+      return value.toDouble(); // Convert int to double
     } else if (value is String) {
-      return int.tryParse(value) ?? double.tryParse(value) ?? 0;
+      return double.tryParse(value) ?? 0.0; // Attempt to parse as double
     } else if (value is double) {
       return value;
     } else {
-      return 0; // Default fallback value
+      return 0.0; // Default fallback as double
     }
   }
+
 
   // Helper method to handle and convert options to a List<dynamic> format
   static List<dynamic> _convertToOptions(dynamic value) {

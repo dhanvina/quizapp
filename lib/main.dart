@@ -21,10 +21,10 @@ void main() async {
   // Ensure that all bindings are initialized before running the app
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase with platform-specific options
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // Check if Firebase has already been initialized
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp();
+  }
 
   log('Firebase initialized successfully'); // Log Firebase initialization status
 

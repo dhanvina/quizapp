@@ -1,6 +1,7 @@
 // Project-level build.gradle
 
 buildscript {
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()  // Make sure this is included
         mavenCentral()
