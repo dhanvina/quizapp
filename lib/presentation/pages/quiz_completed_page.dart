@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Represents the page displayed after completing a quiz.
 class QuizCompletedPage extends StatelessWidget {
@@ -14,27 +15,46 @@ class QuizCompletedPage extends StatelessWidget {
 
     // Save the score and update Firestore when the page is displayed.
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      quizProvider.saveScore();
-      final savedScore = await quizProvider.getScore();
-      developer.log(
-        'Score saved in SharedPreferences: $savedScore',
-        name: 'QuizCompletedPage',
-      );
-
-      // Firestore integration: Update quiz results in Firestore.
       try {
-        developer.log('Attempting to save results to Firestore...');
-        await quizProvider.updateQuizResults("BA002", "102", true);
-        developer.log('Quiz results saved to Firestore successfully.');
+        // Save score locally
+        quizProvider.saveScore();
+        final savedScore = await quizProvider.getScore();
+        developer.log(
+          'Score saved to SharedPreferences: $savedScore',
+          name: 'QuizCompletedPage',
+        );
+
+        // Fetch `rollNumber` and `schoolCode` from SharedPreferences
+        developer.log('Fetching rollNumber and schoolCode from SharedPreferences...');
+        final prefs = await SharedPreferences.getInstance();
+        final rollNumber = prefs.getString('rollNumber');
+        final schoolCode = prefs.getString('schoolCode');
+
+        if (rollNumber == null || schoolCode == null) {
+          throw Exception(
+            'Missing SharedPreferences values: rollNumber or schoolCode is null.',
+          );
+        }
+
+        developer.log('Fetched rollNumber: $rollNumber, schoolCode: $schoolCode');
+
+        // Firestore integration: Update quiz results in Firestore.
+        try {
+          developer.log('Attempting to save results to Firestore...');
+          await quizProvider.updateQuizResults(schoolCode, rollNumber, true);
+          developer.log('Quiz results saved to Firestore successfully.');
+        } catch (e) {
+          developer.log('Failed to save quiz results to Firestore: $e');
+        }
       } catch (e) {
-        developer.log('Failed to save quiz results to Firestore: $e');
+        developer.log('[QuizCompletedPage] Error occurred: $e');
       }
     });
 
     // Log the user's score and selected quiz paper information.
     developer.log(
       'Quiz Completed - Score: ${quizProvider.score}, '
-      'Total Questions: ${quizProvider.totalQuestions}',
+          'Total Questions: ${quizProvider.totalQuestions}',
       name: 'QuizCompletedPage',
     );
 
@@ -121,7 +141,7 @@ class QuizCompletedPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          const Color(0xFF1E1E1E), // Button background.
+                      const Color(0xFF1E1E1E), // Button background.
                       fixedSize: const Size(200, 50), // Button size.
                       padding: EdgeInsets.zero,
                       shadowColor: const Color(0xFF000000), // Shadow color.
