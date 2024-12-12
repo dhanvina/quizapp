@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/state_management/quiz_provider.dart';
 import 'package:quizapp/presentation/widgets/background.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Represents the page displayed after completing a quiz.
 class QuizCompletedPage extends StatelessWidget {
@@ -21,10 +22,26 @@ class QuizCompletedPage extends StatelessWidget {
         name: 'QuizCompletedPage',
       );
 
+      // Fetch `rollNumber` and `schoolCode` from SharedPreferences
+      developer
+          .log('Fetching rollNumber and schoolCode from SharedPreferences...');
+      final prefs = await SharedPreferences.getInstance();
+      final rollNumber = prefs.getString('rollNumber');
+      final schoolCode = prefs.getString('schoolCode');
+      final isLive = prefs.getBool('isLive');
+
+      if (rollNumber == null || schoolCode == null || isLive == null) {
+        throw Exception(
+          'Missing SharedPreferences values: rollNumber or schoolCode is null.',
+        );
+      }
+
+      developer.log('Fetched rollNumber: $rollNumber, schoolCode: $schoolCode');
+
       // Firestore integration: Update quiz results in Firestore.
       try {
         developer.log('Attempting to save results to Firestore...');
-        await quizProvider.updateQuizResults("BA002", "102", true);
+        await quizProvider.updateQuizResults(schoolCode, rollNumber, isLive);
         developer.log('Quiz results saved to Firestore successfully.');
       } catch (e) {
         developer.log('Failed to save quiz results to Firestore: $e');
