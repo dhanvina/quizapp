@@ -1,5 +1,4 @@
 import 'dart:developer' as developer;
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/state_management/quiz_provider.dart';
@@ -16,20 +15,24 @@ class QuizCompletedPage extends StatelessWidget {
     // Save the score and update Firestore when the page is displayed.
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
-        // Save score locally
-        quizProvider.saveScore();
+        // Save the score locally in SharedPreferences.
+        developer.log('Saving score to SharedPreferences...');
+        await quizProvider.saveScore();
+
+        // Retrieve the saved score to ensure it's stored correctly.
         final savedScore = await quizProvider.getScore();
         developer.log(
           'Score saved to SharedPreferences: $savedScore',
           name: 'QuizCompletedPage',
         );
 
-        // Fetch `rollNumber` and `schoolCode` from SharedPreferences
+        // Fetch `rollNumber` and `schoolCode` from SharedPreferences.
         developer.log('Fetching rollNumber and schoolCode from SharedPreferences...');
         final prefs = await SharedPreferences.getInstance();
         final rollNumber = prefs.getString('rollNumber');
         final schoolCode = prefs.getString('schoolCode');
 
+        // Ensure `rollNumber` and `schoolCode` exist.
         if (rollNumber == null || schoolCode == null) {
           throw Exception(
             'Missing SharedPreferences values: rollNumber or schoolCode is null.',
@@ -38,20 +41,16 @@ class QuizCompletedPage extends StatelessWidget {
 
         developer.log('Fetched rollNumber: $rollNumber, schoolCode: $schoolCode');
 
-        // Firestore integration: Update quiz results in Firestore.
-        try {
-          developer.log('Attempting to save results to Firestore...');
-          await quizProvider.updateQuizResults(schoolCode, rollNumber, true);
-          developer.log('Quiz results saved to Firestore successfully.');
-        } catch (e) {
-          developer.log('Failed to save quiz results to Firestore: $e');
-        }
+        // Update quiz results in Firestore.
+        developer.log('Attempting to save results to Firestore...');
+        await quizProvider.updateQuizResults(schoolCode, rollNumber, true);
+        developer.log('Quiz results saved to Firestore successfully.');
       } catch (e) {
-        developer.log('[QuizCompletedPage] Error occurred: $e');
+        developer.log('Error in QuizCompletedPage: $e', name: 'QuizCompletedPage');
       }
     });
 
-    // Log the user's score and selected quiz paper information.
+    // Log the user's score and quiz information.
     developer.log(
       'Quiz Completed - Score: ${quizProvider.score}, '
           'Total Questions: ${quizProvider.totalQuestions}',
@@ -123,10 +122,14 @@ class QuizCompletedPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   // Display user's score and total questions.
-                  Text(
-                    "You scored ${quizProvider.score} out of ${quizProvider.totalQuestions}.",
-                    style: const TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
+                  Consumer<QuizProvider>(
+                    builder: (context, provider, _) {
+                      return Text(
+                        "You scored ${provider.score} out of ${provider.totalQuestions}.",
+                        style: const TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      );
+                    },
                   ),
                   const SizedBox(height: 20),
                   // Button to return to the home page.

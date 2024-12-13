@@ -21,15 +21,24 @@ void main() async {
   // Ensure that all bindings are initialized before running the app
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Check if Firebase has already been initialized
-  if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp();
+  // Initialize Firebase if it hasn't been initialized yet
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      log('Firebase initialized successfully'); // Log Firebase initialization status
+    } else {
+      log('Firebase already initialized'); // Log if Firebase was already initialized
+    }
+  } catch (e) {
+    log('Firebase initialization failed: $e'); // Log any errors during initialization
   }
 
-  log('Firebase initialized successfully'); // Log Firebase initialization status
-
+  // Run the app
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
