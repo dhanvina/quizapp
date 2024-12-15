@@ -8,6 +8,7 @@ import 'package:quizapp/presentation/widgets/background.dart';
 import 'package:quizapp/presentation/widgets/falling_overlay.dart';
 import 'package:quizapp/presentation/widgets/timer_widget_sec.dart';
 import 'package:quizapp/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/firestore_quiz.dart';
 import '../state_management/quiz_provider.dart';
@@ -29,6 +30,9 @@ class _QuestionPageState extends State<QuestionPage> {
   late int timePerQuestion;
   late int totalQuizTimeInSeconds;
   Timer? totalTimer;
+  Timer? quizTimer;
+
+  Duration elapsedQuizTime = Duration.zero; // Track elapsed time
 
   bool _isLastQuestionAnswered = false;
   bool _isMovingToNextQuestion = false;
@@ -46,6 +50,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
     if (widget.quiz.questions.isNotEmpty) {
       _startTotalTimer();
+      _startQuizTimer();
     }
   }
 
@@ -62,10 +67,29 @@ class _QuestionPageState extends State<QuestionPage> {
     });
   }
 
+  void _startQuizTimer() {
+    quizTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        elapsedQuizTime += const Duration(seconds: 1);
+      });
+    });
+  }
+
+  void _stopQuizTimer() {
+    quizTimer?.cancel();
+  }
+
+  Future<void> _saveElapsedTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('quiz_time', elapsedQuizTime.inSeconds);
+    log('[Timer] Saved quiz time: ${elapsedQuizTime.inSeconds} seconds');
+  }
+
   @override
   void dispose() {
     log('Disposing QuestionPage...');
     totalTimer?.cancel();
+    quizTimer?.cancel();
     _answerController.dispose();
     super.dispose();
   }
@@ -200,8 +224,10 @@ class _QuestionPageState extends State<QuestionPage> {
     });
   }
 
-  void _onSubmitQuiz() {
+  Future<void> _onSubmitQuiz() async {
     log('[Quiz] Navigating to the QuizCompletedPage...');
+    _stopQuizTimer();
+    await _saveElapsedTime();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => QuizCompletedPage()),

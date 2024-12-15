@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 
 import '../../data/models/quiz_result_model.dart';
@@ -10,17 +9,14 @@ class QuizResult {
   final String quizId;
   final int score;
   final bool isLive;
-  final DateTime timestamp;
 
   QuizResult({
     required this.quizId,
     required this.score,
     required this.isLive,
-    required this.timestamp,
   }) {
     logger.i('QuizResult created: $quizId');
     logger.i('Score: $score');
-    logger.i('Timestamp: $timestamp');
   }
 
   // Convert QuizResult to QuizResultModel
@@ -29,20 +25,15 @@ class QuizResult {
       quizId: quizId,
       score: score,
       isLive: isLive,
-      timestamp: Timestamp.fromDate(timestamp), // Convert DateTime to Timestamp
     );
   }
 
   // Convert QuizResultModel to QuizResult
   static QuizResult fromDataModel(QuizResultModel model) {
-    // Convert Timestamp to DateTime
-    DateTime convertedTimestamp = model.timestamp.toDate();
-
     return QuizResult(
       quizId: model.quizId,
       score: model.score,
       isLive: model.isLive,
-      timestamp: convertedTimestamp, // Ensure DateTime type
     );
   }
 }

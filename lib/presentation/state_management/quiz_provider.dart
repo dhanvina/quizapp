@@ -181,13 +181,11 @@ class QuizProvider extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final quizId = prefs.getString('selectedQuizId') ?? "unknown_quiz";
       final isLive = prefs.getBool('isLive') ?? false;
-      final timestamp = DateTime.now();
 
       final quizResult = QuizResult(
         quizId: quizId,
         score: score,
         isLive: isLive,
-        timestamp: timestamp,
       );
 
       final result = await updateQuizResultsUseCase.call(

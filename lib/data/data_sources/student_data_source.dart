@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 import 'package:quizapp/data/models/student_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Data source class for handling student-related operations in Firestore.
 class StudentDataSource {
@@ -65,7 +66,6 @@ class StudentDataSource {
     String quizId,
     int score,
     bool isLive,
-    DateTime timestamp,
   ) async {
     try {
       // Explicitly log the values of schoolCode and rollNumber
@@ -78,6 +78,15 @@ class StudentDataSource {
       if (!isLive) {
         logger.w('Quiz is not live. Skipping update.');
         return; // Exit early if the quiz is not live
+      }
+
+      // Retrieve quiz_time from SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      final quizTime = prefs.getInt('quiz_time');
+
+      if (quizTime == null) {
+        logger.w('No quiz_time found in SharedPreferences. Skipping update.');
+        return; // Exit early if no quiz_time is found
       }
 
       // Query to find the student document
@@ -94,7 +103,7 @@ class StudentDataSource {
         final newQuizResult = {
           'quiz_id': quizId,
           'score': score,
-          'timestamp': Timestamp.fromDate(timestamp),
+          'quiz_time': quizTime,
         };
 
         // Update the `quiz_results` array in the document
@@ -103,6 +112,9 @@ class StudentDataSource {
         });
 
         logger.d('Successfully updated quiz results for student');
+        // Clear the quiz_time from SharedPreferences
+        await prefs.remove('quiz_time');
+        logger.i('Cleared quiz_time from SharedPreferences');
       } else {
         logger.w(
             'No matching student document found in the "students" collection for schoolCode: $schoolCode, rollNumber: $rollNumber');

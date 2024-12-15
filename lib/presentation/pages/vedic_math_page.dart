@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp/presentation/pages/quiz_completed_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/firestore_quiz.dart';
 import '../state_management/quiz_provider.dart';
@@ -27,6 +29,9 @@ class _VedicMathPageState extends State<VedicMathPage> {
   int _score = 0; // Store the quiz score.
   late Timer totalTimer; // Timer for quiz duration.
   late int totalQuizTimeInSeconds; // Total time for the quiz in seconds.
+  Timer? quizTimer;
+
+  Duration elapsedQuizTime = Duration.zero;
 
   @override
   void initState() {
@@ -37,6 +42,7 @@ class _VedicMathPageState extends State<VedicMathPage> {
     if (widget.quiz.questions.isNotEmpty) {
       // Start the timer if there are questions in the quiz.
       _startTotalTimer();
+      _startQuizTimer();
     }
   }
 
@@ -54,6 +60,24 @@ class _VedicMathPageState extends State<VedicMathPage> {
     });
   }
 
+  void _startQuizTimer() {
+    quizTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        elapsedQuizTime += const Duration(seconds: 1);
+      });
+    });
+  }
+
+  void _stopQuizTimer() {
+    quizTimer?.cancel();
+  }
+
+  Future<void> _saveElapsedTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('quiz_time', elapsedQuizTime.inSeconds);
+    log('[Timer] Saved quiz time: ${elapsedQuizTime.inSeconds} seconds');
+  }
+
   /// Formats the remaining time as MM:SS.
   String get formattedTotalQuizTime {
     final minutes = (totalQuizTimeInSeconds ~/ 60).toString().padLeft(2, '0');
@@ -62,9 +86,11 @@ class _VedicMathPageState extends State<VedicMathPage> {
   }
 
   /// Handles quiz submission and navigates to the results page.
-  void _onSubmitQuiz() {
+  Future<void> _onSubmitQuiz() async {
     _calculateScore(widget.quiz.questions);
     debugPrint("Quiz submitted. Score: $_score");
+    _stopQuizTimer();
+    await _saveElapsedTime();
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -240,6 +266,7 @@ class _VedicMathPageState extends State<VedicMathPage> {
   void dispose() {
     // Cancel the timer when the page is disposed.
     totalTimer.cancel();
+    quizTimer?.cancel();
     debugPrint("Timer disposed.");
     super.dispose();
   }
