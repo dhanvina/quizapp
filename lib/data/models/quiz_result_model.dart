@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 
 import '../../domain/entities/quiz_result.dart';
@@ -10,14 +9,12 @@ class QuizResultModel {
   final String quizId;
   final int score;
   final bool isLive;
-  final Timestamp timestamp;
 
   // Constructor for QuizResultModel
   QuizResultModel({
     required this.quizId,
     required this.score,
     required this.isLive,
-    required this.timestamp,
   });
 
   // Convert QuizResultModel to QuizResult (for the domain layer)
@@ -25,13 +22,12 @@ class QuizResultModel {
     logger.i('Converting QuizResultModel to QuizResult domain model');
 
     // Log the properties for debugging purposes
-    logger.d('quizId: $quizId, score: $score, timestamp: $timestamp');
+    logger.d('quizId: $quizId, score: $score');
 
     return QuizResult(
       quizId: quizId,
       score: score,
       isLive: isLive,
-      timestamp: timestamp.toDate(),
     );
   }
 
@@ -47,7 +43,6 @@ class QuizResultModel {
         quizId: data['quiz_id'],
         score: data['score'],
         isLive: data['isLive'] ?? false,
-        timestamp: data['timestamp'],
       );
     } catch (e, stackTrace) {
       // Log any errors that occur during the conversion
@@ -67,7 +62,6 @@ class QuizResultModel {
     return {
       'quiz_id': quizId,
       'score': score,
-      'timestamp': timestamp,
     };
   }
 
@@ -76,13 +70,11 @@ class QuizResultModel {
     logger.i('Converting QuizResultModel to JSON for serialization');
 
     // Log the conversion process and data
-    logger.d(
-        'QuizResultModel data to JSON: quizId: $quizId, score: $score, timestamp: $timestamp');
+    logger.d('QuizResultModel data to JSON: quizId: $quizId, score: $score');
 
     return {
       'quizId': quizId,
       'score': score,
-      'timestamp': timestamp.toDate().toIso8601String(),
     };
   }
 
@@ -98,7 +90,6 @@ class QuizResultModel {
         quizId: json['quizId'],
         score: json['score'],
         isLive: json['isLive'],
-        timestamp: Timestamp.fromDate(DateTime.parse(json['timestamp'])),
       );
     } catch (e, stackTrace) {
       // Log any errors during JSON parsing

@@ -13,6 +13,19 @@ class QuizCompletedPage extends StatelessWidget {
     // Access the QuizProvider to fetch quiz data like score and questions.
     final quizProvider = Provider.of<QuizProvider>(context, listen: false);
 
+    // Calculate the percentage score
+    final double percentage = (quizProvider.score / quizProvider.totalQuestions) * 100;
+
+    // Determine the message based on the percentage score
+    String resultMessage;
+    if (percentage >= 75) {
+      resultMessage = "You are a champion";
+    } else if (percentage >= 50) {
+      resultMessage = "You did great";
+    } else {
+      resultMessage = "Better luck next time";
+    }
+
     // Save the score and update Firestore when the page is displayed.
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
@@ -126,6 +139,17 @@ class QuizCompletedPage extends StatelessWidget {
                   Text(
                     "You scored ${quizProvider.score} out of ${quizProvider.totalQuestions}.",
                     style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  // Display message based on the score.
+                  Text(
+                    resultMessage,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blueAccent,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),

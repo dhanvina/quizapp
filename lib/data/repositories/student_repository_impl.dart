@@ -58,7 +58,6 @@ class StudentRepositoryImpl implements StudentRepository {
         quizResult.quizId,
         quizResult.score,
         quizResult.isLive,
-        quizResult.timestamp, // Pass DateTime directly
       );
 
       return Right(null); // Success
